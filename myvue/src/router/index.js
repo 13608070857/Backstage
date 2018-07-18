@@ -12,5 +12,6 @@ export default new Router({
       name: 'index',
       component: index
     }
-  ]
+  ],
+  mode: 'history'
 })
