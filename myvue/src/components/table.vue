@@ -1,6 +1,5 @@
 <template>
   <div id="table">
-    <search></search>
     <table cellpadding="0" cellspacing="0" width="100%">
       <tr class="tableTitle">
         <th v-for="(tableTitle,index) in tableTitles" :key="index">{{tableTitle}}</th>
@@ -21,7 +20,6 @@
 </template>
 
 <script>
-import search from './search'
 import btn from './button/button'
 export default {
   name: 'Table',
@@ -39,7 +37,6 @@ export default {
     }
   },
   components: {
-    search,
     btn
   },
   created () {
