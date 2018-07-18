@@ -25,24 +25,27 @@ import search from './search'
 import btn from './button/button'
 export default {
   name: 'Table',
+  data () {
+    tableContents: ''
+  },
   props: {
     tableTitles: {
       type: Array,
       required: true
     },
-    tableContents: {
-      type: Array,
+    router: {
+      type: String,
       required: true
-    }
-  },
-  methods: {
-    getD () {
-      console.log(this.tableContents)
     }
   },
   components: {
     search,
     btn
+  },
+  created () {
+    this.$axios.get('http://172.16.8.40:8888/' + this.router).then(resp => {
+      this.tableContents = resp.data
+    })
   }
 }
 </script>
