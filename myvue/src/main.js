@@ -7,7 +7,7 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
-Vue.prototype.$host = 'fttp://172.16.8.40:8888'
+Vue.prototype.$host = 'http://172.16.8.40:8888'
 
 /* eslint-disable no-new */
 new Vue({
