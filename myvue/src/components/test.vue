@@ -10,7 +10,7 @@ export default {
   name: 'Test',
   data () {
     return {
-      tableTitles: ['测试id', '测试名称', '测试的其他数据'],
+      tableTitles: ['测试id', '测试名称', '测试的其他数据', '测试添加'],
       router: '/getUserInfo.do'
     }
   },
