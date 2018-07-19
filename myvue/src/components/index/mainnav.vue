@@ -42,7 +42,7 @@ export default {
         {
           name: '商品管理',
           isShow: false,
-          to: '/',
+          to: '',
           background: 'rgba(40,40,40,0.8)',
           num: 0,
           namearr: [
@@ -88,7 +88,7 @@ export default {
         {
           name: '交易管理',
           isShow: false,
-          to: '/',
+          to: '',
           background: 'rgba(40,40,40,0.8)',
           num: 0,
           namearr: [
@@ -122,7 +122,7 @@ export default {
         {
           name: '租赁管理',
           isShow: false,
-          to: '/',
+          to: '',
           background: 'rgba(40,40,40,0.8)',
           num: 0,
           namearr: [
@@ -142,7 +142,7 @@ export default {
         {
           name: '论坛管理',
           isShow: false,
-          to: '/',
+          to: '',
           background: 'rgba(40,40,40,0.8)',
           num: 0,
           namearr: [
