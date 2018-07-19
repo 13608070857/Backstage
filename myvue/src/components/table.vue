@@ -3,7 +3,7 @@
     <table cellpadding="0" cellspacing="0" width="100%">
       <tr class="tableTitle">
         <th v-for="(tableTitle,index) in tableTitles" :key="index">{{tableTitle}}</th>
-        <th>操作</th>
+        <!--<th>操作</th>-->
       </tr>
       <tbody>
         <tr v-for="(tableContent,index) in tableContents" :key="index">
@@ -21,7 +21,9 @@ import btn from './button/button'
 export default {
   name: 'Table',
   data () {
-    tableContents: ''
+    return {
+      tableContents: ''
+    }
   },
   props: {
     tableTitles: {
