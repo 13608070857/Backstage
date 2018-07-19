@@ -63,7 +63,7 @@ export default {
     this.Line()
   },
   created () {
-    this.$axios.get('http//172.16.8.2:8888/index')
+    this.$axios.get('http://172.16.8.2:8888/index')
       .then(resp => {
         console.log(resp.data)
       })
