@@ -1,5 +1,5 @@
 <template>
-  <button :class="btnClass">{{btnText}}</button>
+  <button :class="btnClass" v-on:click="fn">{{btnText}}</button>
 </template>
 
 <script>
@@ -14,6 +14,11 @@ export default {
     },
     // 按钮颜色
     btnClass: ''
+  },
+  methods: {
+    fn () {
+      this.$emit('fn')
+    }
   }
 }
 </script>
@@ -23,18 +28,23 @@ button {
   border: none;
   color: #fff;
   cursor: pointer;
+  margin-left: 5px;
+  border-radius: 2px;
+}
+.gray {
+  background: (204, 204, 204, 1);
 }
 .darkGreen {
-  background: #1F482F;
+  background: rgba(35, 58, 77, 1);
 }
 .darkGreen:hover {
-  background: #15301F;
+  background: rgba(35, 65, 80, 1);
 }
 .lightGreen {
-  background: #439B66;
+  background: rgba(0, 150, 136, 1);
 }
 .lightGreen:hover {
-  background: #388357;
+  background: rgba(0, 160, 140, 1);
 }
 .large {
   padding: 10px 30px;
