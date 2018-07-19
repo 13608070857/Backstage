@@ -9,9 +9,6 @@
         <tr v-for="(tableContent,index) in tableContents" :key="index">
           <td v-for="(tableC,i) in tableContent" :key="i">{{tableC}}</td>
           <td>
-            <btn btnText="查看" btnClass="lightGreen small"></btn>
-            <btn btnText="修改" btnClass="lightGreen small"></btn>
-            <btn btnText="删除" btnClass="darkGreen small"></btn>
           </td>
         </tr>
       </tbody>
