@@ -5,7 +5,7 @@
       <p>QianCao Management System</p>
     </div>
     <div class="right">
-      <span>消息</span>
+      <span @click="span">换肤</span>
       <span>管理员</span>
     </div>
 
@@ -14,8 +14,14 @@
 
 <script>
 export default {
-  name: 'header'
+  name: 'header',
+  methods: {
+    span () {
+      console.log(11)
+    }
+  }
 }
+
 </script>
 
 <style scoped>
