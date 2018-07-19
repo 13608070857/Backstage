@@ -1,15 +1,25 @@
 <template>
   <div id="mainNav">
     <ul>
-      <li v-for="(i,index) in arr" :key="index" @click.stop="li(i)" :style='{background:i.background}'>
-        {{i.name}}
-        <ul v-show="i.isShow">
-          <!--<router-link to="/user" tag="li">zi</router-link>-->
-          <li v-for="(j,index) in i.namearr" :key="index" @click.stop="li2">
-            {{j.name}}
-          </li>
-        </ul>
-      </li>
+      <!--<li v-for="(i,index) in arr" :key="index" @click.stop="li(i)" :style='{background:i.background}'>-->
+        <!--{{i.name}}-->
+        <router-link tag="li" v-for="(i,index) in arr" :key="index" @click.native="li(i)" :to= "{path:i.to}" :style='{background:i.background}'>
+          {{i.name}}
+          <ul v-show="i.isShow">
+            <!--<router-link to="/user" tag="li">zi</router-link>-->
+            <router-link tag="li" v-for="(j,index) in i.namearr" :key="index" @click.native.stop="li2" :to="{path:j.to}">{{j.name}}</router-link>
+            <!--<li v-for="(j,index) in i.namearr" :key="index" @click.stop="li2">-->
+              <!--{{j.name}}-->
+            <!--</li>-->
+          </ul>
+        </router-link>
+        <!--<ul v-show="i.isShow">-->
+          <!--&lt;!&ndash;<router-link to="/user" tag="li">zi</router-link>&ndash;&gt;-->
+          <!--<li v-for="(j,index) in i.namearr" :key="index" @click.stop="li2">-->
+            <!--{{j.name}}-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</li>-->
     </ul>
   </div>
 </template>
@@ -24,68 +34,135 @@ export default {
           name: '首页',
           background: 'rgb(40,40,40)',
           isShow: false,
+          to: '/',
           num: 0,
           namearr: [
           ]
-        }, {
+        },
+        {
           name: '商品管理',
           isShow: false,
+          to: '/',
           background: 'rgba(40,40,40,0.8)',
           num: 0,
           namearr: [
-            {name: '商品信息'},
-            {name: '商品分类'},
-            {name: '商品评论'},
-            {name: '商品服务评分'}
+            {
+              name: '商品信息',
+              to: '/'
+            },
+            {
+              name: '商品分类',
+              to: '/'
+            },
+            {
+              name: '商品评论',
+              to: '/'
+            },
+            {
+              name: '商品详情图',
+              to: '/'
+            }
           ]
-        }, {
+        },
+        {
           name: '用户管理',
           isShow: false,
+          to: '',
           background: 'rgba(40,40,40,0.8)',
           num: 0,
           namearr: [
-            {name: '用户信息'},
-            {name: '用户等级'}
+            {
+              name: '用户信息',
+              to: '/users'
+            },
+            {
+              name: '用户等级',
+              to: '/'
+            },
+            {
+              name: '用户商品收藏',
+              to: '/'
+            }
           ]
-        }, {
-          name: '租赁管理',
-          isShow: false,
-          background: 'rgba(40,40,40,0.8)',
-          num: 0,
-          namearr: [
-            {name: '租赁信息'},
-            {name: '分类管理'},
-            {name: '定制管理'}
-          ]
-        }, {
-          name: '论坛管理',
-          isShow: false,
-          background: 'rgba(40,40,40,0.8)',
-          num: 0,
-          namearr: [
-            {name: '论坛信息'},
-            {name: '论坛用户管理'},
-            {name: '分类管理'},
-            {name: '评论管理'}
-          ]
-        }, {
+        },
+        {
           name: '交易管理',
           isShow: false,
+          to: '/',
           background: 'rgba(40,40,40,0.8)',
           num: 0,
           namearr: [
-            {name: '订单记录'},
-            {name: '订单处理'},
-            {name: '退款处理'},
-            {name: '支付管理'}
+            {
+              name: '订单记录(图)',
+              to: '/'
+            },
+            {
+              name: '订单处理',
+              to: '/'
+            },
+            {
+              name: '退款处理',
+              to: '/'
+            },
+            {
+              name: '支付管理',
+              to: '/'
+            }
           ]
-        }, {
-          name: '图片管理',
+        },
+        {
+          name: '购物车管理',
           isShow: false,
+          to: '/',
           background: 'rgba(40,40,40,0.8)',
           num: 0,
           namearr: [
-            {name: '轮播图'}
+          ]
+        },
+        {
+          name: '租赁管理',
+          isShow: false,
+          to: '/',
+          background: 'rgba(40,40,40,0.8)',
+          num: 0,
+          namearr: [
+            {
+              name: '租赁信息',
+              to: '/'
+            },
+            {
+              name: '分类管理',
+              to: '/'
+            },
+            {
+              name: '定制管理',
+              to: '/'}
+          ]
+        },
+        {
+          name: '论坛管理',
+          isShow: false,
+          to: '/',
+          background: 'rgba(40,40,40,0.8)',
+          num: 0,
+          namearr: [
+            {
+              name: '论坛信息',
+              to: '/'
+            },
+            {
+              name: '评论管理',
+              to: '/'
+            }
+          ]
+        },
+        {
+          name: '权限管理',
+          isShow: false,
+          to: '/',
+          background: 'rgba(40,40,40,0.8)',
+          num: 0,
+          namearr: [
           ]
         }
       ]
@@ -109,7 +186,6 @@ export default {
       }
     },
     li2 () {
-      console.log(11111)
     }
   }
 }
@@ -136,7 +212,7 @@ export default {
   list-style: none;
   background: rgba(40,40,40,.8);
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 #mainNav>ul>li> ul>li{
   color: white;
