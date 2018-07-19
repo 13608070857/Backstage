@@ -103,7 +103,7 @@ export default {
           namearr: [
             {
               name: '订单记录(图)',
-              to: '/'
+              to: '/orderImg'
             },
             {
               name: '订单处理',
