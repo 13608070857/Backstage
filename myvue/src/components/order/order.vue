@@ -22,7 +22,7 @@ export default {
   width: 190px;
   height: 120px;
   border: 1px solid #f5f5f5;
-  margin: 30px 10px 50px 20px;
+  margin: 20px 10px 50px 20px;
   float: left;
 }
   .mytitle{
@@ -52,5 +52,14 @@ h1{
 }
 .blue{
   background-color: #2799fb;
+}
+  .black{
+    background-color: #233A4D;
+  }
+.green{
+  background-color: #008f7f;
+}
+.orgin{
+  background-color: #FFAD26;
 }
 </style>

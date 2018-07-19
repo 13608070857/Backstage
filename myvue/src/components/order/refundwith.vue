@@ -1,10 +1,10 @@
 <template>
-  <div>商品信息</div>
+    <div>退款处理</div>
 </template>
 
 <script>
 export default {
-  name: 'goodsMsg'
+  name: 'refundwith'
 }
 </script>
 
