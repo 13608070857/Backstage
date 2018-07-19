@@ -44,7 +44,7 @@ export default {
           Title: '交易记录',
           unit: '年',
           Number: '',
-          ZTitle: '总收入',
+          ZTitle: '总交易数',
           ZNumber: '',
           background: '#009688'
         },
@@ -61,6 +61,12 @@ export default {
   },
   mounted () {
     this.Line()
+  },
+  created () {
+    this.$axios.get('http//172.16.8.2:8888/index')
+      .then(resp => {
+        console.log(resp.data)
+      })
   },
   methods: {
     // 折线图
@@ -112,7 +118,7 @@ export default {
             name: '交易记录',
             type: 'line',
             stack: '总量2',
-            data: [99, 150, 256, 198, 245, 290, 277, 311, 350, 322, 369, 377]
+            data: [99, 150, 177, 198, 245, 290, 277, 311, 350, 322, 369, 377]
           },
           {
             name: '商城订单',
