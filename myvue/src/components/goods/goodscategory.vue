@@ -1,10 +1,10 @@
 <template>
-  <div>商品信息</div>
+    <div>商品分类</div>
 </template>
 
 <script>
 export default {
-  name: 'goodsMsg'
+  name: 'goodscategory'
 }
 </script>
 

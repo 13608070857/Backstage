@@ -1,6 +1,16 @@
 <template>
   <div id="myorder">
     <div class="otitle">交易记录</div>
+    <div class="myselect">
+      <select>
+        <option>近一周</option>
+        <option>近一个月</option>
+        <option>近两个月</option>
+        <option>近三个月</option>
+        <option>今年</option>
+        <option>去年</option>
+      </select>
+    </div>
     <order myprice="9,999,666" mycontent="交易金额" week="周" :mycolor="mycolor"></order>
     <order myprice="9,999,666" mycontent="订单数量" week="周" :mycolor="mycolor"></order>
     <order myprice="9,999,666" mycontent="交易成功" week="周" :mycolor="mycolor"></order>
@@ -41,7 +51,7 @@ export default {
       myChart.setOption({
         title: {
           text: '月购买交易订单记录',
-          subtext: '实时获取订单购买记录'
+          subtext: '实时获取用户订单购买记录'
         },
         tooltip: {
           trigger: 'axis'
@@ -72,7 +82,7 @@ export default {
           {
             name: '所有订单',
             type: 'bar',
-            barWidth: 12,
+            barWidth: 12, // 柱状图宽度
             color: ['#21C4C2'],
             data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
             markPoint: {
@@ -96,7 +106,7 @@ export default {
           {
             name: '待付款',
             type: 'bar',
-            barWidth: 12,
+            barWidth: 12, // 柱状图宽度
             color: ['#B199D8'],
             data: [1.6, 3.9, 6.0, 2.4, 8.7, 7.7, 15.6, 82.2, 18.7, 18.8, 6.0, 2.3],
             markPoint: {
@@ -120,7 +130,7 @@ export default {
           {
             name: '已付款',
             type: 'bar',
-            barWidth: 12,
+            barWidth: 12, // 柱状图宽度
             color: ['#53ACEA'],
             data: [2.6, 5.9, 9.0, 2.4, 2.7, 27.7, 55.6, 2.2, 8.7, 8.8, 6.0, 2.3],
             markPoint: {
@@ -144,7 +154,7 @@ export default {
           {
             name: '待发货',
             type: 'bar',
-            barWidth: 12,
+            barWidth: 12, // 柱状图宽度
             color: ['#FFAE7A'],
             data: [2.6, 5.9, 9.0, 6.4, 42.7, 7.7, 155.6, 2.2, 4.7, 1.8, 6.0, 2.3],
             markPoint: {
@@ -190,4 +200,19 @@ export default {
   line-height: 50px;
   border-bottom: 2px solid #008f7f;
 }
+  .myselect{
+    margin-left: 15px;
+    margin-top: 20px;
+    height: 60px;
+    line-height: 60px;
+    border-left: 3px solid #008f7f;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .myselect>select{
+    width: 200px;
+    height: 40px;
+    margin-left: 30px;
+    border: 1px solid rgba(0, 150, 136, 1);
+    padding: 10px 5px;
+  }
 </style>

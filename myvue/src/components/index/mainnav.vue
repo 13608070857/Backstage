@@ -48,19 +48,19 @@ export default {
           namearr: [
             {
               name: '商品信息',
-              to: '/'
+              to: '/goodsMsg'
             },
             {
               name: '商品分类',
-              to: '/'
+              to: '/goodscategory'
             },
             {
               name: '商品评论',
-              to: '/'
+              to: '/goodscoomments'
             },
             {
               name: '商品详情图',
-              to: '/'
+              to: '/goodsdetail'
             }
           ]
         },
@@ -107,15 +107,15 @@ export default {
             },
             {
               name: '订单处理',
-              to: '/'
+              to: '/orderwith'
             },
             {
               name: '退款处理',
-              to: '/'
+              to: '/refundwith'
             },
             {
               name: '支付管理',
-              to: '/'
+              to: '/paymanage'
             }
           ]
         },
