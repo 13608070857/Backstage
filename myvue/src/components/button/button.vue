@@ -31,6 +31,9 @@ button {
   margin-left: 5px;
   border-radius: 2px;
 }
+.gray {
+  background: (204, 204, 204, 1);
+}
 .darkGreen {
   background: rgba(35, 58, 77, 1);
 }

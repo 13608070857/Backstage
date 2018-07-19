@@ -29,9 +29,9 @@ export default {
       router: '/getUserInfo.do',
       // 表格按钮 text：按钮内容 className：按钮类
       // fn:表示函数名字，但必须使用this.函数名
-      // 其中small，large表示按钮大小，lightGreen，darkGreen表示按钮颜色
-      // operationBtns是表格操作部分的按钮
-      // searchBtns是查询部分的按钮
+      // 其中small，large表示按钮大小，lightGreen（浅绿），darkGreen（深绿），gray（下架）表示按钮颜色
+      // operationBtns是表格操作部分的按钮是（使用小按钮small类）
+      // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
         {text: '修改', className: 'small lightGreen', fn: this.hello},
         {text: '删除', className: 'small darkGreen', fn: this.hellow}
