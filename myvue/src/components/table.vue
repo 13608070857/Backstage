@@ -91,6 +91,7 @@ th {
 td,th {
   padding: 25px 0;
   text-align: center;
+  font-size: 14px;
 }
 .search {
   margin: 30px 0 20px 0;

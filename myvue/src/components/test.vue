@@ -8,7 +8,6 @@
           operationBtns：操作按钮
           searchBtns：搜索和新增按钮
           formElement：表单元素（input和select）
-          v-on:fn：函数调用
      -->
     <appTable :tableTitles="tableTitles" :router="router" :operationBtns="operationBtns" :searchBtns="searchBtns" :formElement="formElement"></appTable>
   </div>
