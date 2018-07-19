@@ -45,9 +45,9 @@ export default {
       // 如果是input就是描述文字
       // 如果是select就写一个对象，传你的value值
       formElement: {
-        isInput: false,
-        // content: '请输入商品名称' --input传值
-        contents: ['新品', '优惠', '其他值']
+        isInput: true,
+        contents: '请输入商品名称' // --input传值
+        // contents: ['新品', '优惠', '其他值']
       }
     }
   },

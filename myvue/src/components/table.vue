@@ -4,7 +4,7 @@
       <div v-if="formElement.isInput">
         <input type="text" :placeholder="formElement.contents">
       </div>
-      <div v-if="!formElement.isInput">
+      <div v-else>
         <select name="" id="">
           <option value="0">---- 请选择 ----</option>
           <option v-for="(content,index) in formElement.contents" :key="index">{{content}}</option>
@@ -19,7 +19,12 @@
       </tr>
       <tbody>
         <tr v-for="(tableContent,index) in tableContents" :key="index">
-          <td v-for="(tableC,i) in tableContent" :key="i">{{tableC}}</td>
+          <td v-for="(tableC,i) in tableContent" :key="i">
+            <div v-if="!/img/.test(tableC)">{{tableC}}</div>
+            <div v-else>
+              <img :src="'http://172.16.8.40:8888/'+tableC" alt="">
+            </div>
+          </td>
           <td>
             <btn v-for="(operationBtn,index) in operationBtns" :key="index" :btnText="operationBtn.text" :btnClass="operationBtn.className" v-on:fn="operationBtn.fn"></btn>
           </td>
@@ -125,5 +130,9 @@ option {
 }
 input:focus {
   outline: none;
+}
+img {
+  height: 60px;
+  vertical-align: middle;
 }
 </style>
