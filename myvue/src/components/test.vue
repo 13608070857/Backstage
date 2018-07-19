@@ -1,6 +1,6 @@
 <template>
   <div id="test">
-    <appTable :tableTitles="tableTitles" :router="router"></appTable>
+    <appTable :tableTitles="tableTitles" :router="router"> </appTable>
   </div>
 </template>
 
