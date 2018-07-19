@@ -86,6 +86,15 @@ export default {
           ]
         },
         {
+          name: '员工管理',
+          isShow: false,
+          to: '/',
+          background: 'rgba(40,40,40,0.8)',
+          num: 0,
+          namearr: [
+          ]
+        },
+        {
           name: '交易管理',
           isShow: false,
           to: '',
@@ -94,7 +103,7 @@ export default {
           namearr: [
             {
               name: '订单记录(图)',
-              to: '/'
+              to: '/orderImg'
             },
             {
               name: '订单处理',

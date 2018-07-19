@@ -4,10 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+import echarts from 'echarts'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.prototype.$host = 'http://172.16.8.40:8888'
+Vue.prototype.$echarts = echarts
 
 /* eslint-disable no-new */
 new Vue({
