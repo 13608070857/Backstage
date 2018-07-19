@@ -3,7 +3,6 @@
     <myheader class="header"> </myheader>
     <mainNav class="Nav"> </mainNav>
     <router-view class="index"> </router-view>
-    <test></test>
     <footer></footer>
   </div>
 </template>
@@ -12,14 +11,12 @@
 import nav from './components/index/mainnav'
 import index from './components/index/index'
 import header from './components/index/header'
-import test from './components/test'
 export default {
   name: 'App',
   components: {
     mainNav: nav,
     index: index,
     myheader: header,
-    test
   }
 }
 </script>
