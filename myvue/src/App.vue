@@ -16,7 +16,7 @@ export default {
   components: {
     mainNav: nav,
     index: index,
-    myheader: header,
+    myheader: header
   }
 }
 </script>
