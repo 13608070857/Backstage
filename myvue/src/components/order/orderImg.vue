@@ -51,7 +51,10 @@ export default {
       myChart.setOption({
         title: {
           text: '月购买交易订单记录',
-          subtext: '实时获取用户订单购买记录'
+          subtext: '实时获取用户订单购买记录',
+          textStyle: {
+            color: '#2799Fb'
+          }
         },
         tooltip: {
           trigger: 'axis'
