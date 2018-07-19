@@ -1,6 +1,5 @@
 <template>
   <div id="test">
-<<<<<<< HEAD
     <!-- 引用表单信息标题的组件 -->
     <tableInfo :tableInfo="tableInfo"></tableInfo>
     <!--引用表格的组件
@@ -12,9 +11,6 @@
           v-on:fn：函数调用
      -->
     <appTable :tableTitles="tableTitles" :router="router" :operationBtns="operationBtns" :searchBtns="searchBtns" :formElement="formElement"></appTable>
-=======
-    <appTable :tableTitles="tableTitles" :router="router"> </appTable>
->>>>>>> 417d2bc79cdb07a3e060663ba4ee0abbde3afb5b
   </div>
 </template>
 
