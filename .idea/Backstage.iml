@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <content url="file://$MODULE_DIR$" />
+=======
+>>>>>>> fc86ed1cb465913aaf49705995d1eb8dc730aa8b
+>>>>>>> 5c3ebfa9c3a57d3aff20aa1778e539ab463ca15b
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> fe9471789b74ac9c11d658b660274248b0c4b238
+>>>>>>> fc86ed1cb465913aaf49705995d1eb8dc730aa8b
+>>>>>>> 5c3ebfa9c3a57d3aff20aa1778e539ab463ca15b
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
