@@ -10,7 +10,6 @@ router.get("/getUserInfo.do",userController.getUserInfo);
 
 router.get("/index",indexController.index);
 
-<<<<<<< HEAD
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);
 router.get("/orderweek.do",orderController.orderweek);
@@ -24,11 +23,5 @@ router.get("/orderlastyear.do",orderController.orderlastyear);
 router.get("/LeaseTransfer.do",(req,resp)=>{
 
 });
-=======
-router.get("/leaseTransfer.do",(req,resp)=>{
-    console.log("11111111111")
-});
-
->>>>>>> 4c26f8c3f2b57eb7fb9ac41b29754b2aeb23ede7
 
 module.exports = router;
