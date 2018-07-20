@@ -11,6 +11,7 @@ import goodsMsg from '../components/goods/goodsMsg'
 import goodscategory from '../components/goods/goodscategory'
 import goodscoomments from '../components/goods/goodscoomments'
 import goodsdetail from '../components/goods/goodsdetail'
+import LeaseTransfer from '../components/LeaseTransfer/LeaseTransfer'
 
 Vue.use(Router)
 
@@ -65,6 +66,11 @@ export default new Router({
       path: '/goodsdetail',
       name: 'goodsdetail',
       component: goodsdetail
+    },
+    {
+      path: '/LeaseTransfer',
+      name: 'LeaseTransfer',
+      component: LeaseTransfer
     }
   ],
   mode: 'history'

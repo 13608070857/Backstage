@@ -2,7 +2,7 @@
   <div id="table">
     <div class="search">
       <div v-if="formElement.isInput">
-        <input type="text" :placeholder="formElement.contents">
+        <input type="text" :placeholder="formElement.contents" v-model="searchText">
       </div>
       <div v-else>
         <select name="" id="">
@@ -10,7 +10,7 @@
           <option v-for="(content,index) in formElement.contents" :key="index">{{content}}</option>
         </select>
       </div>
-      <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="searchBtn.fn"></btn>
+      <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="fnObj[searchBtn.fn.fnName](searchBtn.fn.fnArg)"></btn>
     </div>
     <table cellpadding="0" cellspacing="0" width="100%">
       <tr class="tableTitle">
@@ -26,21 +26,35 @@
             </div>
           </td>
           <td>
-            <btn v-for="(operationBtn,index) in operationBtns" :key="index" :btnText="operationBtn.text" :btnClass="operationBtn.className" v-on:fn="operationBtn.fn"></btn>
+            <btn v-for="(operationBtn,index) in operationBtns" :key="index" :btnText="operationBtn.text" :btnClass="operationBtn.className" v-on:fn="fnObj[operationBtn.fn.fnName](operationBtn.fn.fnArg)"></btn>
           </td>
         </tr>
       </tbody>
     </table>
+    <div class="pop">
+      <div class="popContent">
+        <ul>
+          <li></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import btn from './button/button'
+import btn from './button'
 export default {
   name: 'Table',
   data () {
     return {
-      tableContents: ''
+      searchText: '',
+      tableContents: '',
+      tableData: '',
+      popContents: '',
+      fnObj: {
+        query: this.queryParam,
+        insert: this.insertInfo
+      }
     }
   },
   props: {
@@ -69,9 +83,32 @@ export default {
     btn
   },
   created () {
-    this.$axios.get('http://172.16.8.40:8888' + this.router).then(resp => {
+    this.$axios.get('/api/' + this.router).then(resp => {
       this.tableContents = resp.data
+      this.tableData = resp.data
     })
+  },
+  methods: {
+    queryParam (arg) {
+      let newArr = []
+      let tableData = this.tableData
+      if (arg === '') {
+        this.tableContents = tableData
+        this.tableContents.filter(value => {
+          if (value.name.indexOf(this.searchText) !== -1) {
+            newArr.push(value)
+          }
+          this.tableContents = newArr
+        })
+      }
+    },
+    insertInfo (arg) {
+      if (arg !== '') {
+        // this.$axios.get('/api/' + this.searchBtns[1].fn.fnArg).then(resp => {
+        //   console.log(resp)
+        // })
+      }
+    }
   }
 }
 </script>
@@ -115,7 +152,9 @@ input,select {
   padding: 10px 5px;
 }
 input {
-  padding-top: 11px;
+  padding-bottom: 11px;
+  position: relative;
+  top: -1px;
   width: 240px;
 }
 select {
@@ -135,5 +174,19 @@ input:focus {
 img {
   height: 60px;
   vertical-align: middle;
+}
+.pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.4);
+  width: 100%;
+  height: 100%;
+}
+.popContent {
+  margin: 40px auto;
+  width: 800px;
+  height: 500px;
+  background: #fff;
 }
 </style>
