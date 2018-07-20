@@ -1,25 +1,12 @@
 <template>
   <div id="mainNav">
     <ul>
-      <!--<li v-for="(i,index) in arr" :key="index" @click.stop="li(i)" :style='{background:i.background}'>-->
-        <!--{{i.name}}-->
         <router-link tag="li" v-for="(i,index) in arr" :key="index" @click.native="li(i)" :to= "{path:i.to}" :style='{background:i.background}'>
           {{i.name}}
           <ul v-show="i.isShow">
-            <!--<router-link to="/user" tag="li">zi</router-link>-->
             <router-link tag="li" v-for="(j,index) in i.namearr" :key="index" @click.native.stop="li2" :to="{path:j.to}">{{j.name}}</router-link>
-            <!--<li v-for="(j,index) in i.namearr" :key="index" @click.stop="li2">-->
-              <!--{{j.name}}-->
-            <!--</li>-->
           </ul>
         </router-link>
-        <!--<ul v-show="i.isShow">-->
-          <!--&lt;!&ndash;<router-link to="/user" tag="li">zi</router-link>&ndash;&gt;-->
-          <!--<li v-for="(j,index) in i.namearr" :key="index" @click.stop="li2">-->
-            <!--{{j.name}}-->
-          <!--</li>-->
-        <!--</ul>-->
-      <!--</li>-->
     </ul>
   </div>
 </template>

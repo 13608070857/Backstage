@@ -12,11 +12,11 @@
       </select>
     </div>
     <div v-for="(item,index) in myorder" :key="index">
-      <order :myprice="item.o_price" mycontent="交易金额" week="周" :mycolor="mycolor"></order>
-      <order :myprice="item.total_price" mycontent="订单数量" week="周" :mycolor="mycolor"></order>
-      <order :myprice="item.cpay" mycontent="交易成功" week="周" :mycolor="mycolor"></order>
-      <order :myprice="item.copay" mycontent="交易失败" week="周" :mycolor="mycolor"></order>
-      <order :myprice="item.sprice" mycontent="退款金额" week="周" :mycolor="mycolor"></order>
+      <order class="myorder" :myprice="item.o_price" mycontent="交易金额" week="周" :mycolor="mycolor"></order>
+      <order class="myorder" :myprice="item.total_price" mycontent="订单数量" week="周" :mycolor="mycolor"></order>
+      <order class="myorder" :myprice="item.cpay" mycontent="交易成功" week="周" :mycolor="mycolor"></order>
+      <order class="myorder" :myprice="item.copay" mycontent="交易失败" week="周" :mycolor="mycolor"></order>
+      <order class="myorder" :myprice="item.sprice" mycontent="退款金额" week="周" :mycolor="mycolor"></order>
     </div>
     <!--图表-->
     <div id="myChart"></div>
@@ -190,23 +190,48 @@ export default {
       var myselect = document.getElementById("myselect");
       var sevalue = myselect.options[myselect.selectedIndex].value;
       console.log(sevalue);
+      var myorder=document.getElementsByClassName("myorder");
       if (sevalue == 'a') {
         console.log('这是近一周的交易记录')
+        for (var i=0;i<myorder.length;i++){
+          (myorder[i].firstChild.firstChild.lastChild).innerHTML="周";
+          (myorder[i].firstChild.firstChild.lastChild).attributes[1].nodeValue="blue";
+        }
         this.myweek();
       } else if (sevalue == 'b') {
         console.log('这是近一个月的交易记录')
+        for (var i=0;i<myorder.length;i++){
+          (myorder[i].firstChild.firstChild.lastChild).innerHTML="月";
+          (myorder[i].firstChild.firstChild.lastChild).attributes[1].nodeValue="black";
+        }
         this.myonemonth();
       } else if (sevalue == 'c') {
         console.log('这是近两个月的交易记录')
+        for (var i=0;i<myorder.length;i++){
+          (myorder[i].firstChild.firstChild.lastChild).innerHTML="月";
+          (myorder[i].firstChild.firstChild.lastChild).attributes[1].nodeValue="green";
+        }
         this.mytwomonth();
       } else if (sevalue == 'd') {
         console.log('这是近三个月的交易记录')
+        for (var i=0;i<myorder.length;i++){
+          (myorder[i].firstChild.firstChild.lastChild).innerHTML="月";
+          (myorder[i].firstChild.firstChild.lastChild).attributes[1].nodeValue="orgin";
+        }
         this.mythreemonth();
       } else if (sevalue == 'e') {
         console.log('这是今年的交易记录')
+        for (var i=0;i<myorder.length;i++){
+          (myorder[i].firstChild.firstChild.lastChild).innerHTML="今年";
+          (myorder[i].firstChild.firstChild.lastChild).attributes[1].nodeValue="green";
+        }
         this.mythisyear();
       } else if (sevalue == 'f') {
         console.log('这是去年的交易记录')
+        for (var i=0;i<myorder.length;i++){
+          (myorder[i].firstChild.firstChild.lastChild).innerHTML="去年";
+          (myorder[i].firstChild.firstChild.lastChild).attributes[1].nodeValue="orgin";
+        }
         this.lastyear();
       }
     },
