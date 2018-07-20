@@ -44,6 +44,7 @@ export default {
     this.drawLine()
   },
   methods: {
+    // 图表
     drawLine () {
       // 基于准备好的dom，初始化echarts实例
       let myChart = echarts.init(document.getElementById('myChart'))
@@ -181,6 +182,12 @@ export default {
         ]
       })
     }
+  },
+  created () {
+    this.$axios.get('http://172.16.8.28:8888/orderrecord.do')
+      .then(function (resp) {
+        console.log(resp)
+      })
   }
 }
 </script>
