@@ -9,5 +9,9 @@ router.get("/getUserInfo.do",userController.getUserInfo);
 
 router.get("/index",indexController.index);
 
+router.get("/leaseTransfer.do",(req,resp)=>{
+    console.log("11111111111")
+});
+
 
 module.exports = router;

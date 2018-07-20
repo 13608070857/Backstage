@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import leaseFrameBox from 'leaseFrameBox'
+  import leaseFrameBox from './leaseFrameBox'
 export default {
   name: 'LeaseTransfer',
   data(){
@@ -32,8 +32,7 @@ export default {
   created(){
     var that=this;
     this.$axios.get('http://172.16.8.30:8888/leaseTransfer.do')
-      .then(function (respp) {
-        console.log("请求成功回调函数执行");
+      .then(function (resp) {
         console.log(resp.data);
         that.leaseFrameBoxArr=resp.data;
       })
