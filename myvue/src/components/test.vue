@@ -29,7 +29,7 @@ export default {
       // 表格按钮 text：按钮内容 className：按钮类
       // fn:表示要调用增删改查的函数
       //      其中fnName是函数名字
-      //      其中fnArg为参数（要连接的后台路由地址），没有参数就直接写fnArg: ''
+      //      其中fnArg为参数（要连接的后台路由地址），没有参数（查看和查询按钮）就直接写fnArg: ''
       // 其中small，large表示按钮大小，lightGreen（浅绿），darkGreen（深绿），gray（下架）表示按钮颜色
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
@@ -38,8 +38,8 @@ export default {
         {text: '删除', className: 'small darkGreen', fn: {fnName: 'hellow', fnArg: 'sss'}}
       ],
       searchBtns: [
-        {text: '查询', className: 'large lightGreen', fn: {fnName: 'hellow', fnArg: 'sss'}},
-        {text: '新增', className: 'large darkGreen', fn: {fnName: 'hellow', fnArg: 'sss'}}
+        {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
+        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addUserInfo.do'}}
       ],
       // 表单元素信息，isInput：是否是input元素，如果是select就写false
       // content：是传送的内容
