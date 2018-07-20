@@ -32,12 +32,12 @@ export default {
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
-        {text: '修改', className: 'small lightGreen', fn: this.hello},
-        {text: '删除', className: 'small darkGreen', fn: this.hellow}
+        {text: '修改', className: 'small lightGreen', fn: 'hello'},
+        {text: '删除', className: 'small darkGreen', fn: 'hellow'}
       ],
       searchBtns: [
-        {text: '查询', className: 'large lightGreen', fn: this.hello},
-        {text: '新增', className: 'large darkGreen', fn: this.hello}
+        {text: '查询', className: 'large lightGreen', fn: 'hello'},
+        {text: '新增', className: 'large darkGreen', fn: 'hellow'}
       ],
       // 表单元素信息，isInput：是否是input元素，如果是select就写false
       // content：是传送的内容
@@ -53,14 +53,6 @@ export default {
   components: {
     appTable,
     tableInfo
-  },
-  methods: {
-    hello () {
-      alert(1)
-    },
-    hellow () {
-      alert('llalalla')
-    }
   }
 }
 </script>

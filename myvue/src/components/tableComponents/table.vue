@@ -10,7 +10,7 @@
           <option v-for="(content,index) in formElement.contents" :key="index">{{content}}</option>
         </select>
       </div>
-      <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="searchBtn.fn"></btn>
+      <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="fnObj[searchBtn.fn]()"></btn>
     </div>
     <table cellpadding="0" cellspacing="0" width="100%">
       <tr class="tableTitle">
@@ -26,7 +26,7 @@
             </div>
           </td>
           <td>
-            <btn v-for="(operationBtn,index) in operationBtns" :key="index" :btnText="operationBtn.text" :btnClass="operationBtn.className" v-on:fn="operationBtn.fn"></btn>
+            <btn v-for="(operationBtn,index) in operationBtns" :key="index" :btnText="operationBtn.text" :btnClass="operationBtn.className" v-on:fn="fnObj[operationBtn.fn]()"></btn>
           </td>
         </tr>
       </tbody>
@@ -40,7 +40,11 @@ export default {
   name: 'Table',
   data () {
     return {
-      tableContents: ''
+      tableContents: '',
+      fnObj: {
+        hello: this.hello,
+        hellow: this.hellow
+      }
     }
   },
   props: {
@@ -72,6 +76,14 @@ export default {
     this.$axios.get('http://172.16.8.40:8888' + this.router).then(resp => {
       this.tableContents = resp.data
     })
+  },
+  methods: {
+    hello () {
+      alert(1)
+    },
+    hellow () {
+      alert(4)
+    }
   }
 }
 </script>
