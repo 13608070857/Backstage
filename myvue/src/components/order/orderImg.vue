@@ -2,20 +2,22 @@
   <div id="myorder">
     <div class="otitle">交易记录</div>
     <div class="myselect">
-      <select>
-        <option>近一周</option>
-        <option>近一个月</option>
-        <option>近两个月</option>
-        <option>近三个月</option>
-        <option>今年</option>
-        <option>去年</option>
+      <select id="myselect" @click="week">
+        <option value="a">近一周</option>
+        <option value="b">近一个月</option>
+        <option value="c">近两个月</option>
+        <option value="d">近三个月</option>
+        <option value="e">今年</option>
+        <option value="f">去年</option>
       </select>
     </div>
-    <order myprice="9,999,666" mycontent="交易金额" week="周" :mycolor="mycolor"></order>
-    <order myprice="9,999,666" mycontent="订单数量" week="周" :mycolor="mycolor"></order>
-    <order myprice="9,999,666" mycontent="交易成功" week="周" :mycolor="mycolor"></order>
-    <order myprice="9,999,666" mycontent="交易失败" week="周" :mycolor="mycolor"></order>
-    <order myprice="9,999,666" mycontent="退款金额" week="周" :mycolor="mycolor"></order>
+    <div v-for="(item,index) in myorder" :key="index">
+      <order :myprice="item.o_price" mycontent="交易金额" week="周" :mycolor="mycolor"></order>
+      <order :myprice="item.total_price" mycontent="订单数量" week="周" :mycolor="mycolor"></order>
+      <order :myprice="item.cpay" mycontent="交易成功" week="周" :mycolor="mycolor"></order>
+      <order :myprice="item.copay" mycontent="交易失败" week="周" :mycolor="mycolor"></order>
+      <order :myprice="item.sprice" mycontent="退款金额" week="周" :mycolor="mycolor"></order>
+    </div>
     <!--图表-->
     <div id="myChart"></div>
   </div>
@@ -34,7 +36,8 @@ export default {
   name: 'orderImg',
   data () {
     return {
-      mycolor: 'blue'
+      mycolor: 'blue',
+      myorder: []
     }
   },
   components: {
@@ -181,12 +184,93 @@ export default {
           }
         ]
       })
+    },
+    // 交易记录查询
+    week () {
+      var myselect = document.getElementById("myselect");
+      var sevalue = myselect.options[myselect.selectedIndex].value;
+      console.log(sevalue);
+      if (sevalue == 'a') {
+        console.log('这是近一周的交易记录')
+        this.myweek();
+      } else if (sevalue == 'b') {
+        console.log('这是近一个月的交易记录')
+        this.myonemonth();
+      } else if (sevalue == 'c') {
+        console.log('这是近两个月的交易记录')
+        this.mytwomonth();
+      } else if (sevalue == 'd') {
+        console.log('这是近三个月的交易记录')
+        this.mythreemonth();
+      } else if (sevalue == 'e') {
+        console.log('这是今年的交易记录')
+        this.mythisyear();
+      } else if (sevalue == 'f') {
+        console.log('这是去年的交易记录')
+        this.lastyear();
+      }
+    },
+    // 近一周
+    myweek () {
+      var that = this
+      this.$axios.get('http://172.16.8.28:8888/orderweek.do')
+        .then(function (resp) {
+          console.log(resp.data)
+          that.myorder = resp.data
+        })
+    },
+    // 近一个月
+    myonemonth () {
+      var that = this
+      this.$axios.get('http://172.16.8.28:8888/orderyear1.do')
+        .then(function (resp) {
+          console.log(resp.data)
+          that.myorder = resp.data
+        })
+    },
+    // 近两个月
+    mytwomonth () {
+      var that = this
+      this.$axios.get('http://172.16.8.28:8888/orderyear2.do')
+        .then(function (resp) {
+          console.log(resp.data)
+          that.myorder = resp.data
+        })
+    },
+    // 近三个月
+    mythreemonth () {
+      var that = this
+      this.$axios.get('http://172.16.8.28:8888/orderyear3.do')
+        .then(function (resp) {
+          console.log(resp.data)
+          that.myorder = resp.data
+        })
+    },
+    // 今年
+    mythisyear () {
+      var that = this
+      this.$axios.get('http://172.16.8.28:8888/orderthisyear.do')
+        .then(function (resp) {
+          console.log(resp.data)
+          that.myorder = resp.data
+        })
+    },
+    // 去年
+    lastyear () {
+      var that = this
+      this.$axios.get('http://172.16.8.28:8888/orderlastyear.do')
+        .then(function (resp) {
+          console.log(resp.data)
+          that.myorder = resp.data
+        })
     }
   },
   created () {
+    var that = this
     this.$axios.get('http://172.16.8.28:8888/orderrecord.do')
       .then(function (resp) {
-        console.log(resp)
+        console.log(resp.data)
+        that.myorder = resp.data
       })
   }
 }

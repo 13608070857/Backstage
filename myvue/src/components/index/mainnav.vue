@@ -137,7 +137,7 @@ export default {
           namearr: [
             {
               name: '租赁信息',
-              to: '/'
+              to: '/LeaseTransfer'
             },
             {
               name: '分类管理',

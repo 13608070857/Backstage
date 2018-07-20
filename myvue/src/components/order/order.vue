@@ -34,6 +34,7 @@ h1{
   font-size: 35px;
   line-height: 80px;
   margin-left: 8px;
+  text-align: center;
 }
   .mytitle span{
     font-size: 14px;
