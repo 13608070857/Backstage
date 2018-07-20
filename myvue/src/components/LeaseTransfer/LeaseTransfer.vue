@@ -3,7 +3,7 @@
    <p>租赁套餐修改</p>
    <div>
      <div class="leftFrame">
-      <leaseFrameBox :imgsrc="" :goodsID="" :goodsName="" :goodsPrice="">
+      <leaseFrameBox :imgsrc="imgsrc" :goodsID="goodsID" :goodsName="goodsName" :goodsPrice="goodsPrice">
 
       </leaseFrameBox>
      </div>
@@ -23,7 +23,11 @@ export default {
   name: 'LeaseTransfer',
   data(){
     return{
-      productArr:[]
+      // productArr:[]
+      imgsrc: '/imm',
+      goodsID: 1,
+      goodsName: 'sjj0',
+      goodsPrice: 20
     }
   },
   components:{
@@ -31,11 +35,11 @@ export default {
   },
   created(){
     var that=this;
-    this.$axios.get('http://172.16.8.30:8888/leaseTransfer.do')
-      .then(function (resp) {
-        console.log(resp.data);
-        that.leaseFrameBoxArr=resp.data;
-      })
+    // this.$axios.get('http://172.16.8.30:8888/leaseTransfer.do')
+    //   .then(function (resp) {
+    //     console.log(resp.data);
+    //     that.leaseFrameBoxArr=resp.data;
+    //   })
   }
 }
 </script>
