@@ -10,7 +10,7 @@
           <option v-for="(content,index) in formElement.contents" :key="index">{{content}}</option>
         </select>
       </div>
-      <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="fnObj[searchBtn.fn]()"></btn>
+      <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="fnObj[searchBtn.fn.fnName](searchBtn.fn.fnArg)"></btn>
     </div>
     <table cellpadding="0" cellspacing="0" width="100%">
       <tr class="tableTitle">
@@ -26,7 +26,7 @@
             </div>
           </td>
           <td>
-            <btn v-for="(operationBtn,index) in operationBtns" :key="index" :btnText="operationBtn.text" :btnClass="operationBtn.className" v-on:fn="fnObj[operationBtn.fn]()"></btn>
+            <btn v-for="(operationBtn,index) in operationBtns" :key="index" :btnText="operationBtn.text" :btnClass="operationBtn.className" v-on:fn="fnObj[operationBtn.fn.fnName](operationBtn.fn.fnArg)"></btn>
           </td>
         </tr>
       </tbody>
@@ -41,6 +41,7 @@ export default {
   data () {
     return {
       tableContents: '',
+      popContents: '',
       fnObj: {
         hello: this.hello,
         hellow: this.hellow
@@ -78,11 +79,19 @@ export default {
     })
   },
   methods: {
-    hello () {
-      alert(1)
+    hello (arg) {
+      if (arg === '') {
+        alert(1)
+      } else {
+        alert(arg)
+      }
     },
-    hellow () {
-      alert(4)
+    hellow (arg) {
+      if (arg === '') {
+        alert(1)
+      } else {
+        alert(arg)
+      }
     }
   }
 }
