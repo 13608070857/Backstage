@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import btn from './button/button'
+import btn from './button'
 export default {
   name: 'Table',
   data () {
