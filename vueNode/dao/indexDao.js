@@ -10,8 +10,7 @@ const indexDao = {
           } else {
             reject(data);
           }
-        }
-      });
+        });
     });
   }
 }

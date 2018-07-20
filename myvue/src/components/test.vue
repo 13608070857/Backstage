@@ -27,17 +27,19 @@ export default {
       // node路由地址
       router: '/getUserInfo.do',
       // 表格按钮 text：按钮内容 className：按钮类
-      // fn:表示函数名字，但必须使用this.函数名
+      // fn:表示要调用增删改查的函数
+      //      其中fnName是函数名字
+      //      其中fnArg为参数（要连接的后台路由地址），没有参数就直接写fnArg: ''
       // 其中small，large表示按钮大小，lightGreen（浅绿），darkGreen（深绿），gray（下架）表示按钮颜色
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
-        {text: '修改', className: 'small lightGreen', fn: this.hello},
-        {text: '删除', className: 'small darkGreen', fn: this.hellow}
+        {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: ''}},
+        {text: '删除', className: 'small darkGreen', fn: {fnName: 'hellow', fnArg: 'sss'}}
       ],
       searchBtns: [
-        {text: '查询', className: 'large lightGreen', fn: this.hello},
-        {text: '新增', className: 'large darkGreen', fn: this.hello}
+        {text: '查询', className: 'large lightGreen', fn: {fnName: 'hellow', fnArg: 'sss'}},
+        {text: '新增', className: 'large darkGreen', fn: {fnName: 'hellow', fnArg: 'sss'}}
       ],
       // 表单元素信息，isInput：是否是input元素，如果是select就写false
       // content：是传送的内容
@@ -53,14 +55,6 @@ export default {
   components: {
     appTable,
     tableInfo
-  },
-  methods: {
-    hello () {
-      alert(1)
-    },
-    hellow () {
-      alert('llalalla')
-    }
   }
 }
 </script>
