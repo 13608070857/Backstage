@@ -11,7 +11,7 @@ router.get("/getUserInfo.do",userController.getUserInfo);
 router.get("/index",indexController.index);
 
 // ================ 交易管理 ====================
-router.get("orderrecord.do",orderController.orderrecord);
+router.get("/orderrecord.do",orderController.orderrecord);
 
 
 module.exports = router;
