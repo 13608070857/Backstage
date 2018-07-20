@@ -3,9 +3,9 @@
     <article v-for="(i,index) in arr" :key="index">
       <p>{{i.Title}}</p>
       <span :style="{ background: i.background}">{{i.unit}}</span>
-      <h2>{{i.Number}}Number</h2>
+      <h2>{{i.Number}} {{i.Zunit}}</h2>
       <p>{{i.ZTitle}}:</p>
-      <p>{{i.ZNumber}}ZNumber</p>
+      <p>{{i.ZNumber}} {{i.Zunit}}</p>
     </article>
     <div id="line" style="width: 750px;height: 400px;float: left;margin-top: 30px"></div>
   </div>
@@ -30,6 +30,7 @@ export default {
           Number: '',
           ZTitle: '总用户',
           ZNumber: '',
+          Zunit: '位',
           background: '#1E9FFF'
         },
         {
@@ -38,6 +39,7 @@ export default {
           Number: '',
           ZTitle: '总售后',
           ZNumber: '',
+          Zunit: '条',
           background: '#2F4056'
         },
         {
@@ -46,6 +48,7 @@ export default {
           Number: '',
           ZTitle: '总交易数',
           ZNumber: '',
+          Zunit: '$',
           background: '#009688'
         },
         {
@@ -54,19 +57,23 @@ export default {
           Number: '',
           ZTitle: '总订单',
           ZNumber: '',
+          Zunit: '笔',
           background: '#FFB800'
         }
-      ]
+      ],
+      data: {
+        data1: [120, 200, 256, 278, 321, 360, 454, 660, 684, 750, 799, 856],
+        data2: [20, 30, 33, 46, 31, 19, 46, 39, 35, 29, 25, 19],
+        data3: [99, 150, 177, 198, 245, 290, 277, 311, 350, 322, 369, 377],
+        data4: [150, 232, 250, 335, 359, 424, 473, 529, 577, 610, 653, 680]
+      }
     }
   },
   mounted () {
     this.Line()
   },
   created () {
-    this.$axios.get('http://172.16.8.2:8888/index')
-      .then(resp => {
-        console.log(resp.data)
-      })
+    this.unit()
   },
   methods: {
     // 折线图
@@ -106,28 +113,46 @@ export default {
             name: '商城用户',
             type: 'line',
             stack: '总量',
-            data: [120, 200, 256, 278, 321, 360, 454, 660, 684, 750, 799, 856]
+            data: this.data.data1
           },
           {
             name: '售后记录',
             type: 'line',
             stack: '总量1',
-            data: [20, 30, 33, 46, 31, 19, 46, 39, 35, 29, 25, 19]
+            data: this.data.data2
           },
           {
             name: '交易记录',
             type: 'line',
             stack: '总量2',
-            data: [99, 150, 177, 198, 245, 290, 277, 311, 350, 322, 369, 377]
+            data: this.data.data3
           },
           {
             name: '商城订单',
             type: 'line',
             stack: '总量3',
-            data: [150, 232, 250, 335, 359, 424, 473, 529, 577, 610, 653, 680]
+            data: this.data.data4
           }
         ]
       })
+    },
+    // 4数据
+    unit () {
+      this.$axios.get('http://172.16.8.2:8888/index')
+        .then(resp => {
+          for (let i = 0; i < resp.data.Z.length; i++) {
+            this.arr[i].ZNumber = resp.data.Z[i]
+          }
+          for (let i = 0; i < resp.data.Y.length; i++) {
+            this.arr[i].Number = resp.data.Y[i]
+          }
+        })
+    },
+    // 获取折线图数据
+    Obtain () {
+      this.$axios.get('http://172.16.8.2:8888/Obtain')
+        .then(resp => {
+        })
     }
   }
 }
