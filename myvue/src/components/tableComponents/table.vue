@@ -95,12 +95,7 @@ export default {
     btn
   },
   created () {
-<<<<<<< HEAD
     this.$axios.get('/api' + this.router).then(resp => {
-=======
-    this.$axios.get('/api/' + this.router).then(resp => {
-      console.log(resp.data)
->>>>>>> aa08ec9578b49b2c300b3f403b1c6d987ab829d4
       this.tableContents = resp.data
       this.tableData = resp.data
       this.popContents = resp.data
