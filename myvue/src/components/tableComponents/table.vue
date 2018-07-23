@@ -22,7 +22,7 @@
           <td v-for="(tableC,i) in tableContent" :key="i">
             <div v-if="!/img/.test(tableC)">{{tableC}}</div>
             <div v-else>
-              <img :src="'http://172.16.8.40:8888/'+tableC" alt="">
+              <img :src="'/api/'+tableC" alt="">
             </div>
           </td>
           <td>
@@ -34,7 +34,18 @@
     <div class="pop">
       <div class="popContent">
         <ul>
-          <li></li>
+          <li>
+            <input type="text">
+          </li>
+          <li>
+            <input type="text">
+          </li>
+          <li>
+            <input type="text">
+          </li>
+          <li>
+            <input type="text">
+          </li>
         </ul>
       </div>
     </div>
@@ -53,7 +64,8 @@ export default {
       popContents: '',
       fnObj: {
         query: this.queryParam,
-        insert: this.insertInfo
+        insert: this.insertInfo,
+        delete: this.deleteInfo
       }
     }
   },
@@ -83,9 +95,10 @@ export default {
     btn
   },
   created () {
-    this.$axios.get('/api/' + this.router).then(resp => {
+    this.$axios.get('/api' + this.router).then(resp => {
       this.tableContents = resp.data
       this.tableData = resp.data
+      this.popContents = resp.data
     })
   },
   methods: {
@@ -108,6 +121,12 @@ export default {
         //   console.log(resp)
         // })
       }
+    },
+    deleteInfo (event,arg) {
+      console.log(event)
+      // if (arg !== '') {
+        
+      // }
     }
   }
 }
@@ -184,10 +203,22 @@ img {
   height: 100%;
   display: none;
 }
+ul {
+  list-style:none;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+li {
+  flex-grow: 1;
+  flex-basis: 240px;
+  margin-top: 10px;
+}
 .popContent {
   margin: 40px auto;
   width: 800px;
   height: 500px;
   background: #fff;
+  padding: 20px 40px;
 }
 </style>

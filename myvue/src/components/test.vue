@@ -35,7 +35,7 @@ export default {
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
         {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: ''}},
-        {text: '删除', className: 'small darkGreen', fn: {fnName: 'hellow', fnArg: 'sss'}}
+        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: 'sss'}}
       ],
       searchBtns: [
         {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
