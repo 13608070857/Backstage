@@ -17,6 +17,13 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
+      },
+      '/goodsapi': {
+        target: 'http://172.16.8.8:8888',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/goodsapi': ''
+        }
       }
     },
 

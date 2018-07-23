@@ -23,7 +23,7 @@ export default {
       // 表单信息标题
       tableInfo: '商品信息',
       // 表标题
-      tableTitles: ['商品编号', '商品名称', '商品价格', '商品类别', '上架时间', '状态'],
+      tableTitles: ['商品编号', '商品名称', '商品图片', '商品价格', '商品类别', '上架时间', '状态'],
       // node路由地址
       router: '/getgoodsmsg.do',
       // 表格按钮 text：按钮内容 className：按钮类

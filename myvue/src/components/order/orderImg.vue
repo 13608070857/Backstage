@@ -238,7 +238,7 @@ export default {
     // 近一周
     myweek () {
       var that = this
-      this.$axios.get('http://172.16.8.8:8888/orderweek.do')
+      this.$axios.get('/api/orderweek.do')
         .then(function (resp) {
           console.log(resp.data)
           that.myorder = resp.data
@@ -247,7 +247,7 @@ export default {
     // 近一个月
     myonemonth () {
       var that = this
-      this.$axios.get('http://172.16.8.8:8888/orderyear1.do')
+      this.$axios.get('/api/orderyear1.do')
         .then(function (resp) {
           console.log(resp.data)
           that.myorder = resp.data
@@ -256,7 +256,7 @@ export default {
     // 近两个月
     mytwomonth () {
       var that = this
-      this.$axios.get('http://172.16.8.8:8888/orderyear2.do')
+      this.$axios.get('/api/orderyear2.do')
         .then(function (resp) {
           console.log(resp.data)
           that.myorder = resp.data
@@ -265,7 +265,7 @@ export default {
     // 近三个月
     mythreemonth () {
       var that = this
-      this.$axios.get('http://172.16.8.8:8888/orderyear3.do')
+      this.$axios.get('/api/orderyear3.do')
         .then(function (resp) {
           console.log(resp.data)
           that.myorder = resp.data
@@ -274,7 +274,7 @@ export default {
     // 今年
     mythisyear () {
       var that = this
-      this.$axios.get('http://172.16.8.8:8888/orderthisyear.do')
+      this.$axios.get('/api/orderthisyear.do')
         .then(function (resp) {
           console.log(resp.data)
           that.myorder = resp.data
@@ -283,7 +283,7 @@ export default {
     // 去年
     lastyear () {
       var that = this
-      this.$axios.get('http://172.16.8.8:8888/orderlastyear.do')
+      this.$axios.get('/api/orderlastyear.do')
         .then(function (resp) {
           console.log(resp.data)
           that.myorder = resp.data
@@ -292,7 +292,7 @@ export default {
   },
   created () {
     var that = this
-    this.$axios.get('http://172.16.8.8:8888/orderrecord.do')
+    this.$axios.get('/api/orderrecord.do')
       .then(function (resp) {
         console.log(resp.data)
         that.myorder = resp.data
