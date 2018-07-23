@@ -1,10 +1,19 @@
 const userDao = require("../dao/userDao");
+let dataInfo;
 
 const userController = {
     getUserInfo(req,resp) {
-        userDao.getUser().then(function(data) {
-            // console.log(data);
-            resp.send(data);
+        userDao.getAllUser().then(function(data) {
+            let getAllData = data;
+            console.log(data);
+            userDao.getUser().then(function(data) {
+            	let getData = data;
+            	dataInfo = {
+            		getAllData: getAllData,
+            		getData: getData
+            	};
+            	resp.send(dataInfo);
+            })
         });
     },
     deleteInfo(req,resp) {
@@ -12,8 +21,8 @@ const userController = {
     	console.log(deleteId)
     	userDao.deleteInfo(deleteId).then(function(data) {
     		console.log(data);
-    	}).catch(error=> {
-    		console.log(error)
+    		resp.send(data);
+
     	})
     }
 }
