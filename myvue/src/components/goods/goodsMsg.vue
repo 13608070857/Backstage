@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import appTable from '../tableComponents/table.vue'
+  import appTable from '../tableComponents/table'
   import tableInfo from '../tableComponents/tableInfo'
 export default {
   name: 'goodsMsg',
@@ -23,7 +23,7 @@ export default {
       // 表单信息标题
       tableInfo: '商品信息',
       // 表标题
-      tableTitles: ['商品编号', '商品名称', '商品价格', '商品类别', '上架时间', '状态', '操作'],
+      tableTitles: ['商品编号', '商品名称', '商品价格', '商品类别', '上架时间', '状态'],
       // node路由地址
       router: '/getgoodsmsg.do',
       // 表格按钮 text：按钮内容 className：按钮类
@@ -34,6 +34,8 @@ export default {
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
+        {text: '上架', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: ''}},
+        {text: '查看', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: ''}},
         {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: ''}},
         {text: '删除', className: 'small darkGreen', fn: {fnName: 'hellow', fnArg: 'sss'}}
       ],

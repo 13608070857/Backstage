@@ -84,6 +84,7 @@ export default {
   },
   created () {
     this.$axios.get('/api/' + this.router).then(resp => {
+      console.log(resp.data)
       this.tableContents = resp.data
       this.tableData = resp.data
     })

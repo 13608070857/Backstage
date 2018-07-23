@@ -4,6 +4,7 @@ const router = express.Router();
 const userController = require("../controller/userController");
 const indexController = require("../controller/indexController");
 const orderController = require("../controller/orderController");
+const goodsController = require("../controller/goodsController");
 
 
 router.get("/getUserInfo.do",userController.getUserInfo);
@@ -11,6 +12,9 @@ router.get("/getUserInfo.do",userController.getUserInfo);
 router.get("/index",indexController.index);
 router.get("/Newest",indexController.Newest);
 router.get("/xf",indexController.xf);
+
+// ============== 商品管理 ==============
+router.get("/getgoodsmsg.do",goodsController.getallgoods);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);
