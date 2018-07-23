@@ -7,6 +7,10 @@ const goodsControoller = {
                 console.log(data);
                 resp.send(data);
             })
+    },
+    //商品分类
+    getcategory(req,resp){
+        
     }
 };
 module.exports = goodsControoller;
