@@ -34,10 +34,10 @@ export default {
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
-        {text: '上架', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: ''}},
-        {text: '查看', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: ''}},
-        {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: ''}},
-        {text: '删除', className: 'small darkGreen', fn: {fnName: 'hellow', fnArg: 'sss'}}
+        {text: '上架', className: 'small lightGreen', fn: {fnName: 'shelves', fnArg: ''}},
+        {text: '查看', className: 'small lightGreen', fn: {fnName: 'look', fnArg: ''}},
+        {text: '修改', className: 'small lightGreen', fn: {fnName: 'alter', fnArg: ''}},
+        {text: '删除', className: 'small darkGreen', fn: {fnName: 'del', fnArg: 'sss'}}
       ],
       searchBtns: [
         {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
