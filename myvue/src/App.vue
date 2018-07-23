@@ -2,7 +2,7 @@
   <div id="app">
     <myheader class="header"> </myheader>
     <mainNav class="Nav"> </mainNav>
-    <router-view class="index"> </router-view>
+    <router-view id="index" :style="{background: this.$bg}"> </router-view>
     <footer></footer>
   </div>
 </template>
@@ -10,9 +10,17 @@
 <script>
 import nav from './components/index/mainnav'
 import index from './components/index/index'
-import header from './components/index/header'
+import header from './components/index/myheader'
 export default {
   name: 'App',
+  data () {
+    return {
+    }
+  },
+  created () {
+  },
+  methods: {
+  },
   components: {
     mainNav: nav,
     index: index,
@@ -45,7 +53,7 @@ body{
 #app {
   height: 100%;
 }
-.index{
+#index{
   width: 85%;
   float: right;
   margin-top: 65px;

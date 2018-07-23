@@ -11,7 +11,7 @@
     <!--折线图-->
     <div id="line" style="width: 65%;height: 400px;float: left;margin-top: 30px"></div>
     <!--与上期增长-->
-    <div class="increase" v-for="(j) in increase" :key="j.h1">
+    <div class="increase" v-for="j in increase" :key="j.h1">
       <h1>{{j.h1}}</h1>
       <p>{{j.p}}</p>
       <div class="Proportion">
@@ -22,7 +22,13 @@
     <!--最新上架-->
     <div class="Newest">
       <h3>最新上架</h3>
-      <div class="goods"></div>
+      <div class="goods" v-for="g in Newestarr" :key="g.goodsImg">
+        <h5>{{g.goodsName}}</h5>
+        <img :src="/xxm/+g.goodsImg" alt="">
+        <p>${{g.goodsPrice}}</p>
+        <p>{{g.goods_desc}}</p>
+        <span>{{g.ctime}}</span>
+      </div>
     </div>
     <!--消费排行-->
     <div class="xf">
@@ -33,16 +39,10 @@
           <th>用户</th>
           <th>金额</th>
         </tr>
-        <tr>
-          <td>1</td>
-          <td>谢某某</td>
-          <td>1230</td>
-        </tr>
-        <tr>
-        <tr>
-          <td>1</td>
-          <td>谢某某</td>
-          <td>1230</td>
+        <tr v-for="(l,index) in consumption" :key="l.u_id">
+          <td>{{index+1}}</td>
+          <td>{{l.name}}</td>
+          <td>{{l.sum}}</td>
         </tr>
       </table>
     </div>
@@ -124,7 +124,9 @@ export default {
           bai: '45%',
           time: new Date
         }
-      ]
+      ],
+      consumption: [],
+      Newestarr: []
     }
   },
   mounted () {
@@ -139,6 +141,7 @@ export default {
     // 折线图
     Line () {
       let line = echarts.init(document.getElementById('line'))
+      window.onresize = line.resize
       line.setOption({
         title: {
           text: '  商城信息图'
@@ -198,10 +201,8 @@ export default {
     },
     // 4块数据
     unit () {
-      console.log('1132')
-      this.$axios.get('http://172.16.8.7:8888/index')
+      this.$axios.get('/xxm/index')
         .then(resp => {
-          console.log('1132')
           for (let i = 0; i < resp.data.Z.length; i++) {
             this.arr[i].ZNumber = resp.data.Z[i]
           }
@@ -212,22 +213,22 @@ export default {
     },
     // 获取折线图数据
     Obtain () {
-      this.$axios.get('http://172.16.8.7:8888/Obtain')
+      this.$axios.get('/xxm/Obtain')
         .then(resp => {
         })
     },
     // 最新商品
     Newest () {
-      this.$axios.get('http://172.16.8.7:8888/Newest')
+      this.$axios.get('/xxm/Newest')
         .then(resp => {
-          console.log(resp.data)
+          this.Newestarr = resp.data
         })
     },
     // 消费排行
     xf () {
-      this.$axios.get('http://172.16.8.7:8888/xf')
+      this.$axios.get('/xxm/xf')
         .then(resp => {
-          console.log(resp.data)
+          this.consumption = resp.data
         })
     }
   }
@@ -238,7 +239,6 @@ export default {
 #index{
   width: 85%;
   float: right;
-  background: white;
 }
 #index article{
   font-family: 'Arial Normal', 'Arial';
@@ -283,7 +283,7 @@ export default {
 }
 .increase{
   float: right;
-  width: 30%;
+  width: 35%;
   height: 133px;
   color: rgb(95, 95, 95);
 }
@@ -328,9 +328,8 @@ export default {
 }
 .Newest{
   width: 70%;
-  height: 500px;
+  height: 280px;
   float: left;
-  background: aquamarine;
   margin-top: 30px;
 }
 .Newest h3{
@@ -338,16 +337,35 @@ export default {
   text-indent: 1em;
 }
 .goods{
-  width: 30%;
-  height: 200px;
-  background: aqua;
+  /*background: aqua;*/
+  width: 24%;
+  height: 250px;
   float: left;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left:1%;
+}
+.goods img{
+  display: block;
+  width: 80%;
+  margin:0 auto;
+}
+.goods h5{
+  text-align: center;
+}
+.goods p{
+  font-size: 14px;
+  text-align: center;
+  padding-bottom: 5px;
+}
+.goods span{
+  display: block;
+  font-size: 10px;
+  color: #444444;
+  text-align: center;
 }
 .xf{
   width: 30%;
-  height:500px;
+  height:300px;
   float: right;
   margin-top: 30px;
 }

@@ -10,7 +10,13 @@ Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.prototype.$host = 'http://172.16.8.30:8888'
 Vue.prototype.$echarts = echarts
-
+Vue.prototype.$bg = function (bg) {
+  var index = document.getElementById('index')
+  console.log(bg)
+  index.style.background = bg
+  console.log(111)
+  console.log(index)
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

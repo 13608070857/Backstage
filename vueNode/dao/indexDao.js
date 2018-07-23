@@ -108,7 +108,7 @@ yeartransaction(req,resp) {
 // 最新上架
 Newest(req,reap) {
     return new Promise((resolve,reject)=>{
-        db.connect("SELECT * FROM goods ORDER BY salesTime ASC LIMIT 6",
+        db.connect("SELECT *,DATE_FORMAT(createTime,\"%Y-%m-%d %H:%i:%S\") AS ctime FROM goods ORDER BY createTime DESC LIMIT 4 ",
             [],(err,data)=>{
                 if (!err){
                     resolve(data);
@@ -118,10 +118,10 @@ Newest(req,reap) {
             })
     })
 },
-// 最新上架
+// 消费排行
 xf(req,reap) {
     return new Promise((resolve,reject)=>{
-        db.connect("SELECT * FROM goods ORDER BY salesTime ASC LIMIT 6",
+        db.connect("SELECT u.u_id,u.name,SUM(g.o_price) as sum FROM users AS u INNER JOIN goodsorder AS g ON u.u_id = g.u_id WHERE g.is_pay = 0 GROUP BY u.u_id ORDER BY SUM(g.o_price) DESC LIMIT 6",
             [],(err,data)=>{
                 if (!err){
                     resolve(data);
