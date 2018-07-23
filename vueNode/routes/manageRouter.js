@@ -9,6 +9,8 @@ const orderController = require("../controller/orderController");
 router.get("/getUserInfo.do",userController.getUserInfo);
 
 router.get("/index",indexController.index);
+router.get("/Newest",indexController.Newest);
+router.get("/xf",indexController.xf);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);

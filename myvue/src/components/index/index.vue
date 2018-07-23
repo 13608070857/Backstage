@@ -1,5 +1,6 @@
 <template>
   <div id="index">
+    <!--4块数据-->
     <article v-for="(i,index) in arr" :key="index">
       <p>{{i.Title}}</p>
       <span :style="{ background: i.background}">{{i.unit}}</span>
@@ -7,7 +8,44 @@
       <p>{{i.ZTitle}}:</p>
       <p>{{i.ZNumber}} {{i.Zunit}}</p>
     </article>
-    <div id="line" style="width: 750px;height: 400px;float: left;margin-top: 30px"></div>
+    <!--折线图-->
+    <div id="line" style="width: 65%;height: 400px;float: left;margin-top: 30px"></div>
+    <!--与上期增长-->
+    <div class="increase" v-for="(j) in increase" :key="j.h1">
+      <h1>{{j.h1}}</h1>
+      <p>{{j.p}}</p>
+      <div class="Proportion">
+        <span><p>{{j.bai}}</p></span>
+      </div>
+      <span>{{j.time}}</span>
+    </div>
+    <!--最新上架-->
+    <div class="Newest">
+      <h3>最新上架</h3>
+      <div class="goods"></div>
+    </div>
+    <!--消费排行-->
+    <div class="xf">
+      <h3>消费排行</h3>
+      <table>
+        <tr>
+          <th>排行</th>
+          <th>用户</th>
+          <th>金额</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>谢某某</td>
+          <td>1230</td>
+        </tr>
+        <tr>
+        <tr>
+          <td>1</td>
+          <td>谢某某</td>
+          <td>1230</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -66,7 +104,27 @@ export default {
         data2: [20, 30, 33, 46, 31, 19, 46, 39, 35, 29, 25, 19],
         data3: [99, 150, 177, 198, 245, 290, 277, 311, 350, 322, 369, 377],
         data4: [150, 232, 250, 335, 359, 424, 473, 529, 577, 610, 653, 680]
-      }
+      },
+      increase: [
+        {
+          h1: '月注册用户',
+          p: '同上期增长',
+          bai: '45%',
+          time: new Date
+        },
+        {
+          h1: '月销售',
+          p: '同上期增长',
+          bai: '45%',
+          time: new Date
+        },
+        {
+          h1: '月订单',
+          p: '同上期增长',
+          bai: '45%',
+          time: new Date
+        }
+      ]
     }
   },
   mounted () {
@@ -74,6 +132,8 @@ export default {
   },
   created () {
     this.unit()
+    this.Newest()
+    this.xf()
   },
   methods: {
     // 折线图
@@ -136,10 +196,12 @@ export default {
         ]
       })
     },
-    // 4数据
+    // 4块数据
     unit () {
-      this.$axios.get('http://172.16.8.2:8888/index')
+      console.log('1132')
+      this.$axios.get('http://172.16.8.7:8888/index')
         .then(resp => {
+          console.log('1132')
           for (let i = 0; i < resp.data.Z.length; i++) {
             this.arr[i].ZNumber = resp.data.Z[i]
           }
@@ -150,8 +212,22 @@ export default {
     },
     // 获取折线图数据
     Obtain () {
-      this.$axios.get('http://172.16.8.2:8888/Obtain')
+      this.$axios.get('http://172.16.8.7:8888/Obtain')
         .then(resp => {
+        })
+    },
+    // 最新商品
+    Newest () {
+      this.$axios.get('http://172.16.8.7:8888/Newest')
+        .then(resp => {
+          console.log(resp.data)
+        })
+    },
+    // 消费排行
+    xf () {
+      this.$axios.get('http://172.16.8.7:8888/xf')
+        .then(resp => {
+          console.log(resp.data)
         })
     }
   }
@@ -204,5 +280,83 @@ export default {
   line-height: 45px;
   color: #666;
   padding-top: 35px;
+}
+.increase{
+  float: right;
+  width: 30%;
+  height: 133px;
+  color: rgb(95, 95, 95);
+}
+#index> :nth-child(6){
+  margin-top: 30px;
+}
+.increase>span{
+  float: left;
+  font-size: 12px;
+  color: #1a1a1a;
+  padding-top: 10px;
+}
+.increase h1{
+  font-weight: 400;
+  margin-left: 5%;
+  padding-bottom: 20px;
+}
+.increase>p{
+  font-size: 12px;
+  margin-left: 5%;
+  padding-bottom: 10px;
+}
+.Proportion{
+  width: 90%;
+  height: 20px;
+  border-radius: 10px;
+  background: rgb(226,226,226);
+  margin: 0 auto;
+}
+.Proportion span{
+  width: 45%;
+  height: 20px;
+  border-radius: 10px;
+  background: #5fb878;
+  display: block;
+}
+.Proportion span p{
+  color: white;
+  font-size: 12px;
+  text-align: right;
+  line-height: 20px;
+}
+.Newest{
+  width: 70%;
+  height: 500px;
+  float: left;
+  background: aquamarine;
+  margin-top: 30px;
+}
+.Newest h3{
+  color: rgb(51,51,51);
+  text-indent: 1em;
+}
+.goods{
+  width: 30%;
+  height: 200px;
+  background: aqua;
+  float: left;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.xf{
+  width: 30%;
+  height:500px;
+  float: right;
+  margin-top: 30px;
+}
+.xf table{
+  width: 100%;
+  margin-top: 20px;
+}
+.xf table td{
+  text-align: center;
+  padding-top: 15px;
 }
 </style>
