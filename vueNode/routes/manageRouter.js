@@ -8,6 +8,7 @@ const goodsController = require("../controller/goodsController");
 
 
 router.get("/getUserInfo.do",userController.getUserInfo);
+router.get("/deleteInfo.do",userController.deleteInfo);
 
 router.get("/index",indexController.index);
 router.get("/Newest",indexController.Newest);

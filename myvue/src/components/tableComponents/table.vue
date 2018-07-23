@@ -128,8 +128,8 @@ export default {
       }
     },
     deleteInfo (data,fnArg) {
-      this.$axios.get('/api' + fnArg).then(resp => {
-        console.log(1);
+      this.$axios.get('/api' + fnArg, {params: {deleteId: data}}).then(resp => {
+        location.reload();
       })
     }
   }
