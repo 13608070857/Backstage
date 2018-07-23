@@ -8,7 +8,7 @@ import echarts from 'echarts'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
-Vue.prototype.$host = 'http://172.16.8.40:8888'
+Vue.prototype.$host = 'http://172.16.8.30:8888'
 Vue.prototype.$echarts = echarts
 
 /* eslint-disable no-new */
