@@ -17,6 +17,13 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
+      },
+      '/xxm': {
+        target: 'http://172.16.8.7:8888',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/xxm': ''
+        }
       }
     },
 

@@ -17,6 +17,7 @@ router.get("/xf",indexController.xf);
 // ============== 商品管理 ==============
 router.get("/getgoodsmsg.do",goodsController.getallgoods);
 router.get("/getgoodcategory.do",goodsController.getcategory);
+router.get("/getgoodcomments.do",goodsController.getcomments);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);

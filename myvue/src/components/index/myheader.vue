@@ -1,0 +1,97 @@
+<template>
+  <div id="myheader">
+    <div class="left">
+      <h2>浅草管理系统</h2>
+      <p>QianCao Management System</p>
+    </div>
+    <div class="right">
+      <span>换肤
+        <div class="hf">
+          <div class="kuai" style="background: #effffc" @click="$bg('#effffc')"></div>
+          <div class="kuai" style="background: aqua" @click="$bg('aqua')"></div>
+          <div class="kuai" style="background: #ff6f47" @click="$bg('#ff6f47')"></div>
+          <div class="kuai" style="background: #ffed5e" @click="$bg('#ffed5e')"></div>
+          <div class="kuai" style="background: #6bffa5" @click="$bg('#6bffa5')"></div>
+          <div class="kuai" style="background: #84aaff" @click="$bg('#84aaff')"></div>
+          <div class="kuai" style="background: #ff46f4" @click="$bg('#ff46f4')"></div>
+          <div class="kuai" style="background: #a8fff8" @click="$bg('#a8fff8')"></div>
+          <div class="kuai" style="background: #b3ffc7" @click="$bg('#b3ffc7')"></div>
+          <div class="kuai" style="background: #ffa474" @click="$bg('#ffa474')"></div>
+          <div class="kuai" style="background: #ff190f" @click="$bg('#ff190f')"></div>
+          <div class="kuai" style="background: #e0ff15" @click="$bg('#e0ff15')"></div>
+        </div>
+      </span>
+      <span>管理员</span>
+    </div>
+
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'myheader',
+  data () {
+    return {
+    }
+  },
+  methods: {
+  }
+}
+
+</script>
+
+<style scoped>
+#myheader{
+  width: 100%;
+  height: 65px;
+  float: left;
+}
+.left{
+  float: left;
+  width: 60%;
+}
+.left h2{
+  color: white;
+  font-weight: 300;
+  line-height: 35px;
+  text-indent: 1em;
+}
+.left p{
+  color: white;
+  font-size: 12px;
+  line-height: 25px;
+  text-indent: 2em;
+}
+.right{
+  float: right;
+}
+.right span{
+  line-height: 65px;
+  color: white;
+  margin-right: 20px;
+  cursor: pointer;
+  position: relative;
+}
+.hf{
+  width: 150px;
+  height: 50px;
+  background: white;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  margin-left: -75px;
+  z-index: 2;
+  display: none;
+}
+.right span:nth-child(1):hover .hf{
+  display: block;
+}
+.kuai{
+  width:15px;
+  height: 15px;
+  float: left;
+  margin-left: 7px;
+  margin-top: 5px;
+  border: 1px solid #000;
+}
+</style>
