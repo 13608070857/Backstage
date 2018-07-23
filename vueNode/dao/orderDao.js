@@ -75,6 +75,77 @@ const orderDao = {
                 })
         })
     },
+    // 今年1到12月份的所有订单
+    ordercordthisyear2(req,resp){
+        return new Promise(function (resolve,reject) {
+            db.connect("SELECT \n" +
+                "IFNULL(SUM(o_price),0) AS 'a',(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '2' THEN 2 ELSE 0 END) AS 'b',\n" +
+                "(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '3' THEN 3 ELSE 0 END) AS 'c',\n" +
+                "(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '4' THEN 4 ELSE 0 END) AS 'd',\n" +
+                "(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '5' THEN 5 ELSE 0 END) AS 'e',\n" +
+                "(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '6' THEN 6 ELSE 0 END) AS 'f',\n" +
+                "(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '7' THEN 7 ELSE 0 END) AS 'i',\n" +
+                "(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '8' THEN 8 ELSE 0 END) AS 'j',\n" +
+                "(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '9' THEN 9 ELSE 0 END) AS 'k',\n" +
+                "(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '10' THEN 10 ELSE 0 END) AS 'l',\n" +
+                "(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '11' THEN 11 ELSE 0 END) AS 'm',\n" +
+                "(SELECT \n" +
+                "IFNULL(SUM(o_price),0)\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '12' THEN 12 ELSE 0 END) AS 'n'\n" +
+                "FROM goodsorder\n" +
+                "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+                "CASE MONTH(createtime) WHEN '1' THEN 1 ELSE 0 END\n",
+                [],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
     // 去年 交易金额 订单数量 交易成功 交易失败 退款金额
     ordercordlastyear(req,resp){
         return new Promise(function (resolve,reject) {

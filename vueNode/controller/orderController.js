@@ -49,6 +49,13 @@ const orderControoller = {
                 resp.send(data);
             })
     },
+    orderthisyear2(req,resp){
+        orderDao.ordercordthisyear2()
+            .then(function (data) {
+                console.log(data);
+                resp.send(data);
+            })
+    },
     // 去年
     orderlastyear(req,resp){
         orderDao.ordercordlastyear()

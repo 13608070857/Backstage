@@ -26,6 +26,7 @@ router.get("/orderyear1.do",orderController.orderyear1);
 router.get("/orderyear2.do",orderController.orderyear2);
 router.get("/orderyear3.do",orderController.orderyear3);
 router.get("/orderthisyear.do",orderController.orderthisyear);
+router.get("/orderthisyear2.do",orderController.orderthisyear2);
 router.get("/orderlastyear.do",orderController.orderlastyear);
 
 // ================ 租赁管理 =============
