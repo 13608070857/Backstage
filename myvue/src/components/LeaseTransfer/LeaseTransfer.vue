@@ -12,7 +12,7 @@
        <button class="rightButton">右</button>
      </div>
      <div class="rightFrame"></div>
-   </div>
+   </div> 
    <button class="Determine" type="button">确定</button>
  </div>
 </template>
