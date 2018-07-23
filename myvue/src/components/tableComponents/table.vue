@@ -26,7 +26,7 @@
             </div>
           </td>
           <td>
-            <btn v-for="(operationBtn,index) in operationBtns" :key="index" :btnText="operationBtn.text" :btnClass="operationBtn.className" v-on:fn="fnObj[operationBtn.fn.fnName](operationBtn.fn.fnArg)"></btn>
+            <btn v-for="(operationBtn,index) in operationBtns" :key="index" :btnText="operationBtn.text" :btnClass="operationBtn.className" v-on:fn="dataFn" :dataIndex="index"></btn>
           </td>
         </tr>
       </tbody>
@@ -62,6 +62,8 @@ export default {
       tableContents: '',
       tableData: '',
       popContents: '',
+      fnName: 'delete',
+      dataIndex: '',
       fnObj: {
         query: this.queryParam,
         insert: this.insertInfo,
@@ -102,6 +104,9 @@ export default {
     })
   },
   methods: {
+    dataFn (data,index) {
+      this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].fn.fnArg)
+    },
     queryParam (arg) {
       let newArr = []
       let tableData = this.tableData
@@ -122,11 +127,10 @@ export default {
         // })
       }
     },
-    deleteInfo (event,arg) {
-      console.log(event)
-      // if (arg !== '') {
-        
-      // }
+    deleteInfo (data,fnArg) {
+      this.$axios.get('/api' + fnArg).then(resp => {
+        console.log(1);
+      })
     }
   }
 }

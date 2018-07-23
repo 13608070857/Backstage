@@ -1,5 +1,5 @@
 <template>
-  <button :class="btnClass" v-on:click="fn">{{btnText}}</button>
+  <button :class="btnClass" v-on:click="fn($event)">{{btnText}}</button>
 </template>
 
 <script>
@@ -13,11 +13,14 @@ export default {
       default: '默认'
     },
     // 按钮颜色
-    btnClass: ''
+    btnClass: '',
+    btnTest: '',
+    dataIndex: ''
   },
   methods: {
-    fn () {
-      this.$emit('fn')
+    fn (event) {
+      var data = event.target.parentNode.parentNode.childNodes[0].childNodes[0].innerHTML
+      this.$emit('fn',Number(data),this.dataIndex)
     }
   }
 }
