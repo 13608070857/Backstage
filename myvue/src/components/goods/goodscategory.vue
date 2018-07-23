@@ -23,7 +23,7 @@ export default {
       // 表单信息标题
       tableInfo: '商品分类',
       // 表标题
-      tableTitles: ['ID', '类别名称', '上架时间', '状态'],
+      tableTitles: ['ID', '类别名称', '状态', '上架时间'],
       // node路由地址
       router: '/getgoodcategory.do',
       // 表格按钮 text：按钮内容 className：按钮类
