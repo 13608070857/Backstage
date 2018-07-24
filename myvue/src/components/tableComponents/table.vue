@@ -40,13 +40,20 @@
               <input type="text" disabled :value="tableData.length+1">
             </div>
             <div v-else-if="!/img/.test(popC)"><input type="text" v-model="popObj[index]"></div>
-            <div v-else>
-              <img src="" alt="">
+            <div v-else class="imgD">
+              <img :src="'/api/img/index/N1.jpg'" alt="">
+              <input type="file">
             </div>
           </li>
         </ul>
-        <ul v-else>
-          sshshs
+        <ul v-else-if="btnText=='查看'">
+          <li v-for="(popC,index) in viewObj" :key="index">
+            <span class="popTitle">{{popTitles[index]+':'}}</span>
+            <div v-if="!/img/.test(popC)"><input type="text" :value="popC" disabled></div>
+            <div v-else class="imgD">
+              <img :src="'/api/' + popC" alt="">
+            </div>
+          </li>
         </ul>
         <div class="popBtn">
           <button class="confirm" @click="confirm($event)">确认</button>
@@ -72,11 +79,14 @@ export default {
       fnObj: {
         query: this.queryParam,
         insert: this.insertInfo,
-        delete: this.deleteInfo
+        delete: this.deleteInfo,
+        view: this.viewInfo,
+        shelf: this.shelfChange
       },
       operationRouter: '',
       popObj: {},
-      btnText: ''
+      btnText: '',
+      viewObj: {}
     }
   },
   props: {
@@ -113,7 +123,7 @@ export default {
   },
   methods: {
     dataFn (data,index) {
-      this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].fn.fnArg)
+      this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].text,this.operationBtns[index].fn.fnArg)
     },
     getInfo() {
       this.$axios.get('/api' + this.router).then(resp => {
@@ -123,7 +133,7 @@ export default {
         this.popContents = resp.data.getAllData
       })
     },
-    queryParam (arg) {
+    queryParam (btnText,arg) {
       let newArr = []
       let tableData = this.tableData
       if (arg === '') {
@@ -140,12 +150,22 @@ export default {
       this.popShow = true
       this.operationRouter = arg
       this.btnText = btnText
-      console.log(this.btnText)
     },
-    deleteInfo (data,fnArg) {
+    deleteInfo (data,btnText,fnArg) {
       this.$axios.get('/api' + fnArg, {params: {deleteId: data}}).then(resp => {
         this.getInfo()
       })
+    },
+    viewInfo (data,btnText,fnArg) {
+      this.popShow = true
+      this.btnText = btnText
+      this.operationRouter = fnArg
+      this.viewObj = this.popContents[data-1]
+    },
+    shelfChange (data,btnText,fnArg) {
+      console.log(data)
+      console.log(btnText)
+      console.log(fnArg)
     },
     cancel () {
       this.popShow = false
@@ -153,10 +173,16 @@ export default {
     confirm (event) {
       console.log(this.operationRouter)
       console.log(this.popObj)
-      this.$axios.get('/api' + this.operationRouter,{params:{popObj: this.popObj}}).then(resp => {
+      if(this.operationRouter != '') {
+        this.$axios.get('/api' + this.operationRouter,{params:{popObj: this.popObj}}).then(resp => {
+          this.popShow = false
+          this.operationRouter = ''
+          this.getInfo()
           console.log(resp)
         })
-      
+      }else {
+        this.popShow = false
+      }  
     }
   }
 }
@@ -196,11 +222,11 @@ td,th {
   margin-left: -5px;
 }
 
-input,select {
+input[type='text'],select {
   border: 1px solid rgba(0, 150, 136, 1);
   padding: 10px 5px;
 }
-input {
+input[type='text'] {
   padding-bottom: 11px;
   position: relative;
   top: -1px;
@@ -276,5 +302,23 @@ li {
 }
 .popBtn .cancel {
   background: rgba(0, 150, 136, 1);
+}
+.popContent img {
+  border: 1px solid rgba(0, 150, 136, 1);
+  border-radius: 50%;
+  width: 60px;
+  display: inline-block;
+}
+.imgD {
+  position: relative;
+}
+.imgD input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 60px;
+  overflow: hidden;
+  opacity: 0;
 }
 </style>
