@@ -20,19 +20,11 @@
     </div>
     <!--图表-->
     <div id="myChart"></div>
-    <!-- 今年/去年 -->
-    <div class="myyear">
-      <ul>
-        <li class="active" id="active" @click="mythisyear">今年</li>
-        <li class="unactive" id="unactive" @click="lastyear">去年</li>
-      </ul>
-    </div>
   </div>
 </template>
 
 <script>
 import order from './order'
-let allorder=[];
 // 引入 ECharts 主模块
 let echarts = require('echarts/lib/echarts')
 // 引入柱状图
@@ -52,29 +44,9 @@ export default {
     order: order
   },
   mounted () {
-    this.myall();
     this.drawLine();
   },
   methods: {
-    myall(){
-      this.$axios.get('/api/orderthisyear2.do')
-        .then(function (resp) {
-          allorder.push(resp.data[0].a)
-          allorder.push(resp.data[0].b)
-          allorder.push(resp.data[0].c)
-          allorder.push(resp.data[0].d)
-          allorder.push(resp.data[0].e)
-          allorder.push(resp.data[0].f)
-          allorder.push(resp.data[0].i)
-          allorder.push(resp.data[0].j)
-          allorder.push(resp.data[0].k)
-          allorder.push(resp.data[0].l)
-          allorder.push(resp.data[0].m)
-          allorder.push(resp.data[0].n)
-          console.log(allorder)
-          // that.allorder = resp.data
-        })
-    },
     // 交易记录查询
     week () {
       var myselect = document.getElementById("myselect");
@@ -165,10 +137,6 @@ export default {
     // 今年
     mythisyear () {
       var that = this;
-      var active=document.getElementById('active');
-      var unactive=document.getElementById('unactive');
-      active.setAttribute('class','active')
-      unactive.setAttribute('class','unactive')
       this.$axios.get('/api/orderthisyear.do')
         .then(function (resp) {
           console.log(resp.data)
@@ -178,10 +146,6 @@ export default {
     // 去年
     lastyear () {
       var that = this;
-      var active=document.getElementById('active');
-      var unactive=document.getElementById('unactive');
-      active.setAttribute('class','unactive')
-      unactive.setAttribute('class','active')
       this.$axios.get('/api/orderlastyear.do')
         .then(function (resp) {
           console.log(resp.data)
@@ -191,6 +155,8 @@ export default {
     // 图表
     drawLine () {
       let that=this;
+      // console.log("开始");
+      // console.log(that.myallorder);
       // 基于准备好的dom，初始化echarts实例
       let myChart = echarts.init(document.getElementById('myChart'))
       // 绘制图表
@@ -233,7 +199,9 @@ export default {
             type: 'bar',
             barWidth: 12, // 柱状图宽度
             color: ['#21C4C2'],
-            data: [18.9, 0, 0, 0, 0, 59.4, 9.9, 0, 0, 0, 0, 0],
+            // data: [18.9, 0, 0, 0, 0, 59.4, 9.9, 0, 0, 0, 0, 0],
+            // data: myallorder,
+            data: [],
             markPoint: {
               data: [
                 {type: 'max', name: '最大值'},
@@ -257,7 +225,8 @@ export default {
             type: 'bar',
             barWidth: 12, // 柱状图宽度
             color: ['#B199D8'],
-            data: [1.6, 3.9, 6.0, 2.4, 8.7, 7.7, 15.6, 82.2, 18.7, 18.8, 6.0, 2.3],
+            // data: [1.6, 3.9, 6.0, 2.4, 8.7, 7.7, 15.6, 82.2, 18.7, 18.8, 6.0, 2.3],
+            data: [],
             markPoint: {
               data: [
                 {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
@@ -281,7 +250,8 @@ export default {
             type: 'bar',
             barWidth: 12, // 柱状图宽度
             color: ['#53ACEA'],
-            data: [2.6, 5.9, 9.0, 2.4, 2.7, 27.7, 55.6, 2.2, 8.7, 8.8, 6.0, 2.3],
+            // data: [2.6, 5.9, 9.0, 2.4, 2.7, 27.7, 55.6, 2.2, 8.7, 8.8, 6.0, 2.3],
+            data: [],
             markPoint: {
               data: [
                 {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
@@ -305,7 +275,8 @@ export default {
             type: 'bar',
             barWidth: 12, // 柱状图宽度
             color: ['#FFAE7A'],
-            data: [2.6, 5.9, 9.0, 6.4, 42.7, 7.7, 155.6, 2.2, 4.7, 1.8, 6.0, 2.3],
+            // data: [2.6, 5.9, 9.0, 6.4, 42.7, 7.7, 155.6, 2.2, 4.7, 1.8, 6.0, 2.3],
+            data: [],
             markPoint: {
               data: [
                 {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
@@ -326,6 +297,68 @@ export default {
           }
         ]
       })
+      let myallorder=[];//所有订单
+      let ispay=[];//待付款
+      let ispay2=[];//已付款
+      let istaues=[];//待发货
+      // 绑定数据
+      that.$axios.get('/api/orderthisyear2.do')
+        .then(function (data) {
+          var obj=data.data[0];
+          for (var key in obj) {
+            myallorder.push(obj[key]);
+          }
+          console.log(myallorder)
+          that.$axios.get('/api/orderispay.do')
+            .then(function (data) {
+              var obj2=data.data[0];
+              for (var key in obj2) {
+                ispay.push(obj2[key]);
+              }
+              console.log(ispay)
+              that.$axios.get('/api/orderispay2.do')
+                .then(function (data) {
+                  var obj3=data.data[0];
+                  for (var key in obj3) {
+                    ispay2.push(obj3[key]);
+                  }
+                  console.log(ispay2)
+                  that.$axios.get('/api/orderispay3.do')
+                    .then(function (data) {
+                      var obj4=data.data[0];
+                      for (var key in obj4) {
+                        istaues.push(obj4[key]);
+                      }
+                      console.log(istaues)
+                      myChart.setOption({
+                        series:[
+                          {
+                            //根据名字对应到相应的系列
+                            name:"所有订单",
+                            data: myallorder
+                          },
+                          {
+                            //根据名字对应到相应的系列
+                            name:"待付款",
+                            data: ispay
+                          },
+                          {
+                            //根据名字对应到相应的系列
+                            name:"已付款",
+                            data: ispay2
+                          },
+                          {
+                            //根据名字对应到相应的系列
+                            name:"待发货",
+                            data: istaues
+                          }
+                        ]
+                      })
+                    })
+                })
+            })
+
+        });
     }
   },
   created () {
@@ -340,14 +373,14 @@ export default {
 </script>
 
 <style scoped>
-#myChart{
-  overflow: hidden;
-  width: 85%;
-  height: 550px;
-  margin-left: 30px;
-  margin-bottom: 100px;
-  float: left;
-}
+  #myChart{
+    overflow: hidden;
+    width: 85%;
+    height: 550px;
+    margin-left: 30px;
+    margin-bottom: 100px;
+    float: left;
+  }
 #myorder{
   background-color: #fff;
   height: 910px;
@@ -374,9 +407,6 @@ export default {
     border: 1px solid rgba(0, 150, 136, 1);
     padding: 10px 5px;
   }
-  .myyear{
-    float: left;
-  }
   .myyear>ul{
     list-style: none;
     margin-left: 10px;
@@ -399,11 +429,4 @@ export default {
   color: #fff;
   cursor: pointer;
 }
-  .active{
-    background-color: #10C1BB;
-    color: #FFF;
-  }
-  .unactive{
-    background-color: unset;
-  }
 </style>
