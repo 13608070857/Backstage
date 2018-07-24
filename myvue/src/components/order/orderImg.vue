@@ -225,7 +225,8 @@ export default {
             type: 'bar',
             barWidth: 12, // 柱状图宽度
             color: ['#B199D8'],
-            data: [1.6, 3.9, 6.0, 2.4, 8.7, 7.7, 15.6, 82.2, 18.7, 18.8, 6.0, 2.3],
+            // data: [1.6, 3.9, 6.0, 2.4, 8.7, 7.7, 15.6, 82.2, 18.7, 18.8, 6.0, 2.3],
+            data: [],
             markPoint: {
               data: [
                 {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
@@ -249,7 +250,8 @@ export default {
             type: 'bar',
             barWidth: 12, // 柱状图宽度
             color: ['#53ACEA'],
-            data: [2.6, 5.9, 9.0, 2.4, 2.7, 27.7, 55.6, 2.2, 8.7, 8.8, 6.0, 2.3],
+            // data: [2.6, 5.9, 9.0, 2.4, 2.7, 27.7, 55.6, 2.2, 8.7, 8.8, 6.0, 2.3],
+            data: [],
             markPoint: {
               data: [
                 {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
@@ -273,7 +275,8 @@ export default {
             type: 'bar',
             barWidth: 12, // 柱状图宽度
             color: ['#FFAE7A'],
-            data: [2.6, 5.9, 9.0, 6.4, 42.7, 7.7, 155.6, 2.2, 4.7, 1.8, 6.0, 2.3],
+            // data: [2.6, 5.9, 9.0, 6.4, 42.7, 7.7, 155.6, 2.2, 4.7, 1.8, 6.0, 2.3],
+            data: [],
             markPoint: {
               data: [
                 {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
@@ -305,24 +308,28 @@ export default {
           for (var key in obj) {
             myallorder.push(obj[key]);
           }
+          console.log(myallorder)
           that.$axios.get('/api/orderispay.do')
             .then(function (data) {
               var obj2=data.data[0];
               for (var key in obj2) {
-                ispay.push(obj[key]);
+                ispay.push(obj2[key]);
               }
+              console.log(ispay)
               that.$axios.get('/api/orderispay2.do')
                 .then(function (data) {
                   var obj3=data.data[0];
                   for (var key in obj3) {
-                    ispay2.push(obj[key]);
+                    ispay2.push(obj3[key]);
                   }
+                  console.log(ispay2)
                   that.$axios.get('/api/orderispay3.do')
                     .then(function (data) {
                       var obj4=data.data[0];
                       for (var key in obj4) {
-                        istaues.push(obj[key]);
+                        istaues.push(obj4[key]);
                       }
+                      console.log(istaues)
                       myChart.setOption({
                         series:[
                           {
