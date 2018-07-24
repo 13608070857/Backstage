@@ -11,7 +11,7 @@
         <option value="f">去年</option>
       </select>
     </div>
-    <div v-for="(item,index) in myorder" :key="index">
+    <div v-for="(item,index) in myorder" :key="index" class="myblock">
       <order class="myorder" :myprice="item.o_price" mycontent="交易金额" week="周" :mycolor="mycolor"></order>
       <order class="myorder" :myprice="item.total_price" mycontent="订单数量" week="周" :mycolor="mycolor"></order>
       <order class="myorder" :myprice="item.cpay" mycontent="交易成功" week="周" :mycolor="mycolor"></order>
@@ -25,7 +25,7 @@
 
 <script>
 import order from './order'
-// 引入 ECharts 主模块
+//引入 ECharts 主模块
 let echarts = require('echarts/lib/echarts')
 // 引入柱状图
 require('echarts/lib/chart/bar')
@@ -37,16 +37,174 @@ export default {
   data () {
     return {
       mycolor: 'blue',
-      myorder: []
+      myorder: [],
+      myallorder: [],//所有订单
+      ispay: [],
+      ispay2: [],
+      istaues: []
     }
   },
   components: {
     order: order
   },
   mounted () {
+    this.myunit();
     this.drawLine();
   },
   methods: {
+    // 图表
+    drawLine () {
+      let that=this;
+      // 基于准备好的dom，初始化echarts实例
+      let myChart = echarts.init(document.getElementById('myChart'))
+      // 绑定数据
+      that.$axios.get('/api/orderthisyear2.do')
+        .then(function (data) {
+          console.log("进入")
+          var obj=data.data[0];
+          for (var key in obj) {
+            that.myallorder.push(obj[key]);
+          }
+          console.log(that.myallorder)
+          // 绘制图表
+          myChart.setOption({
+            title: {
+              text: '月购买交易订单记录',
+              subtext: '实时获取用户订单购买记录',
+              textStyle: {
+                color: '#2799Fb'
+              }
+            },
+            tooltip: {
+              trigger: 'axis'
+            },
+            legend: {
+              data: ['所有订单', '待付款', '已付款', '待发货']
+            },
+            toolbox: {
+              show: true,
+              feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+              }
+            },
+            calculable: true,
+            xAxis: [{
+              type: 'category',
+              data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+            }],
+            yAxis: [
+              {
+                type: 'value'
+              }
+            ],
+            series: [
+              {
+                name: '所有订单',
+                type: 'bar',
+                barWidth: 12, // 柱状图宽度
+                color: ['#21C4C2'],
+                // data: [18.9, 0, 0, 0, 0, 59.4, 9.9, 0, 0, 0, 0, 0],
+                data: that.myallorder,
+                markPoint: {
+                  data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                  ]
+                },
+                itemStyle: {
+                  normal: {
+                    // 柱形图圆角
+                    barBorderRadius: [5, 5, 5, 5]
+                  }
+                },
+                markLine: {
+                  data: [
+                    {type: 'average', name: '平均值'}
+                  ]
+                }
+              },
+              {
+                name: '待付款',
+                type: 'bar',
+                barWidth: 12, // 柱状图宽度
+                color: ['#B199D8'],
+                // data: [1.6, 3.9, 6.0, 2.4, 8.7, 7.7, 15.6, 82.2, 18.7, 18.8, 6.0, 2.3],
+                data: [],
+                markPoint: {
+                  data: [
+                    {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
+                    {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3}
+                  ]
+                },
+                itemStyle: {
+                  normal: {
+                    // 柱形图圆角
+                    barBorderRadius: [5, 5, 5, 5]
+                  }
+                },
+                markLine: {
+                  data: [
+                    {type: 'average', name: '平均值'}
+                  ]
+                }
+              },
+              {
+                name: '已付款',
+                type: 'bar',
+                barWidth: 12, // 柱状图宽度
+                color: ['#53ACEA'],
+                // data: [2.6, 5.9, 9.0, 2.4, 2.7, 27.7, 55.6, 2.2, 8.7, 8.8, 6.0, 2.3],
+                data: [],
+                markPoint: {
+                  data: [
+                    {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
+                    {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3}
+                  ]
+                },
+                itemStyle: {
+                  normal: {
+                    // 柱形图圆角
+                    barBorderRadius: [5, 5, 5, 5]
+                  }
+                },
+                markLine: {
+                  data: [
+                    {type: 'average', name: '平均值'}
+                  ]
+                }
+              },
+              {
+                name: '待发货',
+                type: 'bar',
+                barWidth: 12, // 柱状图宽度
+                color: ['#FFAE7A'],
+                // data: [2.6, 5.9, 9.0, 6.4, 42.7, 7.7, 155.6, 2.2, 4.7, 1.8, 6.0, 2.3],
+                data: [],
+                markPoint: {
+                  data: [
+                    {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
+                    {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3}
+                  ]
+                },
+                itemStyle: {
+                  normal: {
+                    // 柱形图圆角
+                    barBorderRadius: [5, 5, 5, 5]
+                  }
+                },
+                markLine: {
+                  data: [
+                    {type: 'average', name: '平均值'}
+                  ]
+                }
+              }
+            ]
+          })
+        });
+    },
     // 交易记录查询
     week () {
       var myselect = document.getElementById("myselect");
@@ -152,234 +310,27 @@ export default {
           that.myorder = resp.data
         })
     },
-    // 图表
-    drawLine () {
-      let that=this;
-      // console.log("开始");
-      // console.log(that.myallorder);
-      // 基于准备好的dom，初始化echarts实例
-      let myChart = echarts.init(document.getElementById('myChart'))
-      // 绘制图表
-      myChart.setOption({
-        title: {
-          text: '月购买交易订单记录',
-          subtext: '实时获取用户订单购买记录',
-          textStyle: {
-            color: '#2799Fb'
-          }
-        },
-        tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data: ['所有订单', '待付款', '已付款', '待发货']
-        },
-        toolbox: {
-          show: true,
-          feature: {
-            dataView: {show: true, readOnly: false},
-            magicType: {show: true, type: ['line', 'bar']},
-            restore: {show: true},
-            saveAsImage: {show: true}
-          }
-        },
-        calculable: true,
-        xAxis: [{
-          type: 'category',
-          data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
-        }],
-        yAxis: [
-          {
-            type: 'value'
-          }
-        ],
-        series: [
-          {
-            name: '所有订单',
-            type: 'bar',
-            barWidth: 12, // 柱状图宽度
-            color: ['#21C4C2'],
-            // data: [18.9, 0, 0, 0, 0, 59.4, 9.9, 0, 0, 0, 0, 0],
-            // data: myallorder,
-            data: [],
-            markPoint: {
-              data: [
-                {type: 'max', name: '最大值'},
-                {type: 'min', name: '最小值'}
-              ]
-            },
-            itemStyle: {
-              normal: {
-                // 柱形图圆角
-                barBorderRadius: [5, 5, 5, 5]
-              }
-            },
-            markLine: {
-              data: [
-                {type: 'average', name: '平均值'}
-              ]
-            }
-          },
-          {
-            name: '待付款',
-            type: 'bar',
-            barWidth: 12, // 柱状图宽度
-            color: ['#B199D8'],
-            // data: [1.6, 3.9, 6.0, 2.4, 8.7, 7.7, 15.6, 82.2, 18.7, 18.8, 6.0, 2.3],
-            data: [],
-            markPoint: {
-              data: [
-                {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
-                {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3}
-              ]
-            },
-            itemStyle: {
-              normal: {
-                // 柱形图圆角
-                barBorderRadius: [5, 5, 5, 5]
-              }
-            },
-            markLine: {
-              data: [
-                {type: 'average', name: '平均值'}
-              ]
-            }
-          },
-          {
-            name: '已付款',
-            type: 'bar',
-            barWidth: 12, // 柱状图宽度
-            color: ['#53ACEA'],
-            // data: [2.6, 5.9, 9.0, 2.4, 2.7, 27.7, 55.6, 2.2, 8.7, 8.8, 6.0, 2.3],
-            data: [],
-            markPoint: {
-              data: [
-                {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
-                {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3}
-              ]
-            },
-            itemStyle: {
-              normal: {
-                // 柱形图圆角
-                barBorderRadius: [5, 5, 5, 5]
-              }
-            },
-            markLine: {
-              data: [
-                {type: 'average', name: '平均值'}
-              ]
-            }
-          },
-          {
-            name: '待发货',
-            type: 'bar',
-            barWidth: 12, // 柱状图宽度
-            color: ['#FFAE7A'],
-            // data: [2.6, 5.9, 9.0, 6.4, 42.7, 7.7, 155.6, 2.2, 4.7, 1.8, 6.0, 2.3],
-            data: [],
-            markPoint: {
-              data: [
-                {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
-                {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3}
-              ]
-            },
-            itemStyle: {
-              normal: {
-                // 柱形图圆角
-                barBorderRadius: [5, 5, 5, 5]
-              }
-            },
-            markLine: {
-              data: [
-                {type: 'average', name: '平均值'}
-              ]
-            }
-          }
-        ]
-      })
-      let myallorder=[];//所有订单
-      let ispay=[];//待付款
-      let ispay2=[];//已付款
-      let istaues=[];//待发货
-      // 绑定数据
-      that.$axios.get('/api/orderthisyear2.do')
-        .then(function (data) {
-          var obj=data.data[0];
-          for (var key in obj) {
-            myallorder.push(obj[key]);
-          }
-          console.log(myallorder)
-          that.$axios.get('/api/orderispay.do')
-            .then(function (data) {
-              var obj2=data.data[0];
-              for (var key in obj2) {
-                ispay.push(obj2[key]);
-              }
-              console.log(ispay)
-              that.$axios.get('/api/orderispay2.do')
-                .then(function (data) {
-                  var obj3=data.data[0];
-                  for (var key in obj3) {
-                    ispay2.push(obj3[key]);
-                  }
-                  console.log(ispay2)
-                  that.$axios.get('/api/orderispay3.do')
-                    .then(function (data) {
-                      var obj4=data.data[0];
-                      for (var key in obj4) {
-                        istaues.push(obj4[key]);
-                      }
-                      console.log(istaues)
-                      myChart.setOption({
-                        series:[
-                          {
-                            //根据名字对应到相应的系列
-                            name:"所有订单",
-                            data: myallorder
-                          },
-                          {
-                            //根据名字对应到相应的系列
-                            name:"待付款",
-                            data: ispay
-                          },
-                          {
-                            //根据名字对应到相应的系列
-                            name:"已付款",
-                            data: ispay2
-                          },
-                          {
-                            //根据名字对应到相应的系列
-                            name:"待发货",
-                            data: istaues
-                          }
-                        ]
-                      })
-                    })
-                })
-            })
-
-        });
+    // 交易记录4块
+    myunit () {
+      var that = this;
+      this.$axios.get('/api/orderrecord.do')
+        .then(function (resp) {
+          console.log("近一周请求成功！")
+          console.log(resp.data)
+          that.myorder = resp.data
+        })
     }
-  },
-  created () {
-    var that = this;
-    this.$axios.get('/api/orderrecord.do')
-      .then(function (resp) {
-        console.log(resp.data)
-        that.myorder = resp.data
-      })
-  },
+  }
 }
 </script>
 
 <style scoped>
   #myChart{
-    overflow: hidden;
+    /*overflow: hidden;*/
     width: 85%;
     height: 550px;
     margin-left: 30px;
     margin-bottom: 100px;
-    float: left;
   }
 #myorder{
   background-color: #fff;
@@ -429,4 +380,10 @@ export default {
   color: #fff;
   cursor: pointer;
 }
+.myblock{
+  height: 194px;
+}
+  .test{
+    border: 1px solid red;
+  }
 </style>
