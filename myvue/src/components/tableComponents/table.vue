@@ -10,7 +10,7 @@
           <option v-for="(content,index) in formElement.contents" :key="index">{{content}}</option>
         </select>
       </div>
-      <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="fnObj[searchBtn.fn.fnName](searchBtn.fn.fnArg)"></btn>
+      <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="fnObj[searchBtn.fn.fnName](searchBtn.text,searchBtn.fn.fnArg)"></btn>
     </div>
     <table cellpadding="0" cellspacing="0" width="100%">
       <tr class="tableTitle">
@@ -33,17 +33,30 @@
     </table>
     <div class="pop" v-if="popShow">
       <div class="popContent">
-        <ul>
+        <ul v-if="btnText=='新增'">
           <li v-for="(popC,index) in popContents[0]" :key="index">
             <span class="popTitle">{{popTitles[index]+':'}}</span>
-            <div v-if="!/img/.test(popC)"><input type="text"></div>
-            <div v-else>
-              <img src="" alt="">
+            <div v-if="/[iI][dD]/.test(popTitles[index])">
+              <input type="text" disabled :value="tableData.length+1">
+            </div>
+            <div v-else-if="!/img/.test(popC)"><input type="text" v-model="popObj[index]"></div>
+            <div v-else class="imgD">
+              <img :src="'/api/img/index/N1.jpg'" alt="">
+              <input type="file">
+            </div>
+          </li>
+        </ul>
+        <ul v-else-if="btnText=='查看'">
+          <li v-for="(popC,index) in viewObj" :key="index">
+            <span class="popTitle">{{popTitles[index]+':'}}</span>
+            <div v-if="!/img/.test(popC)"><input type="text" :value="popC" disabled></div>
+            <div v-else class="imgD">
+              <img :src="'/api/' + popC" alt="">
             </div>
           </li>
         </ul>
         <div class="popBtn">
-          <button class="confirm" @click="confirm">确认</button>
+          <button class="confirm" @click="confirm($event)">确认</button>
           <button class="cancel" @click="cancel">取消</button>
         </div>
       </div>
@@ -66,8 +79,14 @@ export default {
       fnObj: {
         query: this.queryParam,
         insert: this.insertInfo,
-        delete: this.deleteInfo
-      }
+        delete: this.deleteInfo,
+        view: this.viewInfo,
+        status: this.statusChange
+      },
+      operationRouter: '',
+      popObj: {},
+      btnText: '',
+      viewObj: {}
     }
   },
   props: {
@@ -104,7 +123,7 @@ export default {
   },
   methods: {
     dataFn (data,index) {
-      this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].fn.fnArg)
+      this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].text,this.operationBtns[index].fn.fnArg)
     },
     getInfo() {
       this.$axios.get('/api' + this.router).then(resp => {
@@ -114,7 +133,7 @@ export default {
         this.popContents = resp.data.getAllData
       })
     },
-    queryParam (arg) {
+    queryParam (btnText,arg) {
       let newArr = []
       let tableData = this.tableData
       if (arg === '') {
@@ -127,25 +146,43 @@ export default {
         })
       }
     },
-    insertInfo (arg) {
+    insertInfo (btnText,arg) {
       this.popShow = true
-      console.log(this.popContents)
-      if (arg !== '') {
-        // this.$axios.get('/api/' + this.searchBtns[1].fn.fnArg).then(resp => {
-        //   console.log(resp)
-        // })
-      }
+      this.operationRouter = arg
+      this.btnText = btnText
     },
-    deleteInfo (data,fnArg) {
+    deleteInfo (data,btnText,fnArg) {
       this.$axios.get('/api' + fnArg, {params: {deleteId: data}}).then(resp => {
+        this.getInfo()
+      })
+    },
+    viewInfo (data,btnText,fnArg) {
+      this.popShow = true
+      this.btnText = btnText
+      this.operationRouter = fnArg
+      this.viewObj = this.popContents[data-1]
+    },
+    statusChange (data,btnText,fnArg) {
+      this.$axios.get('/api' + fnArg,{params:{id:data,status:btnText}}).then(resp => {
         this.getInfo()
       })
     },
     cancel () {
       this.popShow = false
     },
-    confirm () {
-
+    confirm (event) {
+      console.log(this.operationRouter)
+      console.log(this.popObj)
+      if(this.operationRouter != '') {
+        this.$axios.get('/api' + this.operationRouter,{params:{popObj: this.popObj}}).then(resp => {
+          this.popShow = false
+          this.operationRouter = ''
+          this.getInfo()
+          console.log(resp)
+        })
+      }else {
+        this.popShow = false
+      }  
     }
   }
 }
@@ -185,11 +222,11 @@ td,th {
   margin-left: -5px;
 }
 
-input,select {
+input[type='text'],select {
   border: 1px solid rgba(0, 150, 136, 1);
   padding: 10px 5px;
 }
-input {
+input[type='text'] {
   padding-bottom: 11px;
   position: relative;
   top: -1px;
@@ -265,5 +302,23 @@ li {
 }
 .popBtn .cancel {
   background: rgba(0, 150, 136, 1);
+}
+.popContent img {
+  border: 1px solid rgba(0, 150, 136, 1);
+  border-radius: 50%;
+  width: 60px;
+  display: inline-block;
+}
+.imgD {
+  position: relative;
+}
+.imgD input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 60px;
+  overflow: hidden;
+  opacity: 0;
 }
 </style>

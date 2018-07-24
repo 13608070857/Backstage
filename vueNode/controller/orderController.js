@@ -63,6 +63,27 @@ const orderControoller = {
                 console.log(data);
                 resp.send(data);
             })
+    },
+    //待付款
+    orderispay(req,resp){
+        orderDao.nopay()
+            .then(function (data) {
+                resp.send(data);
+            })
+    },
+    //已付款
+    orderispay2(req,resp){
+        orderDao.nopay2()
+            .then(function (data) {
+                resp.send(data);
+            })
+    },
+    //待发货
+    orderispay3(req,resp){
+        orderDao.nopay3()
+            .then(function (data) {
+                resp.send(data);
+            })
     }
 };
 module.exports = orderControoller;

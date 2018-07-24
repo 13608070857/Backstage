@@ -27,7 +27,7 @@ export default {
       // 弹出层标题
       popTitles: {
         'u_id': '用户id',
-        'for_user_gradeId': '论坛等级id',
+        'for_user_gradeId': '论坛等级',
         'name': '用户名称',
         'tel': '用户电话',
         'sex': '用户性别',
@@ -36,7 +36,7 @@ export default {
         'userImg': '用户头像',
         'userStatus': '状态编号',
         'createTime': '创建时间',
-        'User_gradeid': '等级id',
+        'User_gradeid': '等级',
         'User_ex': '经验',
         'User_show': '个性签名',
         'rolaName': '等级',
@@ -47,11 +47,18 @@ export default {
       // 表格按钮 text：按钮内容 className：按钮类
       // fn:表示要调用增删改查的函数
       //      其中fnName是函数名字
+      //        查看 -- view
+      //        修改 -- modify
+      //        删除 -- delete
+      //        新增 -- insert
+      //        查询 -- query
+      //        上/下架/发货/退款/加精/置顶/启动/禁用 -- status
       //      其中fnArg为参数（要连接的后台路由地址），没有参数（查看和查询按钮）就直接写fnArg: ''
       // 其中small，large表示按钮大小，lightGreen（浅绿），darkGreen（深绿），gray（下架）表示按钮颜色
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
+        {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
         {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: 'ss'}},
         {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
       ],

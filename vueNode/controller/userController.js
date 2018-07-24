@@ -22,7 +22,24 @@ const userController = {
     	userDao.deleteInfo(deleteId).then(function(data) {
     		console.log(data);
     		resp.send(data);
-
+    	})
+    },
+    addUserInfo(req,resp) {
+    	var popObj = JSON.parse(req.query.popObj);
+    	var val = ''
+    	var sql = '';
+    	var wh = '';
+    	var addArr = [];
+    	for(var key in popObj) {
+    		addArr.push(popObj[key].trim());
+    		val += key + ',' ;
+    		wh +='?,'
+    	}
+    	val = val.substr(0,val.length-1);
+    	wh = wh.substr(0,wh.length-1)
+    	sql = 'insert into users (' + val + ') values (' + wh + ')';
+    	userDao.addUserInfo(sql,addArr).then(function(data) {
+    		resp.send(data);
     	})
     }
 }
