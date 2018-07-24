@@ -16,11 +16,17 @@ const userDao = {
         });
     },
     deleteInfo(params) {
-    	console.log(params);
     	return new Promise(function(resolve,reject) {
     		db.connect("delete from users where u_id=?",[params],function(error,data) {
     			resolve(data);
     		})
+    	})
+    },
+    addUserInfo(params) {
+    	return new Promise(function(resolve,reject) {
+    		// db.connect("delete from users where u_id=?",[params],function(error,data) {
+    		// 	resolve(data);
+    		// })
     	})
     }
 }

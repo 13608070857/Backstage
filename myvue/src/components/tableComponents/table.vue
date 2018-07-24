@@ -10,7 +10,7 @@
           <option v-for="(content,index) in formElement.contents" :key="index">{{content}}</option>
         </select>
       </div>
-      <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="fnObj[searchBtn.fn.fnName](searchBtn.fn.fnArg)"></btn>
+      <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="fnObj[searchBtn.fn.fnName](searchBtn.text,searchBtn.fn.fnArg)"></btn>
     </div>
     <table cellpadding="0" cellspacing="0" width="100%">
       <tr class="tableTitle">
@@ -33,17 +33,23 @@
     </table>
     <div class="pop" v-if="popShow">
       <div class="popContent">
-        <ul>
+        <ul v-if="btnText=='新增'">
           <li v-for="(popC,index) in popContents[0]" :key="index">
             <span class="popTitle">{{popTitles[index]+':'}}</span>
-            <div v-if="!/img/.test(popC)"><input type="text"></div>
+            <div v-if="/[iI][dD]/.test(popTitles[index])">
+              <input type="text" disabled :value="tableData.length+1">
+            </div>
+            <div v-else-if="!/img/.test(popC)"><input type="text" v-model="popObj[index]"></div>
             <div v-else>
               <img src="" alt="">
             </div>
           </li>
         </ul>
+        <ul v-else>
+          sshshs
+        </ul>
         <div class="popBtn">
-          <button class="confirm" @click="confirm">确认</button>
+          <button class="confirm" @click="confirm($event)">确认</button>
           <button class="cancel" @click="cancel">取消</button>
         </div>
       </div>
@@ -67,7 +73,10 @@ export default {
         query: this.queryParam,
         insert: this.insertInfo,
         delete: this.deleteInfo
-      }
+      },
+      operationRouter: '',
+      popObj: {},
+      btnText: ''
     }
   },
   props: {
@@ -127,14 +136,11 @@ export default {
         })
       }
     },
-    insertInfo (arg) {
+    insertInfo (btnText,arg) {
       this.popShow = true
-      console.log(this.popContents)
-      if (arg !== '') {
-        // this.$axios.get('/api/' + this.searchBtns[1].fn.fnArg).then(resp => {
-        //   console.log(resp)
-        // })
-      }
+      this.operationRouter = arg
+      this.btnText = btnText
+      console.log(this.btnText)
     },
     deleteInfo (data,fnArg) {
       this.$axios.get('/api' + fnArg, {params: {deleteId: data}}).then(resp => {
@@ -144,8 +150,13 @@ export default {
     cancel () {
       this.popShow = false
     },
-    confirm () {
-
+    confirm (event) {
+      console.log(this.operationRouter)
+      console.log(this.popObj)
+      this.$axios.get('/api' + this.operationRouter,{params:{popObj: this.popObj}}).then(resp => {
+          console.log(resp)
+        })
+      
     }
   }
 }

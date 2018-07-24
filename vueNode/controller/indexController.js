@@ -54,6 +54,13 @@ const indexController = {
                 resp.send(data)
             })
     },
+    Obtain(req,resp) {
+        indexDao.Obtain()
+            .then(function(data){
+                console.log(data)
+                resp.send(data)
+            })
+    },
     xf(req,resp) {
         indexDao.xf()
             .then(function(data){

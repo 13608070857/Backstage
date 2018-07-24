@@ -130,6 +130,77 @@ xf(req,reap) {
                 }
             })
     })
+},
+// 12月金额
+Obtain(req,reap) {
+    return new Promise((resolve,reject)=>{
+        db.connect("SELECT \n" +
+            "IFNULL(SUM(o_price),0) AS '一',(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '2' THEN 2 ELSE 0 END) AS '二',\n" +
+            "(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '3' THEN 3 ELSE 0 END) AS '三',\n" +
+            "(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '4' THEN 4 ELSE 0 END) AS '四',\n" +
+            "(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '5' THEN 5 ELSE 0 END) AS '五',\n" +
+            "(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '6' THEN 6 ELSE 0 END) AS '六',\n" +
+            "(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '7' THEN 7 ELSE 0 END) AS '七',\n" +
+            "(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '8' THEN 8 ELSE 0 END) AS '八',\n" +
+            "(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '9' THEN 9 ELSE 0 END) AS '九',\n" +
+            "(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '10' THEN 10 ELSE 0 END) AS '十',\n" +
+            "(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '11' THEN 11 ELSE 0 END) AS '十一',\n" +
+            "(SELECT \n" +
+            "IFNULL(SUM(o_price),0)\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '12' THEN 12 ELSE 0 END) AS '十二'\n" +
+            "FROM goodsorder\n" +
+            "WHERE YEAR(createtime)=YEAR(NOW()) AND\n" +
+            "CASE MONTH(createtime) WHEN '1' THEN 1 ELSE 0 END\n",
+            [],(err,data)=>{
+                if (!err){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            })
+    })
 }
 
 }
