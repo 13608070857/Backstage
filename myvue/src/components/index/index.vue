@@ -135,7 +135,6 @@ export default {
   created () {
     this.unit()
     this.Newest()
-    // this.Obtain()
     this.xf()
   },
   methods: {
@@ -237,6 +236,13 @@ export default {
     // 消费排行
     xf () {
       this.$axios.get('/xxm/xf')
+        .then(resp => {
+          this.consumption = resp.data
+        })
+    },
+    // 消费排行
+    increase () {
+      this.$axios.get('/xxm/increase')
         .then(resp => {
           this.consumption = resp.data
         })
