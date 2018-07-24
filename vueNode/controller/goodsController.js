@@ -30,6 +30,15 @@ const goodsControoller = {
             .then(function (data) {
                 resp.send(data);
             })
+    },
+    // 删除商品
+    getgoodsdelete(req,resp){
+        var deleteId = req.query.deleteId;
+        console.log(deleteId)
+        goodsDao.deletegoods(deleteId).then(function(data) {
+            console.log(data);
+            resp.send(data);
+        })
     }
 };
 module.exports = goodsControoller;
