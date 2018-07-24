@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f8c0690-82a8-4f07-99e9-bc995b086ca8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/myvue/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/myvue/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myvue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/myvue/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="3f8c0690-82a8-4f07-99e9-bc995b086ca8" name="Default" comment="" />
     <ignored path="Backstage.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,12 +19,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LeaseTransfer.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LeaseTransfer.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myvue/src/components/LeaseTransfer/LeaseTransfer.vue">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="93">
+              <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="leaseFrameBox.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="leaseFrameBox.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myvue/src/components/LeaseTransfer/leaseFrameBox.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="248">
@@ -64,7 +65,7 @@
       <path value="$PROJECT_DIR$/vueNode/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="326" />
     <option name="y" value="116" />
     <option name="width" value="1384" />
@@ -177,15 +178,15 @@
       <option name="presentableId" value="Default" />
       <updated>1532394489510</updated>
       <workItem from="1532413847771" duration="616000" />
-      <workItem from="1532414494302" duration="1515000" />
+      <workItem from="1532414494302" duration="1731000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2131000" />
+    <option name="totallyTimeSpent" value="2347000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17635404" />
@@ -260,13 +261,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myvue/src/components/LeaseTransfer/LeaseTransfer.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/myvue/src/components/LeaseTransfer/leaseFrameBox.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
           <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myvue/src/components/LeaseTransfer/LeaseTransfer.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
         </state>
       </provider>
     </entry>
