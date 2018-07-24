@@ -53,7 +53,7 @@
         </ul>
         <ul v-else-if="btnText=='查看'">
           <li v-for="(popC,index) in viewObj" :key="index">
-            <span class="popTitle">{{popTitles[index]+':'}}</span>
+            <span class="popTitle">{{popTitles[index].titleName+':'}}</span>
             <div v-if="!/img/.test(popC)"><input type="text" :value="popC" disabled></div>
             <div v-else class="imgD">
               <img :src="'/api/' + popC" alt="">

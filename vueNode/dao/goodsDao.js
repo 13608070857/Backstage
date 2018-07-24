@@ -13,6 +13,19 @@ const goodsDao = {
                 })
         })
     },
+    goodsmsg2(req,resp){
+        return new Promise(function (resolve,reject) {
+            db.connect("SELECT g.goodsSn,gc.cateName,g.goodsName,g.goodsImg,g.goodsPrice,g.is_shelves,g.is_hot,g.is_recom,g.is_new,g.is_sales,g.salesTime,g.inventory\n" +
+                "FROM goods g,goods_category gc WHERE g.cate_ID=gc.cate_ID AND g.inventory>-1",
+                [],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
     // 商品分类
     goodscate(req,resp){
         return new Promise(function (resolve,reject) {

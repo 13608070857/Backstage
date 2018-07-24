@@ -1,11 +1,20 @@
 const goodsDao = require("../dao/goodsDao");
+let dataInfo;
 const goodsControoller = {
     // 所有商品
     getallgoods(req,resp){
-        goodsDao.goodsmsg()
+        goodsDao.goodsmsg2()
             .then(function (data) {
+                let getAllData = data;
                 console.log(data);
-                resp.send(data);
+                goodsDao.goodsmsg().then(function(data) {
+                    let getData = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData
+                    };
+                    resp.send(dataInfo);
+                })
             })
     },
     //商品分类
