@@ -31,22 +31,21 @@
         </tr>
       </tbody>
     </table>
-    <div class="pop">
+    <div class="pop" v-if="popShow">
       <div class="popContent">
         <ul>
-          <li>
-            <input type="text">
-          </li>
-          <li>
-            <input type="text">
-          </li>
-          <li>
-            <input type="text">
-          </li>
-          <li>
-            <input type="text">
+          <li v-for="(popC,index) in popContents[0]" :key="index">
+            <span class="popTitle">{{popTitles[index]+':'}}</span>
+            <div v-if="!/img/.test(popC)"><input type="text"></div>
+            <div v-else>
+              <img src="" alt="">
+            </div>
           </li>
         </ul>
+        <div class="popBtn">
+          <button class="confirm" @click="confirm">确认</button>
+          <button class="cancel" @click="cancel">取消</button>
+        </div>
       </div>
     </div>
   </div>
@@ -62,8 +61,8 @@ export default {
       tableContents: '',
       tableData: '',
       popContents: '',
-      fnName: 'delete',
       dataIndex: '',
+      popShow: false,
       fnObj: {
         query: this.queryParam,
         insert: this.insertInfo,
@@ -91,21 +90,29 @@ export default {
     formElement: {
       type: Object,
       required: true
+    },
+    popTitles: {
+      type: Object,
+      required: true
     }
   },
   components: {
     btn
   },
   created () {
-    this.$axios.get('/api' + this.router).then(resp => {
-      this.tableContents = resp.data
-      this.tableData = resp.data
-      this.popContents = resp.data
-    })
+    this.getInfo()
   },
   methods: {
     dataFn (data,index) {
       this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].fn.fnArg)
+    },
+    getInfo() {
+      this.$axios.get('/api' + this.router).then(resp => {
+        console.log(resp)
+        this.tableContents = resp.data.getData
+        this.tableData = resp.data.getData
+        this.popContents = resp.data.getAllData
+      })
     },
     queryParam (arg) {
       let newArr = []
@@ -121,6 +128,8 @@ export default {
       }
     },
     insertInfo (arg) {
+      this.popShow = true
+      console.log(this.popContents)
       if (arg !== '') {
         // this.$axios.get('/api/' + this.searchBtns[1].fn.fnArg).then(resp => {
         //   console.log(resp)
@@ -129,8 +138,14 @@ export default {
     },
     deleteInfo (data,fnArg) {
       this.$axios.get('/api' + fnArg, {params: {deleteId: data}}).then(resp => {
-        location.reload();
+        this.getInfo()
       })
+    },
+    cancel () {
+      this.popShow = false
+    },
+    confirm () {
+
     }
   }
 }
@@ -205,7 +220,6 @@ img {
   background: rgba(0,0,0,.4);
   width: 100%;
   height: 100%;
-  display: none;
 }
 ul {
   list-style:none;
@@ -215,7 +229,7 @@ ul {
 }
 li {
   flex-grow: 1;
-  flex-basis: 240px;
+  flex-basis: 360px;
   margin-top: 10px;
 }
 .popContent {
@@ -224,5 +238,32 @@ li {
   height: 500px;
   background: #fff;
   padding: 20px 40px;
+  position: relative;
+}
+.popContent div {
+  display: inline-block;
+}
+.popContent span {
+  margin-right: 10px;
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
+.popBtn {
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+}
+.popBtn button {
+  background: rgba(35, 58, 77, 1);
+  padding: 10px 30px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 5px;
+  border-radius: 2px;
+}
+.popBtn .cancel {
+  background: rgba(0, 150, 136, 1);
 }
 </style>

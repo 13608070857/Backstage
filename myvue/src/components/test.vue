@@ -9,7 +9,7 @@
           searchBtns：搜索和新增按钮
           formElement：表单元素（input和select）
      -->
-    <appTable :tableTitles="tableTitles" :router="router" :operationBtns="operationBtns" :searchBtns="searchBtns" :formElement="formElement"></appTable>
+    <appTable :tableTitles="tableTitles" :router="router" :operationBtns="operationBtns" :searchBtns="searchBtns" :formElement="formElement" :popTitles="popTitles"></appTable>
   </div>
 </template>
 
@@ -23,7 +23,25 @@ export default {
       // 表单信息标题
       tableInfo: '用户管理',
       // 表标题
-      tableTitles: ['测试id', '测试名称', '测试的其他数据', '测试添加'],
+      tableTitles: ['用户id', '用户名称', '用户电话', '用户邮箱','用户头像','用户创建时间'],
+      // 弹出层标题
+      popTitles: {
+        'u_id': '用户id',
+        'for_user_gradeId': '论坛等级id',
+        'name': '用户名称',
+        'tel': '用户电话',
+        'sex': '用户性别',
+        'password': '用户密码',
+        'email': '用户邮箱',
+        'userImg': '用户头像',
+        'userStatus': '状态编号',
+        'createTime': '创建时间',
+        'User_gradeid': '等级id',
+        'User_ex': '经验',
+        'User_show': '个性签名',
+        'rolaName': '等级',
+        'o_ID': '订单号'
+      },
       // node路由地址
       router: '/getUserInfo.do',
       // 表格按钮 text：按钮内容 className：按钮类
