@@ -23,24 +23,21 @@
         // 表单信息标题
         tableInfo: '用户等级管理',
         // 表标题
-        tableTitles: ['等级id', '等级名称', '分数'],
+        tableTitles: ['等级id', '等级名称', '分数','状态'],
         // 弹出层标题
         popTitles: {
-          'u_id': '用户id',
-          'for_user_gradeId': '论坛等级',
-          'name': '用户名称',
-          'tel': '用户电话',
-          'sex': '用户性别',
-          'password': '用户密码',
-          'email': '用户邮箱',
-          'userImg': '用户头像',
-          'userStatus': '状态编号',
-          'createTime': '创建时间',
-          'User_gradeid': '等级',
-          'User_ex': '经验',
-          'User_show': '个性签名',
-          'rolaName': '等级',
-          'o_ID': '订单号'
+          'Grade_ID': {
+            titleName: '等级id',
+            isRequired: false
+          },
+          'Grade_name': {
+            titleName: '等级名称',
+            isRequired: false
+          },
+          'Grade_value': {
+            titleName: '分数',
+            isRequired: false
+          }
         },
         // node路由地址
         router: '/grade.do',
@@ -72,7 +69,7 @@
         // 如果是select就写一个对象，传你的value值
         formElement: {
           isInput: true,
-          contents: '请输入商品名称' // --input传值
+          contents: '请输入等级名称' // --input传值
           // contents: ['新品', '优惠', '其他值']
         }
       }

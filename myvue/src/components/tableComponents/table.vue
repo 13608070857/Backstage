@@ -187,7 +187,7 @@ export default {
         })
       }else {
         this.popShow = false
-      }  
+      }
     }
   }
 }
