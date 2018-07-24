@@ -14,6 +14,7 @@ router.get("/addUserInfo.do",userController.addUserInfo);
 router.get("/index",indexController.index);
 router.get("/Newest",indexController.Newest);
 router.get("/xf",indexController.xf);
+router.get("/Obtain",indexController.Obtain);
 
 // ============== 商品管理 ==============
 router.get("/getgoodsmsg.do",goodsController.getallgoods);
