@@ -27,7 +27,7 @@ export default {
       // 弹出层标题
       popTitles: {
         'u_id': '用户id',
-        'for_user_gradeId': '论坛等级id',
+        'for_user_gradeId': '论坛等级',
         'name': '用户名称',
         'tel': '用户电话',
         'sex': '用户性别',
@@ -36,7 +36,7 @@ export default {
         'userImg': '用户头像',
         'userStatus': '状态编号',
         'createTime': '创建时间',
-        'User_gradeid': '等级id',
+        'User_gradeid': '等级',
         'User_ex': '经验',
         'User_show': '个性签名',
         'rolaName': '等级',
