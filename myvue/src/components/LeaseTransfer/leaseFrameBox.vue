@@ -1,25 +1,134 @@
 <template>
-    <figure>
-      <img :src="imgsrc" alt="">
-      <figcaption>
-        <p>商品编号:{{goodsID}}</p>
-        <p>商品名称:{{goodsName}}</p>
-        <p>商品价格:{{goodsPrice}}</p>
-        <input type="checkbox">
-      </figcaption>
-    </figure>
+  <div id="test">
+    <!-- 引用表单信息标题的组件 -->
+    <tableInfo :tableInfo="tableInfo"></tableInfo>
+    <!--引用表格的组件
+          tableTitles：表标题
+          router：node路由地址
+          operationBtns：操作按钮
+          searchBtns：搜索和新增按钮
+          formElement：表单元素（input和select）
+     -->
+    <appTable :tableTitles="tableTitles" :router="router" :operationBtns="operationBtns" :searchBtns="searchBtns" :formElement="formElement" :popTitles="popTitles"></appTable>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "leaseFrameBox",
-      data(){
-          return{}
-      },
-      props:['imgsrc','goodsID','goodsName','goodsPrice']
+  import appTable from '../tableComponents/table.vue'
+  import tableInfo from '../tableComponents/tableInfo'
+  export default {
+    name: 'Test',
+    data () {
+      return {
+        // 表单信息标题
+        tableInfo: '租赁管理',
+        // 表标题
+        tableTitles: ['租赁id', '租赁名称', '租赁标题', '租赁副标题','租赁价格','租赁图片'],
+        // 弹出层标题
+        popTitles: {
+          'u_id': {
+            titleName: '用户id',
+            isRequired: false
+          },
+          'for_user_gradeId': {
+            titleName: '论坛等级',
+            isRequired: false
+          },
+          'name': {
+            titleName: '用户名称',
+            isRequired: true
+          },
+          'tel': {
+            titleName: '用户电话',
+            isRequired: true
+          },
+          'sex': {
+            titleName: '用户性别',
+            isRequired: true
+          },
+          'password': {
+            titleName: '用户密码',
+            isRequired: true
+          },
+          'email': {
+            titleName: '用户邮箱',
+            isRequired: true
+          },
+          'userImg': {
+            titleName: '用户头像',
+            isRequired: false
+          },
+          'userStatus': {
+            titleName: '状态编号',
+            isRequired: true
+          },
+          'createTime': {
+            titleName: '创建时间',
+            isRequired: true
+          },
+          'User_gradeid': {
+            titleName: '等级',
+            isRequired: true
+          },
+          'User_ex': {
+            titleName: '经验',
+            isRequired: true
+          },
+          'User_show': {
+            titleName: '个性签名',
+            isRequired: true
+          },
+          'rolaName': {
+            titleName: '等级',
+            isRequired: true
+          },
+          'o_ID': {
+            titleName: '订单号',
+            isRequired: true
+          }
+        },
+        // node路由地址
+        router: '/leaseTransfer.do',
+        // 表格按钮 text：按钮内容 className：按钮类
+        // fn:表示要调用增删改查的函数
+        //      其中fnName是函数名字
+        //        查看 -- view
+        //        修改 -- modify
+        //        删除 -- delete
+        //        新增 -- insert
+        //        查询 -- query
+        //        上/下架/发货/退款/加精/置顶/启动/禁用 -- status
+        //      其中fnArg为参数（要连接的后台路由地址），没有参数（查看和查询按钮）就直接写fnArg: ''
+        // 其中small，large表示按钮大小，lightGreen（浅绿），darkGreen（深绿），gray（下架）表示按钮颜色
+        // operationBtns是表格操作部分的按钮是（使用小按钮small类）
+        // searchBtns是查询部分的按钮（使用大按钮large类）
+        operationBtns: [
+          {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
+          {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: 'ss'}},
+          {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
+        ],
+        searchBtns: [
+          {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
+          {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addUserInfo.do'}}
+        ],
+        // 表单元素信息，isInput：是否是input元素，如果是select就写false
+        // content：是传送的内容
+        // 如果是input就是描述文字
+        // 如果是select就写一个对象，传你的value值
+        formElement: {
+          isInput: true,
+          contents: '请输入商品名称' // --input传值
+          // contents: ['新品', '优惠', '其他值']
+        }
+      }
+    },
+    components: {
+      appTable,
+      tableInfo
     }
+  }
 </script>
 
-<style scoped>
+<style>
 
 </style>
