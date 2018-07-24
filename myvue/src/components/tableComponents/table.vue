@@ -61,7 +61,7 @@
           </li>
         </ul>
         <div class="popBtn">
-          <button class="confirm" @click="confirm($event)" disabled>确认</button>
+          <button class="confirm" @click="confirm($event)">确认</button>
           <button class="cancel" @click="cancel">取消</button>
         </div>
       </div>
@@ -86,7 +86,8 @@ export default {
         insert: this.insertInfo,
         delete: this.deleteInfo,
         view: this.viewInfo,
-        status: this.statusChange
+        status: this.statusChange,
+        modify: this.modifyInfo
       },
       operationRouter: '',
       popObj: {},
@@ -144,6 +145,7 @@ export default {
       if (arg === '') {
         this.tableContents = tableData
         this.tableContents.filter(value => {
+          console.log()
           if (value.name.indexOf(this.searchText) !== -1) {
             newArr.push(value)
           }
@@ -160,6 +162,9 @@ export default {
       this.$axios.get('/api' + fnArg, {params: {deleteId: data}}).then(resp => {
         this.getInfo()
       })
+    },
+    modifyInfo (data,btnText,fnArg) {
+
     },
     viewInfo (data,btnText,fnArg) {
       this.popShow = true
