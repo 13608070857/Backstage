@@ -81,10 +81,10 @@ export default {
           background: '#2F4056'
         },
         {
-          Title: '交易记录',
+          Title: '交易额',
           unit: '年',
           Number: '',
-          ZTitle: '总交易数',
+          ZTitle: '总交易额',
           ZNumber: '',
           Zunit: '$',
           background: '#009688'
@@ -100,10 +100,10 @@ export default {
         }
       ],
       data: {
-        data1: [120, 200, 256, 278, 321, 360, 454, 660, 684, 750, 799, 856],
-        data2: [20, 30, 33, 46, 31, 19, 46, 39, 35, 29, 25, 19],
-        data3: [99, 150, 177, 198, 245, 290, 277, 311, 350, 322, 369, 377],
-        data4: [150, 232, 250, 335, 359, 424, 473, 529, 577, 610, 653, 680]
+        data1: [],
+        data2: [],
+        data3: [],
+        data4: []
       },
       increase: [
         {
@@ -135,7 +135,7 @@ export default {
   created () {
     this.unit()
     this.Newest()
-    this.Obtain()
+    // this.Obtain()
     this.xf()
   },
   methods: {
@@ -143,62 +143,77 @@ export default {
     Line () {
       let line = echarts.init(document.getElementById('line'))
       window.onresize = line.resize
-      line.setOption({
-        title: {
-          text: '  商城信息图'
-        },
-        tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data: ['商城用户', '售后记录', '交易记录', '商城订单']
-        },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-        },
-        toolbox: {
-          feature: {
-            saveAsImage: {}
+      this.$axios.get('/xxm/Obtain')
+        .then(resp => {
+          for(let i in resp.data[0][0]){
+            this.data.data1.push(resp.data[0][0][i])
           }
-        },
-        xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [
-          {
-            name: '商城用户',
-            type: 'line',
-            stack: '总量',
-            data: this.data.data1
-          },
-          {
-            name: '售后记录',
-            type: 'line',
-            stack: '总量1',
-            data: this.data.data2
-          },
-          {
-            name: '交易记录',
-            type: 'line',
-            stack: '总量2',
-            data: this.data.data3
-          },
-          {
-            name: '商城订单',
-            type: 'line',
-            stack: '总量3',
-            data: this.data.data4
+          for(let i in resp.data[1][0]){
+            this.data.data2.push(resp.data[1][0][i])
           }
-        ]
-      })
+          for(let i in resp.data[2][0]){
+            this.data.data3.push(resp.data[2][0][i])
+          }
+          for(let i in resp.data[3][0]){
+            this.data.data4.push(resp.data[3][0][i])
+          }
+          line.setOption({
+            title: {
+              text: '  商城信息图'
+            },
+            tooltip: {
+              trigger: 'axis'
+            },
+            legend: {
+              data: ['商城用户', '售后记录', '交易额', '商城订单']
+            },
+            grid: {
+              left: '3%',
+              right: '4%',
+              bottom: '3%',
+              containLabel: true
+            },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
+            xAxis: {
+              type: 'category',
+              boundaryGap: false,
+              data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+            },
+            yAxis: {
+              type: 'value'
+            },
+            series: [
+              {
+                name: '商城用户',
+                type: 'line',
+                stack: '总量',
+                data: this.data.data1
+              },
+              {
+                name: '售后记录',
+                type: 'line',
+                stack: '总量1',
+                data: this.data.data2
+              },
+              {
+                name: '交易额',
+                type: 'line',
+                stack: '总量2',
+                data: this.data.data3
+              },
+              {
+                name: '商城订单',
+                type: 'line',
+                stack: '总量3',
+                data: this.data.data4
+              }
+            ]
+          })
+        })
     },
     // 4块数据
     unit () {
@@ -210,13 +225,6 @@ export default {
           for (let i = 0; i < resp.data.Y.length; i++) {
             this.arr[i].Number = resp.data.Y[i]
           }
-        })
-    },
-    // 获取折线图数据
-    Obtain () {
-      this.$axios.get('/xxm/Obtain')
-        .then(resp => {
-          console.log(resp.data)
         })
     },
     // 最新商品

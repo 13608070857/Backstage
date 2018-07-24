@@ -34,6 +34,7 @@ const indexController = {
                                                                 indexDao.monthOrder()
                                                                     .then(function(data){
                                                                         let monthOrder = data[0].count
+                                                                        console.log(monthOrder);
                                                                         resp.send({
                                                                             Z: [Zuser,Zsale,Ztransaction,ZOrder],
                                                                             Y: [weekuser,monthsale,yeartransaction,monthOrder]
@@ -50,21 +51,31 @@ const indexController = {
     Newest(req,resp) {
         indexDao.Newest()
             .then(function(data){
-                console.log(data)
                 resp.send(data)
             })
     },
     Obtain(req,resp) {
-        indexDao.Obtain()
+        indexDao.Twelvej()
             .then(function(data){
-                console.log(data)
-                resp.send(data)
+                let Twelvej = data
+                indexDao.Twelves()
+                    .then(function(data){
+                        let Twelves = data
+                        indexDao.Twelvejsh()
+                            .then(function(data){
+                                let Twelvejsh = data
+                                indexDao.Twelved()
+                                    .then(function(data){
+                                        let Twelved = data
+                                        resp.send([Twelves,Twelvejsh,Twelvej,Twelved])
+                                    })
+                            })
+                    })
             })
     },
     xf(req,resp) {
         indexDao.xf()
             .then(function(data){
-                console.log(data)
                 resp.send(data)
             })
     }

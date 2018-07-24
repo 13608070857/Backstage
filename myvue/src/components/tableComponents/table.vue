@@ -81,7 +81,7 @@ export default {
         insert: this.insertInfo,
         delete: this.deleteInfo,
         view: this.viewInfo,
-        shelf: this.shelfChange
+        status: this.statusChange
       },
       operationRouter: '',
       popObj: {},
@@ -162,10 +162,10 @@ export default {
       this.operationRouter = fnArg
       this.viewObj = this.popContents[data-1]
     },
-    shelfChange (data,btnText,fnArg) {
-      console.log(data)
-      console.log(btnText)
-      console.log(fnArg)
+    statusChange (data,btnText,fnArg) {
+      this.$axios.get('/api' + fnArg,{params:{id:data,status:btnText}}).then(resp => {
+        this.getInfo()
+      })
     },
     cancel () {
       this.popShow = false
