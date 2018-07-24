@@ -35,14 +35,19 @@
       <div class="popContent">
         <ul v-if="btnText=='新增'">
           <li v-for="(popC,index) in popContents[0]" :key="index">
-            <span class="popTitle">{{popTitles[index]+':'}}</span>
-            <div v-if="/[iI][dD]/.test(popTitles[index])">
+            <span class="popTitle">{{popTitles[index].titleName+':'}}</span>
+            <div v-if="/[iI][dD]/.test(popTitles[index].titleName)">
               <input type="text" disabled :value="tableData.length+1">
+              <span v-if="popTitles[index].isRequired" class="red">*</span>
             </div>
-            <div v-else-if="!/img/.test(popC)"><input type="text" v-model="popObj[index]"></div>
+            <div v-else-if="!/img/.test(popC)">
+              <input type="text" v-model="popObj[index]">
+              <span v-if="popTitles[index].isRequired"  class="red">*</span>
+            </div>
             <div v-else class="imgD">
               <img :src="'/api/img/index/N1.jpg'" alt="">
               <input type="file">
+              <span v-if="popTitles[index].isRequired"  class="red">*</span>
             </div>
           </li>
         </ul>
@@ -280,11 +285,15 @@ li {
 .popContent div {
   display: inline-block;
 }
-.popContent span {
+.popContent .popTitle {
   margin-right: 10px;
   display: inline-block;
   width: 100px;
   text-align: right;
+}
+.red {
+  margin-left: 2px;
+  color: #f00;
 }
 .popBtn {
   position: absolute;

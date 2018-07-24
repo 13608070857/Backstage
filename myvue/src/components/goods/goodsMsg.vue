@@ -9,7 +9,7 @@
           searchBtns：搜索和新增按钮
           formElement：表单元素（input和select）
      -->
-    <appTable :tableTitles="tableTitles" :router="router" :operationBtns="operationBtns" :searchBtns="searchBtns" :formElement="formElement"></appTable>
+    <appTable :tableTitles="tableTitles" :router="router" :operationBtns="operationBtns" :searchBtns="searchBtns" :formElement="formElement" :popTitles="popTitles"></appTable>
   </div>
 </template>
 
@@ -24,6 +24,24 @@ export default {
       tableInfo: '商品信息',
       // 表标题
       tableTitles: ['商品编号', '商品名称', '商品图片', '商品价格', '商品类别', '上架时间', '状态'],
+      // 弹出层标题
+      popTitles: {
+        'u_id': '用户id',
+        'for_user_gradeId': '论坛等级',
+        'name': '用户名称',
+        'tel': '用户电话',
+        'sex': '用户性别',
+        'password': '用户密码',
+        'email': '用户邮箱',
+        'userImg': '用户头像',
+        'userStatus': '状态编号',
+        'createTime': '创建时间',
+        'User_gradeid': '等级',
+        'User_ex': '经验',
+        'User_show': '个性签名',
+        'rolaName': '等级',
+        'o_ID': '订单号'
+      },
       // node路由地址
       router: '/getgoodsmsg.do',
       // 表格按钮 text：按钮内容 className：按钮类

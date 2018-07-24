@@ -11,7 +11,7 @@
         <option value="f">去年</option>
       </select>
     </div>
-    <div v-for="(item,index) in myorder" :key="index">
+    <div v-for="(item,index) in myorder" :key="index" class="myblock">
       <order class="myorder" :myprice="item.o_price" mycontent="交易金额" week="周" :mycolor="mycolor"></order>
       <order class="myorder" :myprice="item.total_price" mycontent="订单数量" week="周" :mycolor="mycolor"></order>
       <order class="myorder" :myprice="item.cpay" mycontent="交易成功" week="周" :mycolor="mycolor"></order>
@@ -26,12 +26,12 @@
 <script>
 import order from './order'
 // 引入 ECharts 主模块
-let echarts = require('echarts/lib/echarts')
-// 引入柱状图
-require('echarts/lib/chart/bar')
-// 引入提示框和标题组件
-require('echarts/lib/component/tooltip')
-require('echarts/lib/component/title')
+// let echarts = require('echarts/lib/echarts')
+// // 引入柱状图
+// require('echarts/lib/chart/bar')
+// // 引入提示框和标题组件
+// require('echarts/lib/component/tooltip')
+// require('echarts/lib/component/title')
 export default {
   name: 'orderImg',
   data () {
@@ -44,7 +44,7 @@ export default {
     order: order
   },
   mounted () {
-    this.drawLine();
+    // this.drawLine();
   },
   methods: {
     // 交易记录查询
@@ -200,7 +200,6 @@ export default {
             barWidth: 12, // 柱状图宽度
             color: ['#21C4C2'],
             // data: [18.9, 0, 0, 0, 0, 59.4, 9.9, 0, 0, 0, 0, 0],
-            // data: myallorder,
             data: [],
             markPoint: {
               data: [
@@ -302,84 +301,43 @@ export default {
       let ispay2=[];//已付款
       let istaues=[];//待发货
       // 绑定数据
-      that.$axios.get('/api/orderthisyear2.do')
-        .then(function (data) {
-          var obj=data.data[0];
-          for (var key in obj) {
-            myallorder.push(obj[key]);
-          }
-          console.log(myallorder)
-          that.$axios.get('/api/orderispay.do')
-            .then(function (data) {
-              var obj2=data.data[0];
-              for (var key in obj2) {
-                ispay.push(obj2[key]);
-              }
-              console.log(ispay)
-              that.$axios.get('/api/orderispay2.do')
-                .then(function (data) {
-                  var obj3=data.data[0];
-                  for (var key in obj3) {
-                    ispay2.push(obj3[key]);
-                  }
-                  console.log(ispay2)
-                  that.$axios.get('/api/orderispay3.do')
-                    .then(function (data) {
-                      var obj4=data.data[0];
-                      for (var key in obj4) {
-                        istaues.push(obj4[key]);
-                      }
-                      console.log(istaues)
-                      myChart.setOption({
-                        series:[
-                          {
-                            //根据名字对应到相应的系列
-                            name:"所有订单",
-                            data: myallorder
-                          },
-                          {
-                            //根据名字对应到相应的系列
-                            name:"待付款",
-                            data: ispay
-                          },
-                          {
-                            //根据名字对应到相应的系列
-                            name:"已付款",
-                            data: ispay2
-                          },
-                          {
-                            //根据名字对应到相应的系列
-                            name:"待发货",
-                            data: istaues
-                          }
-                        ]
-                      })
-                    })
-                })
-            })
-
-        });
+      // that.$axios.get('/api/orderthisyear2.do')
+      //   .then(function (data) {
+      //     console.log("进入")
+      //     var obj=data.data[0];
+      //     for (var key in obj) {
+      //       myallorder.push(obj[key]);
+      //     }
+      //     console.log(myallorder)
+      //     myChart.setOption({
+      //       series:[
+      //         {
+      //           name:"所有订单",
+      //           data: myallorder
+      //         }
+      //       ]
+      //     })
+      //   });
     }
   },
   created () {
-    var that = this;
-    this.$axios.get('/api/orderrecord.do')
-      .then(function (resp) {
-        console.log(resp.data)
-        that.myorder = resp.data
-      })
+    // var that = this;
+    // this.$axios.get('/api/orderrecord.do')
+    //   .then(function (resp) {
+    //     console.log(resp.data)
+    //     that.myorder = resp.data
+    //   })
   },
 }
 </script>
 
 <style scoped>
   #myChart{
-    overflow: hidden;
+    /*overflow: hidden;*/
     width: 85%;
     height: 550px;
     margin-left: 30px;
     margin-bottom: 100px;
-    float: left;
   }
 #myorder{
   background-color: #fff;
@@ -429,4 +387,10 @@ export default {
   color: #fff;
   cursor: pointer;
 }
+.myblock{
+  height: 194px;
+}
+  .test{
+    border: 1px solid red;
+  }
 </style>
