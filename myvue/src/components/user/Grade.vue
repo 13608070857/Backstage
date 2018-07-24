@@ -14,9 +14,9 @@
 </template>
 
 <script>
-  import appTable from '../tableComponents/table.vue'
-  import tableInfo from '../tableComponents/tableInfo'
-  export default {
+import appTable from '../tableComponents/table.vue'
+import tableInfo from '../tableComponents/tableInfo'
+export default {
     name: 'grade',
     data () {
       return {
