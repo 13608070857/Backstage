@@ -22,11 +22,11 @@ const userDao = {
     		})
     	})
     },
-    addUserInfo(params) {
+    addUserInfo(sql,...args) {
     	return new Promise(function(resolve,reject) {
-    		// db.connect("delete from users where u_id=?",[params],function(error,data) {
-    		// 	resolve(data);
-    		// })
+    		db.connect(sql,...args,function(error,data) {
+    			resolve(data);
+    		})
     	})
     }
 }
