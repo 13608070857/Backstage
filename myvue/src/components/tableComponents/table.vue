@@ -61,7 +61,7 @@
           </li>
         </ul>
         <div class="popBtn">
-          <button class="confirm" @click="confirm($event)">确认</button>
+          <button class="confirm" @click="confirm($event)" disabled>确认</button>
           <button class="cancel" @click="cancel">取消</button>
         </div>
       </div>
