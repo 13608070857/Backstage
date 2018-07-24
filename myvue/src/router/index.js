@@ -12,7 +12,7 @@ import goodscategory from '../components/goods/goodscategory'
 import goodscoomments from '../components/goods/goodscoomments'
 import goodsdetail from '../components/goods/goodsdetail'
 import LeaseTransfer from '../components/LeaseTransfer/LeaseTransfer'
-
+import grade from '../components/user/Grade'
 Vue.use(Router)
 
 export default new Router({
@@ -71,6 +71,11 @@ export default new Router({
       path: '/LeaseTransfer',
       name: 'LeaseTransfer',
       component: LeaseTransfer
+    },
+    {
+      path: '/grade',
+      name: 'grade',
+      component: grade
     }
   ],
   mode: 'history'

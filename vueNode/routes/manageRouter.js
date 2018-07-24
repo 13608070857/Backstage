@@ -8,6 +8,7 @@ const goodsController = require("../controller/goodsController");
 
 
 router.get("/getUserInfo.do",userController.getUserInfo);
+router.get("/grade.do",userController.grade);
 router.get("/deleteInfo.do",userController.deleteInfo);
 router.get("/addUserInfo.do",userController.addUserInfo);
 

@@ -64,7 +64,7 @@ export default {
             },
             {
               name: '用户等级',
-              to: '/'
+              to: '/grade'
             },
             {
               name: '用户商品收藏',

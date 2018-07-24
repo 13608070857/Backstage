@@ -17,78 +17,33 @@
   import appTable from '../tableComponents/table.vue'
   import tableInfo from '../tableComponents/tableInfo'
   export default {
-    name: 'Test',
+    name: 'grade',
     data () {
       return {
         // 表单信息标题
-        tableInfo: '租赁管理',
+        tableInfo: '用户等级管理',
         // 表标题
-        tableTitles: ['租赁id', '租赁名称', '租赁标题', '租赁副标题','租赁价格','租赁图片'],
+        tableTitles: ['等级id', '等级名称', '分数'],
         // 弹出层标题
         popTitles: {
-          'u_id': {
-            titleName: '用户id',
-            isRequired: false
-          },
-          'for_user_gradeId': {
-            titleName: '论坛等级',
-            isRequired: false
-          },
-          'name': {
-            titleName: '用户名称',
-            isRequired: true
-          },
-          'tel': {
-            titleName: '用户电话',
-            isRequired: true
-          },
-          'sex': {
-            titleName: '用户性别',
-            isRequired: true
-          },
-          'password': {
-            titleName: '用户密码',
-            isRequired: true
-          },
-          'email': {
-            titleName: '用户邮箱',
-            isRequired: true
-          },
-          'userImg': {
-            titleName: '用户头像',
-            isRequired: false
-          },
-          'userStatus': {
-            titleName: '状态编号',
-            isRequired: true
-          },
-          'createTime': {
-            titleName: '创建时间',
-            isRequired: true
-          },
-          'User_gradeid': {
-            titleName: '等级',
-            isRequired: true
-          },
-          'User_ex': {
-            titleName: '经验',
-            isRequired: true
-          },
-          'User_show': {
-            titleName: '个性签名',
-            isRequired: true
-          },
-          'rolaName': {
-            titleName: '等级',
-            isRequired: true
-          },
-          'o_ID': {
-            titleName: '订单号',
-            isRequired: true
-          }
+          'u_id': '用户id',
+          'for_user_gradeId': '论坛等级',
+          'name': '用户名称',
+          'tel': '用户电话',
+          'sex': '用户性别',
+          'password': '用户密码',
+          'email': '用户邮箱',
+          'userImg': '用户头像',
+          'userStatus': '状态编号',
+          'createTime': '创建时间',
+          'User_gradeid': '等级',
+          'User_ex': '经验',
+          'User_show': '个性签名',
+          'rolaName': '等级',
+          'o_ID': '订单号'
         },
         // node路由地址
-        router: '/leaseTransfer.do',
+        router: '/grade.do',
         // 表格按钮 text：按钮内容 className：按钮类
         // fn:表示要调用增删改查的函数
         //      其中fnName是函数名字
