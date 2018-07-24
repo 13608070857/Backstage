@@ -52,16 +52,13 @@ export default {
       //        删除 -- delete
       //        新增 -- insert
       //        查询 -- query
-      //        上/下架 -- shelf
-      //        加精 -- 
-      //        置顶 --
+      //        上/下架/发货/退款/加精/置顶/启动/禁用 -- status
       //      其中fnArg为参数（要连接的后台路由地址），没有参数（查看和查询按钮）就直接写fnArg: ''
       // 其中small，large表示按钮大小，lightGreen（浅绿），darkGreen（深绿），gray（下架）表示按钮颜色
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
-        {text: '上架', className: 'small lightGreen', fn: {fnName: 'shelf', fnArg: '/shelf.do'}},
-        {text: '下架', className: 'small gray', fn: {fnName: 'shelf', fnArg: '/shelf.do'}},
+        {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
         {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: 'ss'}},
         {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
       ],
