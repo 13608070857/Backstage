@@ -135,6 +135,7 @@ export default {
   created () {
     this.unit()
     this.Newest()
+    this.Obtain()
     this.xf()
   },
   methods: {
@@ -215,6 +216,7 @@ export default {
     Obtain () {
       this.$axios.get('/xxm/Obtain')
         .then(resp => {
+          console.log(resp.data)
         })
     },
     // 最新商品
@@ -237,7 +239,7 @@ export default {
 
 <style scoped>
 #index{
-  width: 85%;
+  width: 100%;
   float: right;
 }
 #index article{

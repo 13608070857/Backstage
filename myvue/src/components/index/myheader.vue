@@ -7,7 +7,7 @@
     <div class="right">
       <span>换肤
         <div class="hf">
-          <div class="kuai" style="background: #effffc" @click="$bg('#effffc')"></div>
+          <div class="kuai" style="background: #effffc" @click="$bg('white')"></div>
           <div class="kuai" style="background: aqua" @click="$bg('aqua')"></div>
           <div class="kuai" style="background: #ff6f47" @click="$bg('#ff6f47')"></div>
           <div class="kuai" style="background: #ffed5e" @click="$bg('#ffed5e')"></div>

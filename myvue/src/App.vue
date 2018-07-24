@@ -2,7 +2,9 @@
   <div id="app">
     <myheader class="header"> </myheader>
     <mainNav class="Nav"> </mainNav>
-    <router-view id="index" :style="{background: this.$bg}"> </router-view>
+    <div id="myindex" :style="{background: this.$bg}">
+      <router-view> </router-view>
+    </div>
     <footer></footer>
   </div>
 </template>
@@ -17,8 +19,10 @@ export default {
     return {
     }
   },
-  created () {
-  },
+  // mounted () {
+  //   console.log(1)
+  //   this.$bg('white')
+  // },
   methods: {
   },
   components: {
@@ -53,7 +57,7 @@ body{
 #app {
   height: 100%;
 }
-#index{
+#myindex{
   width: 85%;
   float: right;
   margin-top: 65px;
