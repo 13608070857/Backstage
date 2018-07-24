@@ -41,6 +41,20 @@ const userController = {
     	userDao.addUserInfo(sql,addArr).then(function(data) {
     		resp.send(data);
     	})
-    }
+    },
+    grade(req,resp) {
+        userDao.gradex().then(function(data) {
+            let getAllData = data;
+            console.log(data);
+            userDao.grade().then(function(data) {
+                let getData = data;
+                dataInfo = {
+                    getAllData: getAllData,
+                    getData: getData
+                };
+                resp.send(dataInfo);
+            })
+        });
+	}
 }
 module.exports = userController;

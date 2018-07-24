@@ -17,78 +17,30 @@
   import appTable from '../tableComponents/table.vue'
   import tableInfo from '../tableComponents/tableInfo'
   export default {
-    name: 'Test',
+    name: 'grade',
     data () {
       return {
         // 表单信息标题
-        tableInfo: '租赁管理',
+        tableInfo: '用户等级管理',
         // 表标题
-        tableTitles: ['租赁id', '租赁名称', '租赁标题', '租赁副标题','租赁价格','租赁图片'],
+        tableTitles: ['等级id', '等级名称', '分数','状态'],
         // 弹出层标题
         popTitles: {
-          'u_id': {
-            titleName: '用户id',
+          'Grade_ID': {
+            titleName: '等级id',
             isRequired: false
           },
-          'for_user_gradeId': {
-            titleName: '论坛等级',
+          'Grade_name': {
+            titleName: '等级名称',
             isRequired: false
           },
-          'name': {
-            titleName: '用户名称',
-            isRequired: true
-          },
-          'tel': {
-            titleName: '用户电话',
-            isRequired: true
-          },
-          'sex': {
-            titleName: '用户性别',
-            isRequired: true
-          },
-          'password': {
-            titleName: '用户密码',
-            isRequired: true
-          },
-          'email': {
-            titleName: '用户邮箱',
-            isRequired: true
-          },
-          'userImg': {
-            titleName: '用户头像',
+          'Grade_value': {
+            titleName: '分数',
             isRequired: false
-          },
-          'userStatus': {
-            titleName: '状态编号',
-            isRequired: true
-          },
-          'createTime': {
-            titleName: '创建时间',
-            isRequired: true
-          },
-          'User_gradeid': {
-            titleName: '等级',
-            isRequired: true
-          },
-          'User_ex': {
-            titleName: '经验',
-            isRequired: true
-          },
-          'User_show': {
-            titleName: '个性签名',
-            isRequired: true
-          },
-          'rolaName': {
-            titleName: '等级',
-            isRequired: true
-          },
-          'o_ID': {
-            titleName: '订单号',
-            isRequired: true
           }
         },
         // node路由地址
-        router: '/leaseTransfer.do',
+        router: '/grade.do',
         // 表格按钮 text：按钮内容 className：按钮类
         // fn:表示要调用增删改查的函数
         //      其中fnName是函数名字
@@ -117,7 +69,7 @@
         // 如果是select就写一个对象，传你的value值
         formElement: {
           isInput: true,
-          contents: '请输入商品名称' // --input传值
+          contents: '请输入等级名称' // --input传值
           // contents: ['新品', '优惠', '其他值']
         }
       }
