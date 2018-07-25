@@ -373,6 +373,21 @@ const orderDao = {
                     }
                 })
         })
+    },
+    // 订单处理
+    ordermsg(req,resp){
+        return new Promise(function (resolve,reject) {
+            db.connect("SELECT go.o_ID,go.u_id,g.goodsName,g.goodsImg,g.goodsPrice,(CEIL(go.o_price/total)) AS goodsNum,gc.cateName,DATE_FORMAT(go.createTime,\"%Y-%m-%d %H:%i:%S\") as createTime,CASE go.orderStatus WHEN 1 THEN '待发货' WHEN 2 THEN '已发货' WHEN 3 THEN '已收货' END AS orderStatus\n" +
+                "FROM goodsorder go,order_goods og,goods g,goods_category gc\n" +
+                "WHERE go.u_id=og.u_id AND og.goods_ID=g.goods_ID AND g.cate_ID=gc.cate_ID",
+                [],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
     }
 };
 module.exports = orderDao;

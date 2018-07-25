@@ -1,4 +1,5 @@
 const orderDao = require("../dao/orderDao");
+let dataInfo;
 const orderControoller = {
     // 交易记录
     orderrecord(req,resp){
@@ -87,7 +88,27 @@ const orderControoller = {
     },
     // 订单处理
     getordermsg(req,resp){
-        
+        orderDao.ordermsg()
+            .then(function (data) {
+                let getAllData = data;
+                console.log(data);
+                orderDao.ordermsg().then(function(data) {
+                    let getData = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData
+                    };
+                    resp.send(dataInfo);
+                })
+            })
+    },
+    // 订单发货
+    getonwith(req,resp){
+
+    },
+    // 订单处理 删除
+    getowithdelete(){
+
     }
 };
 module.exports = orderControoller;
