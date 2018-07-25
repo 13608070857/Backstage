@@ -21,7 +21,7 @@ export default {
           name: '首页',
           background: 'rgb(40,40,40)',
           isShow: false,
-          to: '/',
+          to: '/index',
           num: 0,
           namearr: [
           ]
@@ -64,7 +64,7 @@ export default {
             },
             {
               name: '用户等级',
-              to: '/'
+              to: '/grade'
             },
             {
               name: '用户商品收藏',

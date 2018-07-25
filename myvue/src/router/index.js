@@ -12,13 +12,24 @@ import goodscategory from '../components/goods/goodscategory'
 import goodscoomments from '../components/goods/goodscoomments'
 import goodsdetail from '../components/goods/goodsdetail'
 import LeaseTransfer from '../components/LeaseTransfer/LeaseTransfer'
-
+import grade from '../components/user/Grade'
+import login from '../components/index/login'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'index',
+    //   component: index
+    // },
     {
       path: '/',
+      name: 'login',
+      component: login
+    },
+    {
+      path: '/index',
       name: 'index',
       component: index
     },
@@ -71,7 +82,13 @@ export default new Router({
       path: '/LeaseTransfer',
       name: 'LeaseTransfer',
       component: LeaseTransfer
+    },
+    {
+      path: '/grade',
+      name: 'grade',
+      component: grade
     }
   ],
   mode: 'history'
 })
+

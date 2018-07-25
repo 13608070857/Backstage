@@ -9,6 +9,7 @@ const leaseController = require("../controller/leaseController");
 
 
 router.get("/getUserInfo.do",userController.getUserInfo);
+router.get("/grade.do",userController.grade);
 router.get("/deleteInfo.do",userController.deleteInfo);
 router.get("/addUserInfo.do",userController.addUserInfo);
 
@@ -21,6 +22,13 @@ router.get("/Obtain",indexController.Obtain);
 router.get("/getgoodsmsg.do",goodsController.getallgoods);
 router.get("/getgoodcategory.do",goodsController.getcategory);
 router.get("/getgoodcomments.do",goodsController.getcomments);
+router.get("/goodsdelete.do",goodsController.getgoodsdelete);
+router.get("/onstatus.do",goodsController.getonstatus);
+router.get("/unstatus.do",goodsController.getunstatus);
+router.get("/oncatestatus.do",goodsController.getoncatestatus);
+router.get("/uncatestatus.do",goodsController.getuncatestatus);
+router.get("/delcate.do",goodsController.getdelcate);
+router.get("/delcom.do",goodsController.getdelcom);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);
@@ -34,6 +42,7 @@ router.get("/orderlastyear.do",orderController.orderlastyear);
 router.get("/orderispay.do",orderController.orderispay);
 router.get("/orderispay2.do",orderController.orderispay2);
 router.get("/orderispay3.do",orderController.orderispay3);
+router.get("/getordermsg.do",orderController.getordermsg);
 
 // ================ 租赁管理 =============
 router.get("/leaseTransfer.do",(req,resp)=>{

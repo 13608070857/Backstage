@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="test">
     <!-- 引用表单信息标题的组件 -->
     <tableInfo :tableInfo="tableInfo"></tableInfo>
     <!--引用表格的组件
@@ -14,33 +14,24 @@
 </template>
 
 <script>
-import appTable from '../tableComponents/table'
+import appTable from '../tableComponents/table.vue'
 import tableInfo from '../tableComponents/tableInfo'
-  export default {
-    name: 'goodsMsg',
+export default {
+    name: 'grade',
     data () {
       return {
         // 表单信息标题
-        tableInfo: '商品信息',
+        tableInfo: '用户等级管理',
         // 表标题
-        tableTitles: ['商品ID', '商品名称', '商品图片', '商品价格','商品类别','上架时间', '状态'],
+        tableTitles: ['等级id', '等级名称', '分数','状态'],
         // 弹出层标题
         popTitles: {
-          'goods_ID': '商品ID',
-          'cateName': '商品类别',
-          'goodsName': '商品名称',
-          'goodsImg': '商品图片',
-          'goodsPrice': '商品价格',
-          'is_shelves': '是否上架',
-          'is_hot': '是否热销',
-          'is_recom': '是否推荐',
-          'is_new': '是否新品',
-          'is_sales':  '是否促销',
-          'salesTime': '促销时间',
-          'inventory': '库存量',
+          'Grade_ID':  '等级id',
+          'Grade_name': '等级名称',
+          'Growth_value': '分数',
         },
         // node路由地址
-        router: '/getgoodsmsg.do',
+        router: '/grade.do',
         // 表格按钮 text：按钮内容 className：按钮类
         // fn:表示要调用增删改查的函数
         //      其中fnName是函数名字
@@ -55,11 +46,9 @@ import tableInfo from '../tableComponents/tableInfo'
         // operationBtns是表格操作部分的按钮是（使用小按钮small类）
         // searchBtns是查询部分的按钮（使用大按钮large类）
         operationBtns: [
-          {text: '上架', className: 'small lightGreen', fn: {fnName: 'status', fnArg: '/onstatus.do'}},
-          {text: '下架', className: 'small gray', fn: {fnName: 'status', fnArg: '/unstatus.do'}},
           {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-          {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: 'ss'}},
-          {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/goodsdelete.do'}}
+          {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: 'ss'}},
+          {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
         ],
         searchBtns: [
           {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
@@ -71,7 +60,7 @@ import tableInfo from '../tableComponents/tableInfo'
         // 如果是select就写一个对象，传你的value值
         formElement: {
           isInput: true,
-          contents: '请输入商品名称' // --input传值
+          contents: '请输入等级名称' // --input传值
           // contents: ['新品', '优惠', '其他值']
         }
       }

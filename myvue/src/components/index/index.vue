@@ -239,13 +239,6 @@ export default {
         .then(resp => {
           this.consumption = resp.data
         })
-    },
-    // 消费排行
-    increase () {
-      this.$axios.get('/xxm/increase')
-        .then(resp => {
-          this.consumption = resp.data
-        })
     }
   }
 }
