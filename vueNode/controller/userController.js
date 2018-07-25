@@ -26,12 +26,13 @@ const userController = {
     },
     addUserInfo(req,resp) {
     	var popObj = JSON.parse(req.query.popObj);
+    	var insert = popObj.insert;
     	var val = ''
     	var sql = '';
     	var wh = '';
     	var addArr = [];
-    	for(var key in popObj) {
-    		addArr.push(popObj[key].trim());
+    	for(var key in insert) {
+    		addArr.push(insert[key].trim());
     		val += key + ',' ;
     		wh +='?,'
     	}
@@ -41,6 +42,28 @@ const userController = {
     	userDao.addUserInfo(sql,addArr).then(function(data) {
     		resp.send(data);
     	})
+    },
+    modifyInfo(req,resp) {
+    	var popObj = JSON.parse(req.query.popObj);
+    	var dataIndex = req.query.dataIndex;
+    	var modify = popObj.modify;
+    	console.log(dataIndex)
+    	console.log(modify)
+    	// var val = ''
+    	// var sql = '';
+    	// var wh = '';
+    	// var addArr = [];
+    	// for(var key in modify) {
+    	// 	addArr.push(modify[key].trim());
+    	// 	val += key + ',' ;
+    	// 	wh +='?,'
+    	// }
+    	// val = val.substr(0,val.length-1);
+    	// wh = wh.substr(0,wh.length-1)
+    	// sql = 'insert into users (' + val + ') values (' + wh + ')';
+    	// userDao.addUserInfo(sql,addArr).then(function(data) {
+    	// 	resp.send(data);
+    	// })
     },
     grade(req,resp) {
         userDao.gradex().then(function(data) {
