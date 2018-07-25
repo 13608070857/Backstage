@@ -23,10 +23,11 @@ export default {
       // 表单信息标题
       tableInfo: '订单处理',
       // 表标题
-      tableTitles: ['订单ID', '商品名称', '商品图片', '商品价格', '商品数量', '商品类别','交易时间', '状态'],
+      tableTitles: ['订单ID', '用户ID', '商品名称', '商品图片', '商品价格', '商品数量', '商品类别','交易时间', '状态'],
       // 弹出层标题
       popTitles: {
         'o_ID': '商品ID',
+        'u_id': '用户ID',
         'goodsName': '商品名称',
         'goodsImg': '商品图片',
         'goodsPrice': '商品价格',
@@ -51,9 +52,9 @@ export default {
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
-        {text: '发货', className: 'small lightGreen', fn: {fnName: 'status', fnArg: '/onstatus.do'}},
+        {text: '发货', className: 'small lightGreen', fn: {fnName: 'status', fnArg: '/onwith.do'}},
         {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/goodsdelete.do'}}
+        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/owithdelete.do'}}
       ],
       searchBtns: [
         {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},

@@ -43,6 +43,8 @@ router.get("/orderispay.do",orderController.orderispay);
 router.get("/orderispay2.do",orderController.orderispay2);
 router.get("/orderispay3.do",orderController.orderispay3);
 router.get("/getordermsg.do",orderController.getordermsg);
+router.get("/onwith.do",orderController.getonwith);
+router.get("/owithdelete.do",orderController.getowithdelete);
 
 // ================ 租赁管理 =============
 router.get("/leaseTransfer.do",leaseController.leaseTransfer);
