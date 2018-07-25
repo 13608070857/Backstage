@@ -1,7 +1,7 @@
 <template>
   <div id="login">
     <h2>浅草后台管理系统登录</h2>
-    <form action="/login.do" method="post">
+    <form @submit.prevent="submit">
       <input type="text" name="username" placeholder=" 请输入您的账号">
       <input name="pwd" type="password" placeholder=" 请输入密码">
       <button>登陆</button>
@@ -11,6 +11,11 @@
 <script>
     export default {
         name: "login",
+      methods: {
+          submit: function () {
+            console.log(1);
+          }
+      }
     }
 </script>
 
