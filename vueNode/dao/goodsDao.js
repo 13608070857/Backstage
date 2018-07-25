@@ -29,7 +29,7 @@ const goodsDao = {
     // 商品分类
     goodscate(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT cate_ID,cateName,DATE_FORMAT(cateTime,\"%Y-%m-%d %H:%i:%S\"),IF(gc.status=1,\"已上架\",\"已下架\") FROM goods_category gc",
+            db.connect("SELECT cate_ID,cateName,IF(gc.status=1,\"已上架\",\"已下架\") as status,DATE_FORMAT(cateTime,\"%Y-%m-%d %H:%i:%S\") as cateTime FROM goods_category gc where gc.is_del=0",
                 [],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -42,7 +42,7 @@ const goodsDao = {
     // 商品评论
     goodscom(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT uc.commentsId,u.u_id,u.name,g.goods_ID,g.goodsName,CASE uc.comType WHEN 1 THEN \"好评\" WHEN 2 THEN \"中评\" ELSE \"差评\" END,uc.com_Content,DATE_FORMAT(comTime,\"%Y-%m-%d %H:%i:%S\")\n" +
+            db.connect("SELECT uc.commentsId,u.u_id,u.name,g.goods_ID,g.goodsName,CASE uc.comType WHEN 1 THEN \"好评\" WHEN 2 THEN \"中评\" ELSE \"差评\" END as comType,uc.com_Content,DATE_FORMAT(comTime,\"%Y-%m-%d %H:%i:%S\") as comTime\n" +
                 "FROM user_comments uc,users u,goods g\n" +
                 "WHERE uc.u_id=u.u_id AND uc.goods_ID=g.goods_ID",
                 [],(err,data)=>{
@@ -57,12 +57,12 @@ const goodsDao = {
     // 删除商品
     deletegoods(params) {
         return new Promise(function (resolve, reject) {
-            db.connect("update goods set is_delete=1 where goodsSn=?", [params], function (error, data) {
+            db.connect("update goods set is_delete=1 where goods_ID=?", [params], function (error, data) {
                 resolve(data);
             })
         })
     },
-    // 上架
+    // 上架商品
     status(params){
         return new Promise(function (resolve,reject) {
             db.connect("UPDATE goods SET goodsStatus=1 WHERE goods_ID=?",
@@ -75,10 +75,62 @@ const goodsDao = {
                 })
         })
     },
-    //下架
+    //下架商品
     status2(params){
         return new Promise(function (resolve,reject) {
             db.connect("UPDATE goods SET goodsStatus=2 WHERE goods_ID=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    //上架种类
+    oncatestatus(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("UPDATE goods_category SET status=1 WHERE cate_ID=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    //下架种类
+    uncatestatus(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("UPDATE goods_category SET status=2 WHERE cate_ID=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    //删除种类
+    delcate(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("update goods_category set is_del=1 WHERE cate_ID=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    // 商品评论删除
+    delcom(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("delete from user_comments WHERE commentsId=?",
                 [params],(err,data)=>{
                     if (!err){
                         resolve(data);

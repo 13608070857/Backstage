@@ -84,6 +84,10 @@ const orderControoller = {
             .then(function (data) {
                 resp.send(data);
             })
+    },
+    // 订单处理
+    getordermsg(req,resp){
+        
     }
 };
 module.exports = orderControoller;

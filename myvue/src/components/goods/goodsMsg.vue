@@ -1,5 +1,5 @@
 <template>
-  <div id="test">
+  <div>
     <!-- 引用表单信息标题的组件 -->
     <tableInfo :tableInfo="tableInfo"></tableInfo>
     <!--引用表格的组件
