@@ -57,6 +57,21 @@
             </div>
           </li>
         </ul>
+        <ul v-else-if="btnText=='修改'">
+          <li v-for="(popC,index) in viewObj" :key="index">
+            <span class="popTitle">{{popTitles[index]+':'}}</span>
+            <div v-if="/[iI][dD]/.test(index)">
+              <input type="text" disabled :value="popC">
+            </div>
+            <div v-else-if="!/img/.test(popC)">
+              <input type="text" :value="popC">
+            </div>
+            <div v-else class="imgD">
+              <img :src="'/api/' + popC" alt="">
+              <input type="file">
+            </div>
+          </li>
+        </ul>
         <div class="popBtn">
           <button class="confirm" @click="confirm($event)">确认</button>
           <button class="cancel" @click="cancel">取消</button>
@@ -164,7 +179,9 @@ export default {
       })
     },
     modifyInfo (data,btnText,fnArg) {
-
+      this.popShow = true
+      this.btnText = btnText
+      this.viewObj = this.popContents[data-1]
     },
     viewInfo (data,btnText,fnArg) {
       this.popShow = true

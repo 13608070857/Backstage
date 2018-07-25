@@ -21,6 +21,7 @@ router.get("/Obtain",indexController.Obtain);
 router.get("/getgoodsmsg.do",goodsController.getallgoods);
 router.get("/getgoodcategory.do",goodsController.getcategory);
 router.get("/getgoodcomments.do",goodsController.getcomments);
+router.get("/goodsdelete.do",goodsController.getgoodsdelete);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);
