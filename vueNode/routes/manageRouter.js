@@ -47,6 +47,12 @@ router.get("/orderispay3.do",orderController.orderispay3);
 router.get("/getordermsg.do",orderController.getordermsg);
 router.get("/onwith.do",orderController.getonwith);
 router.get("/owithdelete.do",orderController.getowithdelete);
+router.get("/getrefund.do",orderController.getrefund);
+router.get("/onrefund.do",orderController.getonrefund);
+router.get("/refunddelete.do",orderController.getrefunddelete);
+router.get("/getpaymsg.do",orderController.getpaymsg);
+router.get("/onpay.do",orderController.getonpay);
+router.get("/unpay.do",orderController.getunpay);
 
 // ================ 租赁管理 =============
 router.get("/leaseTransfer.do",leaseController.leaseTransfer);

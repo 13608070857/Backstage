@@ -3,7 +3,9 @@ const goodsDao = {
     //查询所有商品
     goodsmsg(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT g.goods_ID,g.goodsName,g.goodsImg,goodsPrice,(SELECT gc.cateName FROM goods_category gc WHERE g.cate_ID=gc.cate_ID),DATE_FORMAT(g.createTime,\"%Y-%m-%d %H:%i:%S\"),IF(g.goodsStatus=1,\"已上架\",\"已下架\") FROM goods g WHERE g.inventory>-1 and g.is_delete=0",
+            db.connect("SELECT g.goods_ID,g.goodsName,g.goodsImg,goodsPrice,gc.cateName,DATE_FORMAT(g.createTime,\"%Y-%m-%d %H:%i:%S\") AS createTime,IF(g.goodsStatus=1,\"已上架\",\"已下架\") AS goodsStatus " +
+                "FROM goods g,goods_category gc " +
+                "WHERE g.inventory>-1 AND g.is_delete=0 AND g.cate_ID=gc.cate_ID",
                 [],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -42,8 +44,8 @@ const goodsDao = {
     // 商品评论
     goodscom(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT uc.commentsId,u.u_id,u.name,g.goods_ID,g.goodsName,CASE uc.comType WHEN 1 THEN \"好评\" WHEN 2 THEN \"中评\" ELSE \"差评\" END as comType,uc.com_Content,DATE_FORMAT(comTime,\"%Y-%m-%d %H:%i:%S\") as comTime\n" +
-                "FROM user_comments uc,users u,goods g\n" +
+            db.connect("SELECT uc.commentsId,u.u_id,u.name,g.goods_ID,g.goodsName,CASE uc.comType WHEN 1 THEN \"好评\" WHEN 2 THEN \"中评\" ELSE \"差评\" END as comType,uc.com_Content,DATE_FORMAT(comTime,\"%Y-%m-%d %H:%i:%S\") as comTime " +
+                "FROM user_comments uc,users u,goods g " +
                 "WHERE uc.u_id=u.u_id AND uc.goods_ID=g.goods_ID",
                 [],(err,data)=>{
                     if (!err){
