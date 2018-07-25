@@ -49,18 +49,18 @@ const userController = {
     	var modify = popObj.modify;
     	console.log(dataIndex)
     	console.log(modify)
-    	// var val = ''
-    	// var sql = '';
-    	// var wh = '';
-    	// var addArr = [];
-    	// for(var key in modify) {
-    	// 	addArr.push(modify[key].trim());
-    	// 	val += key + ',' ;
-    	// 	wh +='?,'
-    	// }
-    	// val = val.substr(0,val.length-1);
-    	// wh = wh.substr(0,wh.length-1)
-    	// sql = 'insert into users (' + val + ') values (' + wh + ')';
+    	var val = ''
+    	var sql = '';
+    	var wh = '';
+    	var addArr = [];
+    	for(var key in modify) {
+    		console.log(key)
+    		addArr.push(modify[key].trim());
+    		val += key + '=?,'
+    	}
+    	val = val.substr(0,val.length-1);
+    	console.log(val)
+    	// sql = 'update users set'+ val + values (' + wh + ')';
     	// userDao.addUserInfo(sql,addArr).then(function(data) {
     	// 	resp.send(data);
     	// })

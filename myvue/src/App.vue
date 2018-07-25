@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <div class="login" v-if="$users">
+    <!-- <div class="login" v-if="$users">
       <login> </login>
-    </div>
-    <div class="index" v-else>
+    </div> -->
+    <!-- <div class="index" v-else> -->
+    <div class="index">
       <myheader class="header"> </myheader>
       <mainNav class="Nav"> </mainNav>
       <div id="myindex" :style="{background: this.$bg}">
