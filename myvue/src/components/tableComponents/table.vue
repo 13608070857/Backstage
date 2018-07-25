@@ -188,6 +188,7 @@ export default {
       this.btnText = btnText
       this.operationRouter = fnArg
       this.viewObj = this.popContents[data-1]
+      console.log(data)
     },
     statusChange (data,btnText,fnArg) {
       this.$axios.get('/api' + fnArg,{params:{id:data,status:btnText}}).then(resp => {

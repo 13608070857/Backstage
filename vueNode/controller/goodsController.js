@@ -21,26 +21,45 @@ const goodsControoller = {
     getcategory(req,resp){
         goodsDao.goodscate()
             .then(function (data) {
-                resp.send(data);
+                let getAllData = data;
+                console.log(data);
+                goodsDao.goodscate().then(function(data) {
+                    let getData = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData
+                    };
+                    resp.send(dataInfo);
+                })
             })
     },
     // 商品评论
     getcomments(req,resp){
         goodsDao.goodscom()
             .then(function (data) {
-                resp.send(data);
+                let getAllData = data;
+                console.log(data);
+                goodsDao.goodscom().then(function(data) {
+                    let getData = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData
+                    };
+                    resp.send(dataInfo);
+                })
             })
     },
     // 删除商品
     getgoodsdelete(req,resp){
         var deleteId = req.query.deleteId;
         console.log(deleteId)
-        goodsDao.deletegoods(deleteId).then(function(data) {
+        goodsDao.deletegoods(deleteId)
+            .then(function(data) {
             console.log(data);
             resp.send(data);
         })
     },
-    // 上架
+    // 商品上架
     getonstatus(req,resp){
         var deleteId = req.query.id;
         goodsDao.status(deleteId)
@@ -48,12 +67,44 @@ const goodsControoller = {
                 resp.send(data);
             })
     },
-    // 下架
+    // 商品下架
     getunstatus(req,resp){
         var deleteId = req.query.id;
         console.log(deleteId);
         goodsDao.status2(deleteId)
             .then(function (data) {
+                resp.send(data);
+            })
+    },
+    // 商品种类上架
+    getoncatestatus(req,resp){
+        var deleteId = req.query.id;
+        goodsDao.oncatestatus(deleteId)
+            .then(function (data) {
+                resp.send(data);
+            })
+    },
+    // 商品种类下架
+    getuncatestatus(req,resp){
+        var deleteId = req.query.id;
+        goodsDao.uncatestatus(deleteId)
+            .then(function (data) {
+                resp.send(data);
+            })
+    },
+    // 商品种类删除
+    getdelcate(req,resp){
+        var deleteId = req.query.deleteId;
+        goodsDao.delcate(deleteId)
+            .then(function(data) {
+            resp.send(data);
+        })
+    },
+    //商品评论删除
+    getdelcom(req,resp){
+        var deleteId = req.query.deleteId;
+        goodsDao.delcom(deleteId)
+            .then(function(data) {
                 resp.send(data);
             })
     }
