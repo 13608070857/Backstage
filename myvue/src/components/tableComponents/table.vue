@@ -46,7 +46,7 @@
               <input type="text" v-model="popObj[index]">
             </div>
             <div v-else class="imgD">
-              <img :src="popObj[index]" alt="">
+              <img :src="'/api/' + popObj[index]" alt="">
               <input type="file">
             </div>
           </li>
@@ -151,19 +151,19 @@ export default {
     getInfo() {
       console.log(this.router)
       this.$axios.get('/api' + this.router).then(resp => {
-        console.log(resp)
+        // console.log(resp)
         this.tableContents = resp.data.getData
         this.tableData = resp.data.getData
         this.popContents = resp.data.getAllData
         let count = 0
         let popObjImg = ''
-        console.log(this.popContents)
+        // console.log(this.popContents)
         for(var key in this.popContents[0]) {
           if(/[iI]mg/.test(key)) {
             popObjImg = key
           }
         }
-        this.popObj[popObjImg] = '/api/img/index/N1.jpg'
+        this.popObj[popObjImg] = 'img/index/N1.jpg'
       })
     },
     queryParam (btnText,arg) {
@@ -205,7 +205,7 @@ export default {
       this.btnText = btnText
       this.operationRouter = fnArg
       this.viewObj = this.popContents[data-1]
-      console.log(data)
+      // console.log(data)
     },
     statusChange (data,btnText,fnArg) {
       this.$axios.get('/api' + fnArg,{params:{id:data,status:btnText}}).then(resp => {
@@ -216,13 +216,21 @@ export default {
       this.popShow = false
     },
     confirm (event) {
+      var date = new Date()
+      var time = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+      for(var key in this.popContents[0]) {
+        if(/[tT]ime/.test(key)) {
+          this.popObj[key] = time
+        }
+      }
+      console.log(this.popObj)
       if(this.operationRouter != '') {
         this.$axios.get('/api' + this.operationRouter,
           {params:{dataIndex: this.dataI, popObj: {insert: this.popObj, modify: this.viewObj}}}).then(resp => {
           this.popShow = false
           this.operationRouter = ''
           this.getInfo()
-          console.log(resp)
+          // console.log(resp)
         })
       }else {
         this.popShow = false
