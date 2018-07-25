@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <myheader class="header"> </myheader>
-    <mainNav class="Nav"> </mainNav>
-    <div id="myindex" :style="{background: this.$bg}">
-      <router-view> </router-view>
+    <div class="login" v-if="$users">
+      <login> </login>
     </div>
-    <footer></footer>
+    <div class="index" v-else>
+      <myheader class="header"> </myheader>
+      <mainNav class="Nav"> </mainNav>
+      <div id="myindex" :style="{background: this.$bg}">
+        <router-view> </router-view>
+      </div>
+      <footer></footer>
+    </div>
   </div>
 </template>
 
@@ -13,6 +18,7 @@
 import nav from './components/index/mainnav'
 import index from './components/index/index'
 import header from './components/index/myheader'
+import login from './components/index/login'
 export default {
   name: 'App',
   data () {
@@ -28,7 +34,8 @@ export default {
   components: {
     mainNav: nav,
     index: index,
-    myheader: header
+    myheader: header,
+    login: login
   }
 }
 </script>

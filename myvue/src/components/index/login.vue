@@ -1,29 +1,28 @@
 <template>
   <div id="login">
-    <h2>浅草登录</h2>
+    <h2>浅草后台管理系统登录</h2>
     <form action="/login.do" method="post">
       <input type="text" name="username" placeholder=" 请输入您的账号">
-      <input style="margin-top: 7%" name="pwd" type="password" placeholder=" 请输入密码">
+      <input name="pwd" type="password" placeholder=" 请输入密码">
       <button>登陆</button>
     </form>
   </div>
 </template>
 <script>
     export default {
-        name: "login"
+        name: "login",
     }
 </script>
 
 <style scoped>
   #login{
-    float: left;
-    margin-left: 25%;
-    margin-top: 10%;
+    position: fixed;
     /*padding:70px 70px;*/
     background:rgba(255,255,255,.85);
-    border-radius: 5px;
-    width: 50%;
+    width: 100%;
+    height: 100%;
   }
+
   #login h2{
     margin-top: 0;
     margin-bottom: 30px;
@@ -31,7 +30,7 @@
     text-align: center;
   }
   #login form{
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
   }
   form input{
@@ -39,6 +38,7 @@
     padding-right: 0;
     width: 80%;
     margin: 0 auto;
+    margin-top: 7%;
     height:40px;
     border: #dedede 1px solid;
     border-radius:5px;
