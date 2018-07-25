@@ -5,6 +5,7 @@ const userController = require("../controller/userController");
 const indexController = require("../controller/indexController");
 const orderController = require("../controller/orderController");
 const goodsController = require("../controller/goodsController");
+const leaseController = require("../controller/leaseController");
 
 
 router.get("/getUserInfo.do",userController.getUserInfo);
@@ -35,8 +36,8 @@ router.get("/orderispay2.do",orderController.orderispay2);
 router.get("/orderispay3.do",orderController.orderispay3);
 
 // ================ 租赁管理 =============
-router.get("/LeaseTransfer.do",(req,resp)=>{
-
+router.get("/leaseTransfer.do",(req,resp)=>{
+    console.log(1)
 });
 
 module.exports = router;

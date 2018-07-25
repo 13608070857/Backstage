@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import appTable from '../tableComponents/table.vue'
+  import appTable from '../tableComponents/table'
   import tableInfo from '../tableComponents/tableInfo'
   export default {
     name: 'Test',

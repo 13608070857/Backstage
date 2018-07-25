@@ -131,6 +131,7 @@ export default {
       this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].text,this.operationBtns[index].fn.fnArg)
     },
     getInfo() {
+      console.log(this.router)
       this.$axios.get('/api' + this.router).then(resp => {
         console.log(resp)
         this.tableContents = resp.data.getData
@@ -187,7 +188,7 @@ export default {
         })
       }else {
         this.popShow = false
-      }  
+      }
     }
   }
 }
