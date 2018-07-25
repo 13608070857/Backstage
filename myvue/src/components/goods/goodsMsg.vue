@@ -91,7 +91,8 @@ import tableInfo from '../tableComponents/tableInfo'
         // operationBtns是表格操作部分的按钮是（使用小按钮small类）
         // searchBtns是查询部分的按钮（使用大按钮large类）
         operationBtns: [
-          {text: '上架', className: 'small lightGreen', fn: {fnName: 'status', fnArg: ''}},
+          {text: '上架', className: 'small lightGreen', fn: {fnName: 'status', fnArg: '/onstatus.do'}},
+          {text: '下架', className: 'small gray', fn: {fnName: 'status', fnArg: '/unstatus.do'}},
           {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
           {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: 'ss'}},
           {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/goodsdelete.do'}}

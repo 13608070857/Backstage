@@ -22,6 +22,8 @@ router.get("/getgoodsmsg.do",goodsController.getallgoods);
 router.get("/getgoodcategory.do",goodsController.getcategory);
 router.get("/getgoodcomments.do",goodsController.getcomments);
 router.get("/goodsdelete.do",goodsController.getgoodsdelete);
+router.get("/onstatus.do",goodsController.getonstatus);
+router.get("/unstatus.do",goodsController.getunstatus);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);
