@@ -26,18 +26,9 @@ export default {
         tableTitles: ['等级id', '等级名称', '分数','状态'],
         // 弹出层标题
         popTitles: {
-          'Grade_ID': {
-            titleName: '等级id',
-            isRequired: false
-          },
-          'Grade_name': {
-            titleName: '等级名称',
-            isRequired: false
-          },
-          'Grade_value': {
-            titleName: '分数',
-            isRequired: false
-          }
+          'Grade_ID':  '等级id',
+          'Grade_name': '等级名称',
+          'Growth_value': '分数',
         },
         // node路由地址
         router: '/grade.do',

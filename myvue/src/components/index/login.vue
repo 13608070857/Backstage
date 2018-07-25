@@ -1,0 +1,71 @@
+<template>
+  <div id="login">
+    <h2>浅草登录</h2>
+    <form action="/login.do" method="post">
+      <input type="text" name="username" placeholder=" 请输入您的账号">
+      <input style="margin-top: 7%" name="pwd" type="password" placeholder=" 请输入密码">
+      <button>登陆</button>
+    </form>
+  </div>
+</template>
+<script>
+    export default {
+        name: "login"
+    }
+</script>
+
+<style scoped>
+  #login{
+    float: left;
+    margin-left: 25%;
+    margin-top: 10%;
+    /*padding:70px 70px;*/
+    background:rgba(255,255,255,.85);
+    border-radius: 5px;
+    width: 50%;
+  }
+  #login h2{
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #7B7446;
+    text-align: center;
+  }
+  #login form{
+    width: 80%;
+    margin: 0 auto;
+  }
+  form input{
+    display: block;
+    padding-right: 0;
+    width: 80%;
+    margin: 0 auto;
+    height:40px;
+    border: #dedede 1px solid;
+    border-radius:5px;
+  }
+  form button{
+    display: block;
+    margin: 0 auto;
+    padding-right: 0;
+    width: 80%;
+    height: 50px;
+    margin-top:10%;
+    background:#7B7446;
+    border: none;
+    border-radius: 5px;
+    color: white;
+  }
+  form>a{
+    float: left;
+    margin-left: 10%;
+    display: block;
+    width: 40%;
+    text-align: left;
+    margin-top:5%;
+    color: #7B7446;
+  }
+  form>a:hover{
+    color: #7B7446;
+    text-decoration: none;
+  }
+</style>

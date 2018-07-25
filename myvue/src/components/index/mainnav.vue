@@ -21,7 +21,7 @@ export default {
           name: '首页',
           background: 'rgb(40,40,40)',
           isShow: false,
-          to: '/',
+          to: '/index',
           num: 0,
           namearr: [
           ]
