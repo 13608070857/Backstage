@@ -5,7 +5,7 @@ const userController = {
     getUserInfo(req,resp) {
         userDao.getAllUser().then(function(data) {
             let getAllData = data;
-            console.log(data);
+            // console.log(data);
             userDao.getUser().then(function(data) {
             	let getData = data;
             	dataInfo = {
@@ -30,6 +30,7 @@ const userController = {
     	var val = ''
     	var sql = '';
     	var wh = '';
+    	console.log(insert)
     	var addArr = [];
     	for(var key in insert) {
     		addArr.push(insert[key].trim());
@@ -47,23 +48,21 @@ const userController = {
     	var popObj = JSON.parse(req.query.popObj);
     	var dataIndex = req.query.dataIndex;
     	var modify = popObj.modify;
-    	console.log(dataIndex)
-    	console.log(modify)
     	var val = ''
     	var sql = '';
     	var wh = '';
     	var addArr = [];
+    	console.log(modify)
     	for(var key in modify) {
-    		console.log(key)
-    		addArr.push(modify[key].trim());
+    		addArr.push(modify[key]);
     		val += key + '=?,'
     	}
+    	addArr.push(dataIndex);
     	val = val.substr(0,val.length-1);
-    	console.log(val)
-    	// sql = 'update users set'+ val + values (' + wh + ')';
-    	// userDao.addUserInfo(sql,addArr).then(function(data) {
-    	// 	resp.send(data);
-    	// })
+    	sql = 'update users set ' + val + ' where u_id=?';
+    	userDao.modifyUserInfo(sql,addArr).then(function(data) {
+    		resp.send(data);
+    	})
     },
     grade(req,resp) {
         userDao.gradex().then(function(data) {
