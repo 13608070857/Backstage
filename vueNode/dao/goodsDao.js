@@ -62,5 +62,31 @@ const goodsDao = {
             })
         })
     },
+    // 上架
+    status(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("UPDATE goods SET goodsStatus=1 WHERE goodsSn=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    //下架
+    status2(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("UPDATE goods SET goodsStatus=2 WHERE goodsSn=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    }
 };
 module.exports = goodsDao;

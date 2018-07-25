@@ -39,6 +39,23 @@ const goodsControoller = {
             console.log(data);
             resp.send(data);
         })
+    },
+    // 上架
+    getonstatus(req,resp){
+        var deleteId = req.query.id;
+        goodsDao.status(deleteId)
+            .then(function (data) {
+                resp.send(data);
+            })
+    },
+    // 下架
+    getunstatus(req,resp){
+        var deleteId = req.query.id;
+        console.log(deleteId);
+        goodsDao.status2(deleteId)
+            .then(function (data) {
+                resp.send(data);
+            })
     }
 };
 module.exports = goodsControoller;
