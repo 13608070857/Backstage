@@ -1,6 +1,6 @@
 <template>
  <div id="lease">
-   <leaseFrameBox> </leaseFrameBox>
+   <leaseFrameBox></leaseFrameBox>
  </div>
 </template>
 

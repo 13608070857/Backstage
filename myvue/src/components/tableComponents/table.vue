@@ -146,6 +146,7 @@ export default {
       this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].text,this.operationBtns[index].fn.fnArg)
     },
     getInfo() {
+      console.log(this.router)
       this.$axios.get('/api' + this.router).then(resp => {
         console.log(resp)
         this.tableContents = resp.data.getData
@@ -202,6 +203,7 @@ export default {
       this.btnText = btnText
       this.operationRouter = fnArg
       this.viewObj = this.popContents[data-1]
+      console.log(data)
     },
     statusChange (data,btnText,fnArg) {
       this.$axios.get('/api' + fnArg,{params:{id:data,status:btnText}}).then(resp => {

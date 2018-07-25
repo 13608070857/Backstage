@@ -13,12 +13,23 @@ import goodscoomments from '../components/goods/goodscoomments'
 import goodsdetail from '../components/goods/goodsdetail'
 import LeaseTransfer from '../components/LeaseTransfer/LeaseTransfer'
 import grade from '../components/user/Grade'
+// import login from '../components/index/login'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'index',
+    //   component: index
+    // },
     {
       path: '/',
+      name: 'index',
+      component: index
+    },
+    {
+      path: '/index',
       name: 'index',
       component: index
     },

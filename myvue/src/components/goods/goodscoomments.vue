@@ -9,7 +9,7 @@
           searchBtns：搜索和新增按钮
           formElement：表单元素（input和select）
      -->
-    <appTable :tableTitles="tableTitles" :router="router" :operationBtns="operationBtns" :searchBtns="searchBtns" :formElement="formElement"></appTable>
+    <appTable :tableTitles="tableTitles" :router="router" :operationBtns="operationBtns" :searchBtns="searchBtns" :formElement="formElement" :popTitles="popTitles"></appTable>
   </div>
 </template>
 
@@ -24,19 +24,36 @@ export default {
       tableInfo: '商品评论',
       // 表标题
       tableTitles: ['评论ID', '用户ID', '用户名称','商品ID', '商品名称','评论类型', '评论内容', '评论时间'],
+      // 弹出层标题
+      popTitles: {
+        'commentsId': '评论ID',
+        'u_id': '用户ID',
+        'name': '用户名称',
+        'goods_ID': '商品ID',
+        'goodsName': '商品名称',
+        'comType': '评论类型',
+        'com_Content': '评论内容',
+        'is_recom': '评论时间',
+      },
       // node路由地址
       router: '/getgoodcomments.do',
       // 表格按钮 text：按钮内容 className：按钮类
       // fn:表示要调用增删改查的函数
       //      其中fnName是函数名字
+      //        查看 -- view
+      //        修改 -- modify
+      //        删除 -- delete
+      //        新增 -- insert
+      //        查询 -- query
+      //        上/下架/发货/退款/加精/置顶/启动/禁用 -- status
       //      其中fnArg为参数（要连接的后台路由地址），没有参数（查看和查询按钮）就直接写fnArg: ''
       // 其中small，large表示按钮大小，lightGreen（浅绿），darkGreen（深绿），gray（下架）表示按钮颜色
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
-        {text: '查看', className: 'small lightGreen', fn: {fnName: 'look', fnArg: ''}},
-        {text: '修改', className: 'small lightGreen', fn: {fnName: 'alter', fnArg: ''}},
-        {text: '删除', className: 'small darkGreen', fn: {fnName: 'del', fnArg: 'sss'}}
+        {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
+        {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: 'sss'}},
+        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/delcom.do'}}
       ],
       searchBtns: [
         {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},

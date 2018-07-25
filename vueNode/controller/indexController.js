@@ -78,6 +78,9 @@ const indexController = {
             .then(function(data){
                 resp.send(data)
             })
+    },
+    login(req,resp) {
+        console.log("1");
     }
 }
 module.exports = indexController;

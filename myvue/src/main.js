@@ -15,6 +15,7 @@ Vue.prototype.$bg = function (bg) {
   var bachg = bg
   index.style.background = bachg
 }
+Vue.prototype.$users = true
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

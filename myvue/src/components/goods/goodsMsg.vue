@@ -1,5 +1,5 @@
 <template>
-  <div id="test">
+  <div>
     <!-- 引用表单信息标题的组件 -->
     <tableInfo :tableInfo="tableInfo"></tableInfo>
     <!--引用表格的组件
@@ -23,57 +23,21 @@ import tableInfo from '../tableComponents/tableInfo'
         // 表单信息标题
         tableInfo: '商品信息',
         // 表标题
-        tableTitles: ['商品编号', '商品名称', '商品图片', '商品价格','商品类别','上架时间', '状态'],
+        tableTitles: ['商品ID', '商品名称', '商品图片', '商品价格','商品类别','上架时间', '状态'],
         // 弹出层标题
         popTitles: {
-          'goodsSn': {
-            titleName: '商品编号',
-            isRequired: false
-          },
-          'cateName': {
-            titleName: '商品类别',
-            isRequired: true
-          },
-          'goodsName': {
-            titleName: '商品名称',
-            isRequired: false
-          },
-          'goodsImg': {
-            titleName: '商品图片',
-            isRequired: true
-          },
-          'goodsPrice': {
-            titleName: '商品价格',
-            isRequired: true
-          },
-          'is_shelves': {
-            titleName: '是否上架',
-            isRequired: true
-          },
-          'is_hot': {
-            titleName: '是否热销',
-            isRequired: true
-          },
-          'is_recom': {
-            titleName: '是否推荐',
-            isRequired: true
-          },
-          'is_new': {
-            titleName: '是否新品',
-            isRequired: true
-          },
-          'is_sales': {
-            titleName: '是否促销',
-            isRequired: true
-          },
-          'salesTime': {
-            titleName: '促销时间',
-            isRequired: true
-          },
-          'inventory': {
-            titleName: '库存量',
-            isRequired: true
-          }
+          'goods_ID': '商品ID',
+          'cateName': '商品类别',
+          'goodsName': '商品名称',
+          'goodsImg': '商品图片',
+          'goodsPrice': '商品价格',
+          'is_shelves': '是否上架',
+          'is_hot': '是否热销',
+          'is_recom': '是否推荐',
+          'is_new': '是否新品',
+          'is_sales':  '是否促销',
+          'salesTime': '促销时间',
+          'inventory': '库存量',
         },
         // node路由地址
         router: '/getgoodsmsg.do',
