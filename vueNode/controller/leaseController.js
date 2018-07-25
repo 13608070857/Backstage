@@ -4,7 +4,6 @@ const leaseController = {
     leaseTransfer(req,resp) {
         leaseDao.leaseInquiry().then(function(data) {
             let getAllData = data;
-            console.log(data);
             leaseDao.leaseInquiry().then(function(data) {
                 let getData = data;
                 dataInfo = {
