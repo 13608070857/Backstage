@@ -3,7 +3,7 @@ const goodsDao = {
     //查询所有商品
     goodsmsg(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT g.goodsSn,g.goodsName,g.goodsImg,goodsPrice,(SELECT gc.cateName FROM goods_category gc WHERE g.cate_ID=gc.cate_ID),DATE_FORMAT(g.createTime,\"%Y-%m-%d %H:%i:%S\"),IF(g.goodsStatus=1,\"已上架\",\"已下架\") FROM goods g WHERE g.inventory>-1 and g.is_delete=0",
+            db.connect("SELECT g.goods_ID,g.goodsName,g.goodsImg,goodsPrice,(SELECT gc.cateName FROM goods_category gc WHERE g.cate_ID=gc.cate_ID),DATE_FORMAT(g.createTime,\"%Y-%m-%d %H:%i:%S\"),IF(g.goodsStatus=1,\"已上架\",\"已下架\") FROM goods g WHERE g.inventory>-1 and g.is_delete=0",
                 [],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -15,7 +15,7 @@ const goodsDao = {
     },
     goodsmsg2(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT g.goodsSn,gc.cateName,g.goodsName,g.goodsImg,g.goodsPrice,g.is_shelves,g.is_hot,g.is_recom,g.is_new,g.is_sales,g.salesTime,g.inventory\n" +
+            db.connect("SELECT g.goods_ID,gc.cateName,g.goodsName,g.goodsImg,g.goodsPrice,g.is_shelves,g.is_hot,g.is_recom,g.is_new,g.is_sales,g.salesTime,g.inventory\n" +
                 "FROM goods g,goods_category gc WHERE g.cate_ID=gc.cate_ID AND g.inventory>-1 and g.is_delete=0",
                 [],(err,data)=>{
                     if (!err){
@@ -65,7 +65,7 @@ const goodsDao = {
     // 上架
     status(params){
         return new Promise(function (resolve,reject) {
-            db.connect("UPDATE goods SET goodsStatus=1 WHERE goodsSn=?",
+            db.connect("UPDATE goods SET goodsStatus=1 WHERE goods_ID=?",
                 [params],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -78,7 +78,7 @@ const goodsDao = {
     //下架
     status2(params){
         return new Promise(function (resolve,reject) {
-            db.connect("UPDATE goods SET goodsStatus=2 WHERE goodsSn=?",
+            db.connect("UPDATE goods SET goodsStatus=2 WHERE goods_ID=?",
                 [params],(err,data)=>{
                     if (!err){
                         resolve(data);
