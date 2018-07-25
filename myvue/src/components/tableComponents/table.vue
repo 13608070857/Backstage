@@ -34,29 +34,41 @@
     <div class="pop" v-if="popShow">
       <div class="popContent">
         <ul v-if="btnText=='新增'">
-          <li v-for="(popC,index) in popContents[0]" :key="index">
-            <span class="popTitle">{{popTitles[index].titleName+':'}}</span>
-            <div v-if="/[iI][dD]/.test(popTitles[index].titleName)">
+          <li v-for="(popC,index) in popContents[1]" :key="index">
+            <span class="popTitle">{{popTitles[index]+':'}}</span>
+            <div v-if="/[iI][dD]/.test(popTitles[index])">
               <input type="text" disabled :value="tableData.length+1">
-              <span v-if="popTitles[index].isRequired" class="red">*</span>
             </div>
             <div v-else-if="!/img/.test(popC)">
               <input type="text" v-model="popObj[index]">
-              <span v-if="popTitles[index].isRequired"  class="red">*</span>
             </div>
             <div v-else class="imgD">
               <img :src="'/api/img/index/N1.jpg'" alt="">
               <input type="file">
-              <span v-if="popTitles[index].isRequired"  class="red">*</span>
             </div>
           </li>
         </ul>
         <ul v-else-if="btnText=='查看'">
           <li v-for="(popC,index) in viewObj" :key="index">
-            <span class="popTitle">{{popTitles[index].titleName+':'}}</span>
+            <span class="popTitle">{{popTitles[index]+':'}}</span>
             <div v-if="!/img/.test(popC)"><input type="text" :value="popC" disabled></div>
             <div v-else class="imgD">
               <img :src="'/api/' + popC" alt="">
+            </div>
+          </li>
+        </ul>
+        <ul v-else-if="btnText=='修改'">
+          <li v-for="(popC,index) in viewObj" :key="index">
+            <span class="popTitle">{{popTitles[index]+':'}}</span>
+            <div v-if="/[iI][dD]/.test(index)">
+              <input type="text" disabled :value="popC">
+            </div>
+            <div v-else-if="!/img/.test(popC)">
+              <input type="text" :value="popC">
+            </div>
+            <div v-else class="imgD">
+              <img :src="'/api/' + popC" alt="">
+              <input type="file">
             </div>
           </li>
         </ul>
@@ -145,9 +157,12 @@ export default {
       if (arg === '') {
         this.tableContents = tableData
         this.tableContents.filter(value => {
-          console.log()
-          if (value.name.indexOf(this.searchText) !== -1) {
-            newArr.push(value)
+          for(let key in value) {
+            if(/[nN]ame/.test(key)) {
+              if (value[key].indexOf(this.searchText) !== -1) {
+                newArr.push(value)
+              }
+            }
           }
           this.tableContents = newArr
         })
@@ -164,7 +179,9 @@ export default {
       })
     },
     modifyInfo (data,btnText,fnArg) {
-
+      this.popShow = true
+      this.btnText = btnText
+      this.viewObj = this.popContents[data-1]
     },
     viewInfo (data,btnText,fnArg) {
       this.popShow = true
@@ -280,9 +297,8 @@ li {
   margin-top: 10px;
 }
 .popContent {
-  margin: 40px auto;
+  margin: 4% auto;
   width: 800px;
-  height: 500px;
   background: #fff;
   padding: 20px 40px;
   position: relative;
@@ -301,9 +317,9 @@ li {
   color: #f00;
 }
 .popBtn {
-  position: absolute;
-  bottom: 30px;
-  right: 40px;
+  width: 100%;
+  margin-top: 30px;
+  text-align: right;
 }
 .popBtn button {
   background: rgba(35, 58, 77, 1);
