@@ -47,23 +47,21 @@ const userController = {
     	var popObj = JSON.parse(req.query.popObj);
     	var dataIndex = req.query.dataIndex;
     	var modify = popObj.modify;
-    	console.log(dataIndex)
+    	var val = ''
+    	var sql = '';
+    	var wh = '';
+    	var addArr = [];
     	console.log(modify)
-    	// var val = ''
-    	// var sql = '';
-    	// var wh = '';
-    	// var addArr = [];
-    	// for(var key in modify) {
-    	// 	addArr.push(modify[key].trim());
-    	// 	val += key + ',' ;
-    	// 	wh +='?,'
-    	// }
-    	// val = val.substr(0,val.length-1);
-    	// wh = wh.substr(0,wh.length-1)
-    	// sql = 'insert into users (' + val + ') values (' + wh + ')';
-    	// userDao.addUserInfo(sql,addArr).then(function(data) {
-    	// 	resp.send(data);
-    	// })
+    	for(var key in modify) {
+    		addArr.push(modify[key]);
+    		val += key + '=?,'
+    	}
+    	addArr.push(dataIndex);
+    	val = val.substr(0,val.length-1);
+    	sql = 'update users set ' + val + ' where u_id=?';
+    	userDao.modifyUserInfo(sql,addArr).then(function(data) {
+    		resp.send(data);
+    	})
     },
     grade(req,resp) {
         userDao.gradex().then(function(data) {

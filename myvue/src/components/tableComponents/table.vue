@@ -12,7 +12,10 @@
       </div>
       <btn v-for="(searchBtn,index) in searchBtns" :key="index" :btnText="searchBtn.text" :btnClass="searchBtn.className"  v-on:fn="fnObj[searchBtn.fn.fnName](searchBtn.text,searchBtn.fn.fnArg)"></btn>
     </div>
-    <table cellpadding="0" cellspacing="0" width="100%">
+    <div v-if="tableContents.length<=0" class="noContent">
+      已经没有任何数据了！！请添加
+    </div>
+    <table v-else cellpadding="0" cellspacing="0" width="100%">
       <tr class="tableTitle">
         <th v-for="(tableTitle,index) in tableTitles" :key="index">{{tableTitle}}</th>
         <th v-if="tableContents.length>0">操作</th>
@@ -156,7 +159,6 @@ export default {
         let popObjImg = ''
         console.log(this.popContents)
         for(var key in this.popContents[0]) {
-          // console.log(key)
           if(/[iI]mg/.test(key)) {
             popObjImg = key
           }
@@ -362,5 +364,9 @@ li {
   width: 60px;
   overflow: hidden;
   opacity: 0;
+}
+.noContent {
+  line-height: 100px;
+  text-align: center;
 }
 </style>
