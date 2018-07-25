@@ -14,8 +14,8 @@
 </template>
 
 <script>
-  import appTable from '../tableComponents/table.vue'
-  import tableInfo from '../tableComponents/tableInfo'
+import appTable from '../tableComponents/table'
+import tableInfo from '../tableComponents/tableInfo'
   export default {
     name: 'goodsMsg',
     data () {
@@ -94,7 +94,7 @@
           {text: '上架', className: 'small lightGreen', fn: {fnName: 'status', fnArg: ''}},
           {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
           {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: 'ss'}},
-          {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
+          {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/goodsdelete.do'}}
         ],
         searchBtns: [
           {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
