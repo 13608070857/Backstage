@@ -6,7 +6,7 @@ const leaseController = {
             let getAllData = data;
             console.log(data);
             dataInfo = {
-                getAllData: getAllData
+                getAllData: getAllData,
             }
             resp.send(dataInfo)
             // leaseDao.leaseInquiry().then(function(data) {

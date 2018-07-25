@@ -45,8 +45,6 @@ router.get("/orderispay3.do",orderController.orderispay3);
 router.get("/getordermsg.do",orderController.getordermsg);
 
 // ================ 租赁管理 =============
-router.get("/leaseTransfer.do",(req,resp)=>{
-    console.log(1)
-});
+router.get("/leaseTransfer.do",leaseController.leaseTransfer);
 
 module.exports = router;

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import appTable from '../tableComponents/table'
+  import appTable from '../tableComponents/table.vue'
   import tableInfo from '../tableComponents/tableInfo'
   export default {
     name: 'Test',
@@ -26,66 +26,12 @@
         tableTitles: ['租赁id', '租赁名称', '租赁标题', '租赁副标题','租赁价格','租赁图片'],
         // 弹出层标题
         popTitles: {
-          'u_id': {
-            titleName: '用户id',
-            isRequired: false
-          },
-          'for_user_gradeId': {
-            titleName: '论坛等级',
-            isRequired: false
-          },
-          'name': {
-            titleName: '用户名称',
-            isRequired: true
-          },
-          'tel': {
-            titleName: '用户电话',
-            isRequired: true
-          },
-          'sex': {
-            titleName: '用户性别',
-            isRequired: true
-          },
-          'password': {
-            titleName: '用户密码',
-            isRequired: true
-          },
-          'email': {
-            titleName: '用户邮箱',
-            isRequired: true
-          },
-          'userImg': {
-            titleName: '用户头像',
-            isRequired: false
-          },
-          'userStatus': {
-            titleName: '状态编号',
-            isRequired: true
-          },
-          'createTime': {
-            titleName: '创建时间',
-            isRequired: true
-          },
-          'User_gradeid': {
-            titleName: '等级',
-            isRequired: true
-          },
-          'User_ex': {
-            titleName: '经验',
-            isRequired: true
-          },
-          'User_show': {
-            titleName: '个性签名',
-            isRequired: true
-          },
-          'rolaName': {
-            titleName: '等级',
-            isRequired: true
-          },
-          'o_ID': {
-            titleName: '订单号',
-            isRequired: true
-          }
+          'ID':  '租赁id',
+          'detailsName': '租赁名称',
+          'Maintitle': '租赁标题',
+          'Subtitle': '租赁副标题',
+          'detailsPrice': '租赁价格',
+          'detailsImg': '租赁图片',
         },
         // node路由地址
         router: '/leaseTransfer.do',
@@ -104,7 +50,7 @@
         // searchBtns是查询部分的按钮（使用大按钮large类）
         operationBtns: [
           {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-          {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: 'ss'}},
+          {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: 'ss'}},
           {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
         ],
         searchBtns: [
