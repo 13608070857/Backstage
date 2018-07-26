@@ -17,7 +17,7 @@
 import appTable from '../tableComponents/table.vue'
 import tableInfo from '../tableComponents/tableInfo'
 export default {
-  name: 'grade',
+  name: 'staff',
   data () {
     return {
       // 表单信息标题
@@ -32,7 +32,7 @@ export default {
         'state': '状态'
       },
       // node路由地址
-      router: '/grade.do',
+      router: '/staff.do',
       // 表格按钮 text：按钮内容 className：按钮类
       // fn:表示要调用增删改查的函数
       //      其中fnName是函数名字

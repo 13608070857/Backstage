@@ -14,25 +14,27 @@
 </template>
 
 <script>
-import appTable from '../tableComponents/table.vue'
+import appTable from '../tableComponents/table'
 import tableInfo from '../tableComponents/tableInfo'
 export default {
-  name: 'grade',
+  name: 'collection',
   data () {
     return {
       // 表单信息标题
-      tableInfo: '用户等级管理',
+      tableInfo: '商品收藏管理',
       // 表标题
-      tableTitles: ['等级id', '等级名称', '分数'],
+      tableTitles: ['收藏id', '商品名称', '商品图片', '商品价格', '用户ID'],
       // 弹出层标题
       popTitles: {
-        'Grade_ID':  '等级id',
-        'Grade_name': '等级名称',
-        'Growth_value': '分数',
-        'state': '状态'
+        'coll_id':  '收藏id',
+        'coll_img': '商品名称',
+        'coll_name': '商品图片',
+        'coll_price': '商品价格',
+        'u_id': '用户ID',
+        'goods_ID': '产品ID'
       },
       // node路由地址
-      router: '/grade.do',
+      router: '/collection',
       // 表格按钮 text：按钮内容 className：按钮类
       // fn:表示要调用增删改查的函数
       //      其中fnName是函数名字
@@ -48,7 +50,7 @@ export default {
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
         {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-        {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: 'ss'}},
+        {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: '/modifyInfo.do'}},
         {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
       ],
       searchBtns: [
@@ -61,7 +63,7 @@ export default {
       // 如果是select就写一个对象，传你的value值
       formElement: {
         isInput: true,
-        contents: '请输入等级名称' // --input传值
+        contents: '请输入商品名称' // --input传值
         // contents: ['新品', '优惠', '其他值']
       }
     }

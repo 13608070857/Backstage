@@ -13,6 +13,7 @@ import goodscoomments from '../components/goods/goodscoomments'
 import goodsdetail from '../components/goods/goodsdetail'
 import LeaseTransfer from '../components/LeaseTransfer/LeaseTransfer'
 import grade from '../components/user/Grade'
+import collection from '../components/user/Collection'
 // import login from '../components/index/login'
 Vue.use(Router)
 
@@ -87,8 +88,12 @@ export default new Router({
       path: '/grade',
       name: 'grade',
       component: grade
+    },
+    {
+      path: '/collection',
+      name: 'collection',
+      component: collection
     }
   ],
   mode: 'history'
 })
-

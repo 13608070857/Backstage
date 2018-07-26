@@ -68,7 +68,7 @@ export default {
             },
             {
               name: '用户商品收藏',
-              to: '/'
+              to: '/collection'
             }
           ]
         },

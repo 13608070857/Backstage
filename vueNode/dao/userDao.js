@@ -36,7 +36,7 @@ const userDao = {
             })
         })
     },
-    grade(req, resp) {
+    gradex(req, resp) {
         return new Promise((resolve, reject) => {
             db.connect("SELECT * FROM grade",
                 [], (err, data) => {
@@ -48,9 +48,33 @@ const userDao = {
                 })
         })
     },
-    gradex(req, resp) {
+    grade(req, resp) {
         return new Promise((resolve, reject) => {
             db.connect("SELECT Grade_ID,Grade_name,Growth_value FROM grade",
+                [], (err, data) => {
+                    if (!err) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    collection(req, resp) {
+        return new Promise((resolve, reject) => {
+            db.connect("SELECT * FROM collection",
+                [], (err, data) => {
+                    if (!err) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    collectionx(req, resp) {
+        return new Promise((resolve, reject) => {
+            db.connect("SELECT coll_id,coll_img,coll_name,coll_price,u_id,goods_ID FROM collection",
                 [], (err, data) => {
                     if (!err) {
                         resolve(data);

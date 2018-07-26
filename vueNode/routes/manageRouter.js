@@ -10,6 +10,7 @@ const leaseController = require("../controller/leaseController");
 
 router.get("/getUserInfo.do",userController.getUserInfo);
 router.get("/grade.do",userController.grade);
+router.get("/collection",userController.collection);
 router.get("/deleteInfo.do",userController.deleteInfo);
 router.get("/addUserInfo.do",userController.addUserInfo);
 router.get("/modifyInfo.do",userController.modifyInfo);

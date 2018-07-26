@@ -77,6 +77,20 @@ const userController = {
                 resp.send(dataInfo);
             })
         });
+	},
+    collection(req,resp) {
+        userDao.collectionx().then(function(data) {
+            let getAllData = data;
+            console.log(data);
+            userDao.collection().then(function(data) {
+                let getData = data;
+                dataInfo = {
+                    getAllData: getAllData,
+                    getData: getData
+                };
+                resp.send(dataInfo);
+            })
+        });
 	}
 }
 module.exports = userController;
