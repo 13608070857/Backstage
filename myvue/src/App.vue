@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
-    <!--<div class="login" v-if="false">-->
-    <!-- <div class="login" v-if="$users">
-=======
     <div class="login" v-if="$root.a">
->>>>>>> cc777a9dbcc0c0c74724a4d673cbfa78008c9213
       <login> </login>
     </div>
     <div class="index" v-else>
