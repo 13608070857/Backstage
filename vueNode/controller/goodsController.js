@@ -180,16 +180,15 @@ const goodsControoller = {
         var addArr = [];
         console.log(modify)
         for(var key in modify) {
-            // console.log("这是key");
-            if (modify[key]=='适用空间') {
-                modify[key]=1;
-            }
-            if (modify[key]=='植物品种') {
-                modify[key]=2;
-            }
-            if (modify[key]=='选购热点') {
-                modify[key]=3;
-            }
+            // if (modify[key]=='适用空间') {
+            //     modify[key]=1;
+            // }
+            // if (modify[key]=='植物品种') {
+            //     modify[key]=2;
+            // }
+            // if (modify[key]=='选购热点') {
+            //     modify[key]=3;
+            // }
             console.log(modify[key])
             addArr.push(modify[key]);
             val += key + '=?,'
