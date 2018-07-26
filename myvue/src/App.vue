@@ -25,9 +25,12 @@ export default {
     return {
     }
   },
-  methods: {
-  },
-  created: {
+  methods: { },
+  created () {
+    this.$axios.get('/xxm/jinru')
+      .then(resp => {
+        this.$login(resp.data)
+      })
   },
   components: {
     mainNav: nav,
