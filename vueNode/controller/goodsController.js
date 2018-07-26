@@ -171,7 +171,39 @@ const goodsControoller = {
     },
     // 商品信息修改
     getgoodsmodify(req,resp){
-
+        var popObj = JSON.parse(req.query.popObj);
+        var dataIndex = req.query.dataIndex;
+        var modify = popObj.modify;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        console.log(modify)
+        for(var key in modify) {
+            // console.log("这是key");
+            if (modify[key]=='适用空间') {
+                modify[key]=1;
+            }
+            if (modify[key]=='植物品种') {
+                modify[key]=2;
+            }
+            if (modify[key]=='选购热点') {
+                modify[key]=3;
+            }
+            console.log(modify[key])
+            addArr.push(modify[key]);
+            val += key + '=?,'
+        }
+        addArr.push(dataIndex);
+        val = val.substr(0,val.length-1);
+        sql = 'update goods set ' + val + ' where goods_ID=?';
+        goodsDao.modifygoods(sql,addArr)
+            .then(function(data) {
+                console.log("这还是数据");
+                console.log(sql);
+                console.log(addArr);
+                resp.send(data);
+        })
     },
     // 商品分类修改
     getcatemodify(req,resp){
