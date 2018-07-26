@@ -13,6 +13,13 @@ const leaseDao = {
                 resolve(data);
             })
         })
-    }
+    },
+    addForum(sql, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
+    },
 };
 module.exports = leaseDao;

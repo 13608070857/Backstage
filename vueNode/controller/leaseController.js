@@ -32,5 +32,25 @@ const leaseController = {
             resp.send(data);
         })
     },
+    addForum(req,resp) {
+        var popObj = JSON.parse(req.query.popObj);
+        var insert = popObj.insert;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        console.log(insert)
+        var addArr = [];
+        for(var key in insert) {
+            addArr.push(insert[key].trim());
+            val += key + ',' ;
+            wh +='?,'
+        }
+        val = val.substr(0,val.length-1);
+        wh = wh.substr(0,wh.length-1)
+        sql = 'insert into users (' + val + ') values (' + wh + ')';
+        leaseDao.addForum(sql,addArr).then(function(data) {
+            resp.send(data);
+        })
+    },
 }
 module.exports = leaseController;
