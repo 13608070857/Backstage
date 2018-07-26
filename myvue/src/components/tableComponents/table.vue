@@ -21,7 +21,7 @@
         <th v-if="operationBtns.length>0">操作</th>
       </tr>
       <tbody>
-        <tr class="showCont" v-for="(tableContent,index) in showContents" :key="index">
+        <tr class="showCont" v-for="(tableContent,index) in tableContents" :key="index">
           <td v-for="(tableC,i) in tableContent" :key="i">
             <div v-if="!/img/.test(tableC)">{{tableC}}</div>
             <div v-else>
@@ -172,6 +172,7 @@ export default {
 
         // 分页
         this.totalPacing = Math.ceil(this.tableContents.length / 5)
+
         this.showContents = []
         if(this.totalPacing > 1) {
           for(var i=(this.currentPacing - 1)*5;i<this.currentPacing*5;i++) {
@@ -206,7 +207,7 @@ export default {
               }
             }
           }
-          this.showContents = Array.from(new Set(newArr))
+          this.tableContents = Array.from(new Set(newArr))
         })
       }
     },
@@ -245,10 +246,10 @@ export default {
         this.currentPacing--
       }
       this.getInfo()
-      // var showCont = document.getElementsByClassName('showCont')
-      // for(var i=0;i<showCont.length;i++) {
-      //   showCont[i].style.display = 'block'
-      // }
+      var showCont = document.getElementsByClassName('showCont')
+      for(var i=0;i<showCont.length;i++) {
+        console.log(showCont[i])
+      }
     },
     nextPacing () {
       if(this.currentPacing >= this.totalPacing) {

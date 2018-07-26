@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="login" v-if="$root.a">
+    <div class="login" v-if="false">
       <login> </login>
     </div>
     <div class="index" v-else>

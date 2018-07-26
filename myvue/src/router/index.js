@@ -14,6 +14,8 @@ import goodsdetail from '../components/goods/goodsdetail'
 import LeaseTransfer from '../components/LeaseTransfer/LeaseTransfer'
 import grade from '../components/user/Grade'
 // import login from '../components/index/login'
+import forumInfo from '../components/forum/forumInfo'
+import forumRep from '../components/forum/forumRep'
 Vue.use(Router)
 
 export default new Router({
@@ -87,6 +89,16 @@ export default new Router({
       path: '/grade',
       name: 'grade',
       component: grade
+    },
+    {
+      path: '/forumInfo',
+      name: 'forumInfo',
+      component: forumInfo
+    },
+    {
+      path: '/forumRep',
+      name: 'forumRep',
+      component: forumRep
     }
   ],
   mode: 'history'
