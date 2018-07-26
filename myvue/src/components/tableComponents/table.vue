@@ -37,7 +37,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="paging" v-if="totalPacing>1">
+    <div class="paging">
       <button class="pacingBtn" @click="prevPacing">上一页</button>
       <span class="blue">{{currentPacing}}</span><span>/{{totalPacing}}</span>
       <button class="pacingBtn" @click="nextPacing">下一页</button>
@@ -121,7 +121,8 @@ export default {
       currentPacing: 1,
       totalPacing: 1,
       showContents: [],
-      insertIndex: 0
+      insertIndex: 0,
+      paceContents: []
     }
   },
   props: {
@@ -162,12 +163,13 @@ export default {
       this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].text,this.operationBtns[index].fn.fnArg)
     },
     getInfo() {
-      console.log(this.router)
-      this.$axios.get('/api' + this.router).then(resp => {
+      console.log(this.currentPacing)
+      this.$axios.get('/api' + this.router, {params: {currentP: this.currentPacing}}).then(resp => {
         this.tableContents = resp.data.getData
         this.tableData = resp.data.getData
+        this.paceContents = resp.data.paceDate
         this.popContents = resp.data.getAllData
-        console.log(this.popContents[0])
+        console.log(this.paceContents)
 
         var tbL = this.tableContents[this.tableContents.length-1]
         for(var key in tbL) {
@@ -178,17 +180,6 @@ export default {
 
         // 分页
         this.totalPacing = Math.ceil(this.tableContents.length / 5)
-
-        this.showContents = []
-        if(this.totalPacing > 1) {
-          for(var i=(this.currentPacing - 1)*5;i<this.currentPacing*5;i++) {
-            if(i < this.tableContents.length) {
-              this.showContents[i] = this.tableContents[i]
-            }
-          }
-        }else {
-          this.showContents = this.tableContents
-        }
 
         // 默认图片
         for(var key in this.popContents[0]) {

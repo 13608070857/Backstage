@@ -187,6 +187,14 @@ const goodsDao = {
                 resolve(data);
             })
         })
-    }
+    },
+    // 商品信息 修改
+    modifygoods(sql, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
+    },
 };
 module.exports = goodsDao;
