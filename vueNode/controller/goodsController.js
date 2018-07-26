@@ -180,15 +180,13 @@ const goodsControoller = {
         var addArr = [];
         console.log(modify)
         for(var key in modify) {
-            // if (modify[key]=='适用空间') {
-            //     modify[key]=1;
-            // }
-            // if (modify[key]=='植物品种') {
-            //     modify[key]=2;
-            // }
-            // if (modify[key]=='选购热点') {
-            //     modify[key]=3;
-            // }
+            if (modify[key]=='适用空间' || modify[key]=='已上架') {
+                modify[key]=1;
+            } else if (modify[key]=='植物品种' || modify[key]=='已下架') {
+                modify[key]=2;
+            } else if (modify[key]=='选购热点') {
+                modify[key]=3;
+            }
             console.log(modify[key])
             addArr.push(modify[key]);
             val += key + '=?,'
@@ -204,15 +202,53 @@ const goodsControoller = {
                 resp.send(data);
         })
     },
-    // 商品分类修改
+    // 商品分类 新增
+    getaddcate(req,resp){
+
+    },
+    // 商品分类 修改
     getcatemodify(req,resp){
+        var popObj = JSON.parse(req.query.popObj);
+        var dataIndex = req.query.dataIndex;
+        var modify = popObj.modify;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        console.log(modify)
+        for(var key in modify) {
+            if (modify[key]=="已上架"){
+                modify[key]=1
+            } else if (modify[key]=="已下架") {
+                modify[key]=2
+            }
+            addArr.push(modify[key]);
+            val += key + '=?,'
+        }
+        addArr.push(dataIndex);
+        val = val.substr(0,val.length-1);
+        sql = 'update goods_category set ' + val + ' where cate_ID=?';
+        goodsDao.modifycate(sql,addArr)
+            .then(function(data) {
+                console.log("这还是数据");
+                console.log(sql);
+                console.log(addArr);
+                resp.send(data);
+            })
+    },
+    // 商品评论 新增
+    getaddcom(req,resp){
 
     },
     // 商品评论 修改
     getcommodify(req,resp){
 
     },
-    // 商品详情
+    // 商品详情 新增
+    getadddetail(req,resp){
+
+    },
+    // 商品详情 修改
     getdetailmodify(req,resp){
 
     },

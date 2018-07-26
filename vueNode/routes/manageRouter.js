@@ -49,8 +49,11 @@ router.get("/detaildelete.do",goodsController.getdetaildelete);
 router.get("/addgoodsinfo.do",goodsController.getaddgoodsinfo);
 router.get("/goodsmodify.do",goodsController.getgoodsmodify);
 router.get("/catemodify.do",goodsController.getcatemodify);
+router.get("/addcate.do",goodsController.getaddcate);
 router.get("/commodify.do",goodsController.getcommodify);
+router.get("/addcom.do",goodsController.getaddcom);
 router.get("/detailmodify.do",goodsController.getdetailmodify);
+router.get("/adddetail.do",goodsController.getadddetail);
 router.get("/shopping",goodsController.shopping);
 
 // =============== 交易管理 =============

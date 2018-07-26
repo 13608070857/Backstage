@@ -86,7 +86,7 @@ const goodsDao = {
     // 删除商品
     deletegoods(params) {
         return new Promise(function (resolve, reject) {
-            db.connect("update goods set is_delete=1 where goods_ID=?", [params], function (error, data) {
+            db.connect("delete from goods where goods_ID=?", [params], function (error, data) {
                 resolve(data);
             })
         })
@@ -217,6 +217,14 @@ const goodsDao = {
     },
     // 商品信息 修改
     modifygoods(sql, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
+    },
+    // 商品分类 修改
+    modifycate(sql, ...args) {
         return new Promise(function (resolve, reject) {
             db.connect(sql, ...args, function (error, data) {
                 resolve(data);
