@@ -2,21 +2,34 @@
   <div id="login">
     <h2>浅草后台管理系统登录</h2>
     <form @submit.prevent="submit">
-      <input type="text" name="username" placeholder=" 请输入您的账号">
-      <input name="pwd" type="password" placeholder=" 请输入密码">
+      <input v-model="user" type="text" placeholder=" 请输入您的账号">
+      <input v-model="pass" type="password" placeholder=" 请输入密码">
       <button>登陆</button>
     </form>
   </div>
 </template>
 <script>
-    export default {
-        name: "login",
-      methods: {
-          submit: function () {
-            console.log(1);
-          }
-      }
+export default {
+  name: "login",
+  data () {
+    return {
+      user: '',
+      pass: '',
+      isLogin: ''
     }
+  },
+  methods: {
+    submit: function () {
+      this.$axios.post('/xxm/login.do',{user:this.user,pass:this.pass})
+        .then(resp =>{
+          if(resp.data.length == 1){
+            this.$root.a = false
+          }
+        })
+    },
+
+  }
+}
 </script>
 
 <style scoped>

@@ -80,7 +80,14 @@ const indexController = {
             })
     },
     login(req,resp) {
-        console.log("1");
+        console.log("login");
+        console.log(req.body.user);
+        console.log(req.body.pass);
+        indexDao.login(req.body.user,req.body.pass)
+            .then(function(data){
+                console.log(data.length);
+                resp.send(data)
+            })
     }
 }
 module.exports = indexController;
