@@ -107,6 +107,10 @@ const goodsControoller = {
             .then(function(data) {
                 resp.send(data);
             })
+    },
+    // 商品详情
+    getgoodsdetail(req,resp){
+
     }
 };
 module.exports = goodsControoller;
