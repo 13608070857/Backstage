@@ -25,11 +25,9 @@ export default {
     return {
     }
   },
-  // mounted () {
-  //   console.log(1)
-  //   this.$bg('white')
-  // },
   methods: {
+  },
+  created: {
   },
   components: {
     mainNav: nav,

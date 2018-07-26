@@ -81,12 +81,17 @@ const indexController = {
     },
     login(req,resp) {
         console.log("login");
-        console.log(req.body.user);
-        console.log(req.body.pass);
+        let username = req.body.user
         indexDao.login(req.body.user,req.body.pass)
             .then(function(data){
                 console.log(data.length);
-                resp.send(data)
+                if(data.length>0) {
+                    req.session.user=username;
+                    resp.send(req.session.user)
+                    console.log(req.session.user)
+                }else {
+                    resp.send(data);
+                }
             })
     }
 }
