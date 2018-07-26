@@ -88,11 +88,17 @@ const indexController = {
                 if(data.length>0) {
                     req.session.user=username;
                     resp.send(req.session.user)
-                    console.log(req.session.user)
                 }else {
                     resp.send(data);
                 }
             })
+    },
+    jinru(req,resp) {
+        resp.send(req.session.user)
+    },
+    tuichu(req,resp) {
+        req.session.destroy();
+        resp.send(" ")
     }
 }
 module.exports = indexController;

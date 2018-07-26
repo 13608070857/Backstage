@@ -30,6 +30,7 @@ export default {
     this.$axios.get('/xxm/jinru')
       .then(resp => {
         this.$login(resp.data)
+        console.log(resp.data)
       })
   },
   components: {

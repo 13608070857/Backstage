@@ -19,6 +19,8 @@ router.get("/Newest",indexController.Newest);
 router.get("/xf",indexController.xf);
 router.get("/Obtain",indexController.Obtain);
 router.post("/login.do",indexController.login);
+router.get("/jinru",indexController.jinru);
+router.get("/tuichu",indexController.tuichu);
 
 // ============== 商品管理 ==============
 router.get("/getgoodsmsg.do",goodsController.getallgoods);
