@@ -1,11 +1,11 @@
 const forumDao = require("../dao/forumDao");
 let dataInfo;
 
-const userController = {
+const forumController = {
     getForumInfo(req,resp) {
         forumDao.getAllForum().then(function(data) {
             let getAllData = data;
-            // console.log(data);
+            console.log(data);
             forumDao.getForum().then(function(data) {
             	let getData = data;
             	dataInfo = {
@@ -134,4 +134,4 @@ const userController = {
     }
 
 }
-module.exports = userController;
+module.exports = forumController;
