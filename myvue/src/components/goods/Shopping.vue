@@ -1,3 +1,18 @@
+<template>
+  <div id="test">
+    <!-- 引用表单信息标题的组件 -->
+    <tableInfo :tableInfo="tableInfo"></tableInfo>
+    <!--引用表格的组件
+          tableTitles：表标题
+          router：node路由地址
+          operationBtns：操作按钮
+          searchBtns：搜索和新增按钮
+          formElement：表单元素（input和select）
+     -->
+    <appTable :tableTitles="tableTitles" :router="router" :operationBtns="operationBtns" :searchBtns="searchBtns" :formElement="formElement" :popTitles="popTitles"></appTable>
+  </div>
+</template>
+
 <script>
 import appTable from '../tableComponents/table'
   import tableInfo from '../tableComponents/tableInfo'
@@ -6,7 +21,7 @@ export default {
   data () {
     return {
       // 表单信息标题
-      tableInfo: '商品收藏管理',
+      tableInfo: '购物车管理',
       // 表标题
       tableTitles: ['ID', '商品ID', '商品数量', '单价', '总价'],
       // 弹出层标题

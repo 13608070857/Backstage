@@ -15,6 +15,7 @@ import LeaseTransfer from '../components/LeaseTransfer/LeaseTransfer'
 import grade from '../components/user/Grade'
 import staff from '../components/user/staff'
 import collection from '../components/user/Collection'
+import shopping from '../components/goods/Shopping'
 // import login from '../components/index/login'
 import forumInfo from '../components/forum/forumInfo'
 import forumRep from '../components/forum/forumRep'
@@ -111,6 +112,11 @@ export default new Router({
       path: '/staff',
       name: 'staff',
       component: staff
+    },
+    {
+      path: '/shopping',
+      name: 'shopping',
+      component: shopping
     }
   ],
   mode: 'history'

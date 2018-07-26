@@ -216,6 +216,23 @@ const goodsControoller = {
     // 商品详情
     getdetailmodify(req,resp){
 
+    },
+    // 购物车
+    shopping(req,resp){
+        console.log(1);
+        goodsDao.shopping2()
+            .then(function (data) {
+                let getAllData = data;
+                console.log(data);
+                goodsDao.shopping().then(function(data) {
+                    let getData = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData
+                    };
+                    resp.send(dataInfo);
+                })
+            })
     }
 };
 module.exports = goodsControoller;

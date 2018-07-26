@@ -28,6 +28,33 @@ const goodsDao = {
                 })
         })
     },
+    //查询购物车
+    shopping(req,resp){
+        return new Promise((resolve, reject) => {
+            console.log(2);
+            db.connect("SELECT shop_ID,goods_ID,goodsNum,toal,total_of FROM shop_cart",
+                [], (err, data) => {
+                    if (!err) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    shopping2(req,resp){
+        console.log(3);
+        return new Promise((resolve, reject) => {
+            db.connect("SELECT * FROM shop_cart",
+                [], (err, data) => {
+                    if (!err) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
     // 商品分类
     goodscate(req,resp){
         return new Promise(function (resolve,reject) {

@@ -51,6 +51,7 @@ router.get("/goodsmodify.do",goodsController.getgoodsmodify);
 router.get("/catemodify.do",goodsController.getcatemodify);
 router.get("/commodify.do",goodsController.getcommodify);
 router.get("/detailmodify.do",goodsController.getdetailmodify);
+router.get("/shopping",goodsController.shopping);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);
