@@ -68,14 +68,14 @@ export default {
             },
             {
               name: '用户商品收藏',
-              to: '/'
+              to: '/collection'
             }
           ]
         },
         {
           name: '员工管理',
           isShow: false,
-          to: '/',
+          to: '/staff',
           background: 'rgba(40,40,40,0.8)',
           num: 0,
           namearr: [
@@ -144,11 +144,11 @@ export default {
           namearr: [
             {
               name: '论坛信息',
-              to: '/'
+              to: '/forumInfo'
             },
             {
               name: '评论管理',
-              to: '/'
+              to: '/forumRep'
             }
           ]
         },
