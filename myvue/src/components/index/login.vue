@@ -9,27 +9,27 @@
   </div>
 </template>
 <script>
-    export default {
-        name: "login",
-      data () {
-          return{
-            user: '',
-            pass: '',
-            isLogin: ''
-          }
-      },
-      methods: {
-          submit: function () {
-            this.$axios.post('/xxm/login.do',{user:this.user,pass:this.pass})
-              .then(resp =>{
-                if(resp.data.length == 1){
-                  this.$root.a = false
-                }
-              })
-          },
-
-      }
+export default {
+  name: "login",
+  data () {
+    return {
+      user: '',
+      pass: '',
+      isLogin: ''
     }
+  },
+  methods: {
+    submit: function () {
+      this.$axios.post('/xxm/login.do',{user:this.user,pass:this.pass})
+        .then(resp =>{
+          if(resp.data.length == 1){
+            this.$root.a = false
+          }
+        })
+    },
+
+  }
+}
 </script>
 
 <style scoped>
