@@ -179,7 +179,8 @@ export default {
               }
             }
           }
-          this.tableContents = newArr
+          // newArr = Array.from(new Set(newArr))
+          this.tableContents = Array.from(new Set(newArr))
         })
       }
     },
