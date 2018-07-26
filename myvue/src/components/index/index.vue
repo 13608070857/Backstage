@@ -144,16 +144,16 @@ export default {
       window.onresize = line.resize
       this.$axios.get('/xxm/Obtain')
         .then(resp => {
-          for(let i in resp.data[0][0]){
+          for (let i in resp.data[0][0]) {
             this.data.data1.push(resp.data[0][0][i])
           }
-          for(let i in resp.data[1][0]){
+          for (let i in resp.data[1][0]) {
             this.data.data2.push(resp.data[1][0][i])
           }
-          for(let i in resp.data[2][0]){
+          for (let i in resp.data[2][0]) {
             this.data.data3.push(resp.data[2][0][i])
           }
-          for(let i in resp.data[3][0]){
+          for (let i in resp.data[3][0]) {
             this.data.data4.push(resp.data[3][0][i])
           }
           line.setOption({

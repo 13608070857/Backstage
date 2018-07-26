@@ -19,6 +19,8 @@ router.get("/Newest",indexController.Newest);
 router.get("/xf",indexController.xf);
 router.get("/Obtain",indexController.Obtain);
 router.post("/login.do",indexController.login);
+router.get("/jinru",indexController.jinru);
+router.get("/tuichu",indexController.tuichu);
 
 // ============== 商品管理 ==============
 router.get("/getgoodsmsg.do",goodsController.getallgoods);
@@ -31,6 +33,9 @@ router.get("/oncatestatus.do",goodsController.getoncatestatus);
 router.get("/uncatestatus.do",goodsController.getuncatestatus);
 router.get("/delcate.do",goodsController.getdelcate);
 router.get("/delcom.do",goodsController.getdelcom);
+router.get("/getgoodsdetail.do",goodsController.getgoodsdetail);
+router.get("/detaildelete.do",goodsController.getdetaildelete);
+router.get("/addgoodsinfo.do",goodsController.getaddgoodsinfo);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);

@@ -21,7 +21,7 @@
           <div class="kuai" style="background: #e0ff15" @click="$bg('#e0ff15')"></div>
         </div>
       </span>
-      <span>管理员</span>
+      <span @click="tuichu()">管理员</span>
     </div>
 
   </div>
@@ -35,6 +35,12 @@ export default {
     }
   },
   methods: {
+    tuichu: function () {
+      this.$axios.get('/xxm/tuichu')
+        .then(resp => {
+          this.$login(resp.data)
+        })
+    }
   }
 }
 

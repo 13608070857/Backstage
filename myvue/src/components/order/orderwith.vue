@@ -23,7 +23,7 @@ export default {
       // 表单信息标题
       tableInfo: '订单处理',
       // 表标题
-      tableTitles: ['订单ID', '用户ID', '商品名称', '商品图片', '商品价格', '商品数量','交易时间', '状态'],
+      tableTitles: ['订单ID', '用户ID', '商品名称', '商品图片', '商品价格', '商品数量', '商品类别','交易时间', '状态'],
       // 弹出层标题
       popTitles: {
         'o_ID': '订单ID',
@@ -32,6 +32,7 @@ export default {
         'goodsImg': '商品图片',
         'goodsPrice': '商品价格',
         'goodsNum': '商品数量',
+        'cateName': '商品类别',
         'createTime': '交易时间',
         'orderStatus': '状态',
       },

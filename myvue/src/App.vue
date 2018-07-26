@@ -25,11 +25,13 @@ export default {
     return {
     }
   },
-  // mounted () {
-  //   console.log(1)
-  //   this.$bg('white')
-  // },
-  methods: {
+  methods: { },
+  created () {
+    this.$axios.get('/xxm/jinru')
+      .then(resp => {
+        this.$login(resp.data)
+        console.log(resp.data)
+      })
   },
   components: {
     mainNav: nav,

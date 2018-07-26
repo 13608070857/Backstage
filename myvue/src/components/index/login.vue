@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  name: "login",
+  name: 'login',
   data () {
     return {
       user: '',
@@ -20,13 +20,15 @@ export default {
   },
   methods: {
     submit: function () {
-      this.$axios.post('/xxm/login.do',{user:this.user,pass:this.pass})
-        .then(resp =>{
-          if(resp.data.length == 1){
-            this.$root.a = false
+      this.$axios.post('/xxm/login.do', {user: this.user, pass: this.pass})
+        .then(resp => {
+          if (typeof resp.data === typeof 1) {
+            this.$login(resp.data)
+          } else {
+            console.log(resp.data)
           }
         })
-    },
+    }
 
   }
 }
@@ -35,7 +37,6 @@ export default {
 <style scoped>
   #login{
     position: fixed;
-    /*padding:70px 70px;*/
     background:rgba(255,255,255,.85);
     width: 100%;
     height: 100%;
