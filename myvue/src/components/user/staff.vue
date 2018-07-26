@@ -17,7 +17,7 @@
 import appTable from '../tableComponents/table.vue'
 import tableInfo from '../tableComponents/tableInfo'
 export default {
-  name: 'grade',
+  name: 'staff',
   data () {
     return {
       // 表单信息标题
@@ -32,7 +32,7 @@ export default {
         'state': '状态'
       },
       // node路由地址
-      router: '/grade.do',
+      router: '/staff.do',
       // 表格按钮 text：按钮内容 className：按钮类
       // fn:表示要调用增删改查的函数
       //      其中fnName是函数名字
@@ -48,12 +48,12 @@ export default {
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
         {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-        {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: 'grademodify'}},
-        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: 'gradedelete'}}
+        {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: '/staffmodify'}},
+        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: 'staffdelete'}}
       ],
       searchBtns: [
         {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
-        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addgrade'}}
+        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addstaff'}}
       ],
       // 表单元素信息，isInput：是否是input元素，如果是select就写false
       // content：是传送的内容

@@ -6,13 +6,27 @@ const indexController = require("../controller/indexController");
 const orderController = require("../controller/orderController");
 const goodsController = require("../controller/goodsController");
 const leaseController = require("../controller/leaseController");
+const forumController = require("../controller/forumController");
 
 
 router.get("/getUserInfo.do",userController.getUserInfo);
-router.get("/grade.do",userController.grade);
 router.get("/deleteInfo.do",userController.deleteInfo);
 router.get("/addUserInfo.do",userController.addUserInfo);
 router.get("/modifyInfo.do",userController.modifyInfo);
+router.get("/grade.do",userController.grade);
+router.get("/grademodify",userController.grademodify);
+router.get("/gradedelete",userController.gradedelete);
+router.get("/addgrade",userController.addgrade);
+
+router.get("/collection",userController.collection);
+router.get("/collectionmodify",userController.collectionmodify);
+router.get("/collectiondelete",userController.collectiondelete);
+router.get("/addcollection",userController.addcollection);
+
+router.get("/staff.do",userController.staff);
+router.get("/staffmodify",userController.staffmodify);
+router.get("/staffdelete",userController.staffdelete);
+router.get("/addstaff",userController.addstaff);
 
 router.get("/index",indexController.index);
 router.get("/Newest",indexController.Newest);
@@ -61,5 +75,18 @@ router.get("/unpay.do",orderController.getunpay);
 
 // ================ 租赁管理 =============
 router.get("/leaseTransfer.do",leaseController.leaseTransfer);
+
+// ================ 论坛管理 =============
+router.get("/getForumInfo.do",forumController.getForumInfo);
+router.get("/extract.do",forumController.extract);
+router.get("/setTop.do",forumController.setTop);
+router.get("/modifyForum.do",forumController.modifyForum);
+router.get("/deleteForum.do",forumController.deleteForum);
+router.get("/addForum.do",forumController.addForum);
+
+router.get("/getForumRep.do",forumController.getForumRep);
+router.get("/modifyRep.do",forumController.modifyRep);
+router.get("/deleteRep.do",forumController.deleteRep);
+router.get("/addRep.do",forumController.addRep);
 
 module.exports = router;
