@@ -29,6 +29,13 @@ const userDao = {
             })
         })
     },
+    modifyUserInfo(sql, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
+    },
     grade(req, resp) {
         return new Promise((resolve, reject) => {
             db.connect("SELECT * FROM grade",

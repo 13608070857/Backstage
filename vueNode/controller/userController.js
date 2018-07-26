@@ -5,7 +5,7 @@ const userController = {
     getUserInfo(req,resp) {
         userDao.getAllUser().then(function(data) {
             let getAllData = data;
-            console.log(data);
+            // console.log(data);
             userDao.getUser().then(function(data) {
             	let getData = data;
             	dataInfo = {
@@ -26,12 +26,14 @@ const userController = {
     },
     addUserInfo(req,resp) {
     	var popObj = JSON.parse(req.query.popObj);
+    	var insert = popObj.insert;
     	var val = ''
     	var sql = '';
     	var wh = '';
+    	console.log(insert)
     	var addArr = [];
-    	for(var key in popObj) {
-    		addArr.push(popObj[key].trim());
+    	for(var key in insert) {
+    		addArr.push(insert[key].trim());
     		val += key + ',' ;
     		wh +='?,'
     	}
@@ -39,6 +41,26 @@ const userController = {
     	wh = wh.substr(0,wh.length-1)
     	sql = 'insert into users (' + val + ') values (' + wh + ')';
     	userDao.addUserInfo(sql,addArr).then(function(data) {
+    		resp.send(data);
+    	})
+    },
+    modifyInfo(req,resp) {
+    	var popObj = JSON.parse(req.query.popObj);
+    	var dataIndex = req.query.dataIndex;
+    	var modify = popObj.modify;
+    	var val = ''
+    	var sql = '';
+    	var wh = '';
+    	var addArr = [];
+    	console.log(modify)
+    	for(var key in modify) {
+    		addArr.push(modify[key]);
+    		val += key + '=?,'
+    	}
+    	addArr.push(dataIndex);
+    	val = val.substr(0,val.length-1);
+    	sql = 'update users set ' + val + ' where u_id=?';
+    	userDao.modifyUserInfo(sql,addArr).then(function(data) {
     		resp.send(data);
     	})
     },
