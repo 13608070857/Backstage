@@ -1,9 +1,20 @@
 <template>
   <div id="app">
+<<<<<<< HEAD
+    <div class="login" v-if="false">
+=======
+<<<<<<< HEAD
     <div class="login" v-if="false">
       <login> </login>
     </div>
+     <div class="index" v-else>
+=======
+    <div class="login" v-if="$root.a">
+>>>>>>> 092a181a12e01d3a8230e7cf562d186cfaa663a0
+      <login> </login>
+    </div>
     <div class="index" v-else>
+>>>>>>> 748e592b42498d117cd117b342cca71b68936d64
       <myheader class="header"> </myheader>
       <mainNav class="Nav"> </mainNav>
       <div id="myindex" :style="{background: this.$bg}">
