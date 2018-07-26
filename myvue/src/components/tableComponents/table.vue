@@ -23,7 +23,10 @@
       <tbody>
         <tr class="showCont" v-for="(tableContent,index) in tableContents" :key="index">
           <td v-for="(tableC,i) in tableContent" :key="i">
-            <div v-if="!/img/.test(tableC)">{{tableC}}</div>
+            <div v-if="!/img/.test(tableC)">
+              <div v-if="/[dD]es/.test(i)" class="overText">{{tableC}}</div>
+              <div v-else>{{tableC}}</div>
+            </div>
             <div v-else>
               <img :src="'/api/'+tableC" alt="">
             </div>
@@ -158,6 +161,7 @@ export default {
       this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].text,this.operationBtns[index].fn.fnArg)
     },
     getInfo() {
+      console.log(this.router)
       this.$axios.get('/api' + this.router).then(resp => {
         this.tableContents = resp.data.getData
         this.tableData = resp.data.getData
@@ -185,13 +189,12 @@ export default {
         }
 
         // 默认图片
-        let popObjImg = ''
         for(var key in this.popContents[0]) {
           if(/[iI]mg/.test(key)) {
-            popObjImg = key
+            this.popObj[key] = 'img/index/N1.jpg'
           }
         }
-        this.popObj[popObjImg] = 'img/index/N1.jpg'
+        
       })
     },
     queryParam (btnText,arg) {
@@ -323,7 +326,11 @@ td,th {
   border-radius: 0 2px 2px 0;
   margin-left: -5px;
 }
-
+.overText {
+  overflow: hidden;
+  width: 200px;
+  padding: 0 20px;
+}
 input[type='text'],select {
   border: 1px solid rgba(0, 150, 136, 1);
   padding: 10px 5px;

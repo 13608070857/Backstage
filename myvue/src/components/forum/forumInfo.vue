@@ -23,7 +23,7 @@ export default {
       // 表单信息标题
       tableInfo: '论坛管理',
       // 表标题
-      tableTitles: ['帖子id','帖子标题', '帖子图片', '帖子描述', '帖子类别','发帖时间','帖子状态'],
+      tableTitles: ['帖子id','帖子标题', '帖子图片', '帖子类别','发帖时间','帖子状态'],
       // 弹出层标题
       popTitles: {
         // 'postId':  '用户id',

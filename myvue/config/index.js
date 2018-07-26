@@ -13,17 +13,21 @@ module.exports = {
     proxyTable: {
       '/api': {
 <<<<<<< HEAD
-        target: 'http://172.16.8.28:8888',
+        target: 'http://172.16.8.40:8888',
 =======
-        target: 'http://172.16.8.8:8888',
->>>>>>> 748e592b42498d117cd117b342cca71b68936d64
+        target: 'http://172.16.8.28:8888',
+>>>>>>> 6d0213945966fc9f014137c1db8c24445070b580
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
         }
       },
       '/xxm': {
+<<<<<<< HEAD
+        target: 'http://172.16.8.28:8888',
+=======
         target: 'http://172.16.8.40:8888',
+>>>>>>> d7a9a2dc97aa2d17b5392e4fc8925fd9d3d82198
         changeOrigin: true,
         pathRewrite: {
           '^/xxm': ''
