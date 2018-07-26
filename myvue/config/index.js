@@ -12,14 +12,22 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
+<<<<<<< HEAD
         target: 'http://172.16.8.28:8888',
+=======
+        target: 'http://172.16.8.8:8888',
+>>>>>>> 748e592b42498d117cd117b342cca71b68936d64
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
         }
       },
       '/xxm': {
-        target: 'http://172.16.8.7:8888',
+<<<<<<< HEAD
+        target: 'http://172.16.8.40:8888',
+=======
+        target: 'http://172.16.8.8:8888',
+>>>>>>> 618ac74e69a9294214f7aade42973ea40792b06c
         changeOrigin: true,
         pathRewrite: {
           '^/xxm': ''
@@ -48,7 +56,7 @@ module.exports = {
      */
 
     // https://webpack.js.org/configuration/devtool/#development
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
 
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help

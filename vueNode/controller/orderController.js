@@ -104,11 +104,83 @@ const orderControoller = {
     },
     // 订单发货
     getonwith(req,resp){
-
+        var oid=req.query.id;
+        orderDao.onwith(oid)
+            .then(function (data) {
+                resp.send(data);
+            })
     },
     // 订单处理 删除
-    getowithdelete(){
-
+    getowithdelete(req,resp){
+        var deleteId = req.query.deleteId;
+        orderDao.owithdelete(deleteId)
+            .then(function (data) {
+                resp.send(data);
+            })
+    },
+    // 退款处理
+    getrefund(req,resp){
+        orderDao.refund()
+            .then(function (data) {
+                let getAllData = data;
+                console.log(data);
+                orderDao.refund().then(function(data) {
+                    let getData = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData
+                    };
+                    resp.send(dataInfo);
+                })
+            })
+    },
+    // 退款处理 退款
+    getonrefund(req,resp){
+        var oid=req.query.id;
+        orderDao.onrefund(oid)
+            .then(function (data) {
+                resp.send(data);
+            })
+    },
+    // 退款处理 删除
+    getrefunddelete(req,resp){
+        var deleteId = req.query.deleteId;
+        orderDao.refunddelete(deleteId)
+            .then(function (data) {
+                resp.send(data);
+            })
+    },
+    // 支付管理
+    getpaymsg(req,resp){
+        orderDao.paymsg()
+            .then(function (data) {
+                let getAllData = data;
+                console.log(data);
+                orderDao.paymsg().then(function(data) {
+                    let getData = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData
+                    };
+                    resp.send(dataInfo);
+                })
+            })
+    },
+    // 支付管理 启用
+    getonpay(req,resp){
+        var payid=req.query.id;
+        orderDao.onpay(payid)
+            .then(function (data) {
+                resp.send(data);
+            })
+    },
+    // 支付管理 禁用
+    getunpay(req,resp){
+        var payid=req.query.id;
+        orderDao.unpay(payid)
+            .then(function (data) {
+                resp.send(data);
+            })
     }
 };
 module.exports = orderControoller;

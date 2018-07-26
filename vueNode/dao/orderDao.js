@@ -375,12 +375,118 @@ const orderDao = {
         })
     },
     // 订单处理
-    ordermsg(req,resp){
+    ordermsg(){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT go.o_ID,go.u_id,g.goodsName,g.goodsImg,g.goodsPrice,(CEIL(go.o_price/total)) AS goodsNum,gc.cateName,DATE_FORMAT(go.createTime,\"%Y-%m-%d %H:%i:%S\") as createTime,CASE go.orderStatus WHEN 1 THEN '待发货' WHEN 2 THEN '已发货' WHEN 3 THEN '已收货' END AS orderStatus\n" +
+            db.connect("SELECT go.o_ID,go.u_id,g.goodsName,g.goodsImg,g.goodsPrice,(CEIL(go.o_price/total)) AS goodsNum,gc.cateName,DATE_FORMAT(go.createTime,\"%Y-%m-%d %H:%i:%S\") AS createTime,CASE go.orderStatus WHEN 1 THEN '待发货' WHEN 2 THEN '已发货' WHEN 3 THEN '已收货' END AS orderStatus\n" +
                 "FROM goodsorder go,order_goods og,goods g,goods_category gc\n" +
-                "WHERE go.u_id=og.u_id AND og.goods_ID=g.goods_ID AND g.cate_ID=gc.cate_ID",
+                "WHERE go.u_id=og.u_id AND og.goods_ID=g.goods_ID AND go.o_ID=og.o_ID AND g.cate_ID=gc.cate_ID and go.is_del=0 AND go.is_del2=0",
                 [],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    // 订单处理  发货
+    onwith(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("update goodsorder set orderStatus=2 where o_ID=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    // 订单处理 删除
+    owithdelete(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("update goodsorder set is_del=1 where o_ID=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    // 退款处理
+    refund(){
+        return new Promise(function (resolve,reject) {
+            db.connect("SELECT go.o_ID,go.u_id,g.goodsName,g.goodsImg,go.o_price,go.o_price AS o_price2,(CEIL(go.o_price/total)) AS refundNum,DATE_FORMAT(go.createTime,\"%Y-%m-%d %H:%i:%S\") AS createTime,CASE go.isClosed WHEN 1 THEN '待退款' WHEN 2 THEN '已退款' WHEN 0 THEN '正常' END AS is_Closed,IFNULL(go.order_desc,'暂无') AS order_desc\n" +
+                "FROM goodsorder go,order_goods og,goods g\n" +
+                "WHERE go.u_id=og.u_id AND og.goods_ID=g.goods_ID AND go.o_ID=og.o_ID AND go.is_del2=0 AND go.is_del=0",
+                [],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    // 退款处理 退款
+    onrefund(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("update goodsorder set isClosed=2 where o_ID=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    // 退款处理 删除
+    refunddelete(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("update goodsorder set is_del2=1 where o_ID=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    // 支付管理
+    paymsg(req,resp){
+        return new Promise(function (resolve,reject) {
+            db.connect("select pay_id,payName,if(status=1,'启用','禁用') as pay_status,DATE_FORMAT(catetime,\"%Y-%m-%d %H:%i:%S\") as catetime from payform",
+                [],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    // 支付管理 启用
+    onpay(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("update payform set status=1 where pay_id=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    // 支付管理 禁用
+    unpay(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("update payform set status=2 where pay_id=?",
+                [params],(err,data)=>{
                     if (!err){
                         resolve(data);
                     } else {

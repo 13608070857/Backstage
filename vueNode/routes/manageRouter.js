@@ -19,6 +19,8 @@ router.get("/Newest",indexController.Newest);
 router.get("/xf",indexController.xf);
 router.get("/Obtain",indexController.Obtain);
 router.post("/login.do",indexController.login);
+router.get("/jinru",indexController.jinru);
+router.get("/tuichu",indexController.tuichu);
 
 // ============== 商品管理 ==============
 router.get("/getgoodsmsg.do",goodsController.getallgoods);
@@ -31,6 +33,9 @@ router.get("/oncatestatus.do",goodsController.getoncatestatus);
 router.get("/uncatestatus.do",goodsController.getuncatestatus);
 router.get("/delcate.do",goodsController.getdelcate);
 router.get("/delcom.do",goodsController.getdelcom);
+router.get("/getgoodsdetail.do",goodsController.getgoodsdetail);
+router.get("/detaildelete.do",goodsController.getdetaildelete);
+router.get("/addgoodsinfo.do",goodsController.getaddgoodsinfo);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);
@@ -47,6 +52,12 @@ router.get("/orderispay3.do",orderController.orderispay3);
 router.get("/getordermsg.do",orderController.getordermsg);
 router.get("/onwith.do",orderController.getonwith);
 router.get("/owithdelete.do",orderController.getowithdelete);
+router.get("/getrefund.do",orderController.getrefund);
+router.get("/onrefund.do",orderController.getonrefund);
+router.get("/refunddelete.do",orderController.getrefunddelete);
+router.get("/getpaymsg.do",orderController.getpaymsg);
+router.get("/onpay.do",orderController.getonpay);
+router.get("/unpay.do",orderController.getunpay);
 
 // ================ 租赁管理 =============
 router.get("/leaseTransfer.do",leaseController.leaseTransfer);

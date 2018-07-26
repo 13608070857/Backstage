@@ -5,7 +5,7 @@ const userController = {
     getUserInfo(req,resp) {
         userDao.getAllUser().then(function(data) {
             let getAllData = data;
-            console.log(data);
+            // console.log(data);
             userDao.getUser().then(function(data) {
             	let getData = data;
             	dataInfo = {
@@ -30,6 +30,7 @@ const userController = {
     	var val = ''
     	var sql = '';
     	var wh = '';
+    	console.log(insert)
     	var addArr = [];
     	for(var key in insert) {
     		addArr.push(insert[key].trim());

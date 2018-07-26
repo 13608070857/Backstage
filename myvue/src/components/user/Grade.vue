@@ -17,59 +17,59 @@
 import appTable from '../tableComponents/table.vue'
 import tableInfo from '../tableComponents/tableInfo'
 export default {
-    name: 'grade',
-    data () {
-      return {
-        // 表单信息标题
-        tableInfo: '用户等级管理',
-        // 表标题
-        tableTitles: ['等级id', '等级名称', '分数','状态'],
-        // 弹出层标题
-        popTitles: {
-          'Grade_ID':  '等级id',
-          'Grade_name': '等级名称',
-          'Growth_value': '分数',
-        },
-        // node路由地址
-        router: '/grade.do',
-        // 表格按钮 text：按钮内容 className：按钮类
-        // fn:表示要调用增删改查的函数
-        //      其中fnName是函数名字
-        //        查看 -- view
-        //        修改 -- modify
-        //        删除 -- delete
-        //        新增 -- insert
-        //        查询 -- query
-        //        上/下架/发货/退款/加精/置顶/启动/禁用 -- status
-        //      其中fnArg为参数（要连接的后台路由地址），没有参数（查看和查询按钮）就直接写fnArg: ''
-        // 其中small，large表示按钮大小，lightGreen（浅绿），darkGreen（深绿），gray（下架）表示按钮颜色
-        // operationBtns是表格操作部分的按钮是（使用小按钮small类）
-        // searchBtns是查询部分的按钮（使用大按钮large类）
-        operationBtns: [
-          {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-          {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: 'ss'}},
-          {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
-        ],
-        searchBtns: [
-          {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
-          {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addUserInfo.do'}}
-        ],
-        // 表单元素信息，isInput：是否是input元素，如果是select就写false
-        // content：是传送的内容
-        // 如果是input就是描述文字
-        // 如果是select就写一个对象，传你的value值
-        formElement: {
-          isInput: true,
-          contents: '请输入等级名称' // --input传值
-          // contents: ['新品', '优惠', '其他值']
-        }
+  name: 'grade',
+  data () {
+    return {
+      // 表单信息标题
+      tableInfo: '用户等级管理',
+      // 表标题
+      tableTitles: ['等级id', '等级名称', '分数', '状态'],
+      // 弹出层标题
+      popTitles: {
+        'Grade_ID':  '等级id',
+        'Grade_name': '等级名称',
+        'Growth_value': '分数'
+      },
+      // node路由地址
+      router: '/grade.do',
+      // 表格按钮 text：按钮内容 className：按钮类
+      // fn:表示要调用增删改查的函数
+      //      其中fnName是函数名字
+      //        查看 -- view
+      //        修改 -- modify
+      //        删除 -- delete
+      //        新增 -- insert
+      //        查询 -- query
+      //        上/下架/发货/退款/加精/置顶/启动/禁用 -- status
+      //      其中fnArg为参数（要连接的后台路由地址），没有参数（查看和查询按钮）就直接写fnArg: ''
+      // 其中small，large表示按钮大小，lightGreen（浅绿），darkGreen（深绿），gray（下架）表示按钮颜色
+      // operationBtns是表格操作部分的按钮是（使用小按钮small类）
+      // searchBtns是查询部分的按钮（使用大按钮large类）
+      operationBtns: [
+        {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
+        {text: '修改', className: 'small lightGreen', fn: {fnName: 'hello', fnArg: 'ss'}},
+        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
+      ],
+      searchBtns: [
+        {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
+        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addUserInfo.do'}}
+      ],
+      // 表单元素信息，isInput：是否是input元素，如果是select就写false
+      // content：是传送的内容
+      // 如果是input就是描述文字
+      // 如果是select就写一个对象，传你的value值
+      formElement: {
+        isInput: true,
+        contents: '请输入等级名称' // --input传值
+        // contents: ['新品', '优惠', '其他值']
       }
-    },
-    components: {
-      appTable,
-      tableInfo
     }
+  },
+  components: {
+    appTable,
+    tableInfo
   }
+}
 </script>
 
 <style>
