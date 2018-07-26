@@ -31,6 +31,8 @@ router.get("/oncatestatus.do",goodsController.getoncatestatus);
 router.get("/uncatestatus.do",goodsController.getuncatestatus);
 router.get("/delcate.do",goodsController.getdelcate);
 router.get("/delcom.do",goodsController.getdelcom);
+router.get("/getgoodsdetail.do",goodsController.getgoodsdetail);
+router.get("/detaildelete.do",goodsController.getdetaildelete);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);

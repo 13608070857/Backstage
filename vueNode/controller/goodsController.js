@@ -107,6 +107,30 @@ const goodsControoller = {
             .then(function(data) {
                 resp.send(data);
             })
+    },
+    // 商品详情
+    getgoodsdetail(req,resp){
+        goodsDao.goodsdetail2()
+            .then(function (data) {
+                let getAllData = data;
+                console.log(data);
+                goodsDao.goodsdetail().then(function(data) {
+                    let getData = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData
+                    };
+                    resp.send(dataInfo);
+                })
+            })
+    },
+    // 商品详情 删除
+    getdetaildelete(req,resp){
+        var deleteId = req.query.deleteId;
+        goodsDao.detaildelete(deleteId)
+            .then(function (data) {
+                resp.send(data)
+            })
     }
 };
 module.exports = goodsControoller;
