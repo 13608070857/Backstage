@@ -33,6 +33,7 @@ router.get("/delcate.do",goodsController.getdelcate);
 router.get("/delcom.do",goodsController.getdelcom);
 router.get("/getgoodsdetail.do",goodsController.getgoodsdetail);
 router.get("/detaildelete.do",goodsController.getdetaildelete);
+router.get("/addgoodsinfo.do",goodsController.getaddgoodsinfo);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);

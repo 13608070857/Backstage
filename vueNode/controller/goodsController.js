@@ -131,6 +131,13 @@ const goodsControoller = {
             .then(function (data) {
                 resp.send(data)
             })
+    },
+    // 新增商品
+    getaddgoodsinfo(req,resp){
+        goodsDao.addgoodsinfo()
+            .then(function (data) {
+                resp.send(data)
+            })
     }
 };
 module.exports = goodsControoller;
