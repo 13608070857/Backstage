@@ -51,7 +51,7 @@ export default {
       operationBtns: [
         {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
         {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: 'ss'}},
-        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/goodsdelete.do'}}
+        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/detaildelete.do'}}
       ],
       searchBtns: [
         {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},

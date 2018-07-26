@@ -141,6 +141,44 @@ const goodsDao = {
                     }
                 })
         })
+    },
+    // 商品详情
+    goodsdetail(req,resp){
+        return new Promise(function (resolve,reject) {
+            db.connect("SELECT gd.detailId,g.goods_ID,g.goodsName,gd.descTitle,(CASE WHEN LENGTH(gd.descText)>10 THEN CONCAT(SUBSTRING(gd.descText,1,10),'...') ELSE gd.descText END) AS descText,gd.detailImg FROM goods g,goods_details gd WHERE g.goods_ID=gd.goods_ID",
+                [],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    goodsdetail2(req,resp){
+        return new Promise(function (resolve,reject) {
+            db.connect("SELECT gd.detailId,g.goods_ID,g.goodsName,gd.descTitle,gd.descText,gd.detailImg FROM goods g,goods_details gd WHERE g.goods_ID=gd.goods_ID\n",
+                [],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    //商品详情 删除
+    detaildelete(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("delete from goods_details where detailId=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
     }
 };
 module.exports = goodsDao;
