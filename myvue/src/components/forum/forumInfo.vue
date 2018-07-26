@@ -23,7 +23,7 @@ export default {
       // 表单信息标题
       tableInfo: '论坛管理',
       // 表标题
-      tableTitles: ['帖子id','帖子标题', '帖子图片', '帖子描述', '帖子类别','发帖时间','帖子状态'],
+      tableTitles: ['帖子id','帖子标题', '帖子图片', '帖子类别','发帖时间','帖子状态'],
       // 弹出层标题
       popTitles: {
         // 'postId':  '用户id',
@@ -74,7 +74,7 @@ export default {
       // 如果是select就写一个对象，传你的value值
       formElement: {
         isInput: true,
-        contents: '请输入帖子名称' // --input传值
+        contents: '请输入类别名称' // --input传值
         // contents: ['新品', '优惠', '其他值']
       }
     }

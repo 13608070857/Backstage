@@ -93,10 +93,10 @@ const userController = {
         });
 	},
 	staff(req,resp) {
-        userDao.collectionx().then(function(data) {
+        userDao.staffx().then(function(data) {
             let getAllData = data;
             console.log(data);
-            userDao.collection().then(function(data) {
+            userDao.staff().then(function(data) {
                 let getData = data;
                 dataInfo = {
                     getAllData: getAllData,
@@ -113,7 +113,25 @@ const userController = {
         console.log(1);
     },
     addgrade(req,resp) {
-        console.log(1);
+    	var popObj = JSON.parse(req.query.popObj);
+        var insert = popObj.insert;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        console.log('insert')
+        console.log(insert)
+        var addArr = [];
+        for(var key in insert) {
+            addArr.push(insert[key].trim());
+            val += key + ',' ;
+            wh +='?,'
+        }
+        val = val.substr(0,val.length-1);
+        wh = wh.substr(0,wh.length-1)
+        sql = 'insert into users (' + val + ') values (' + wh + ')';
+        userDao.addUserInfo(sql,addArr).then(function(data) {
+            resp.send(data);
+        })
     },
 	collectionmodify(req,resp) {
         console.log(1);

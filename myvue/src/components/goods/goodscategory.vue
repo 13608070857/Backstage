@@ -14,8 +14,8 @@
 </template>
 
 <script>
-  import appTable from '../tableComponents/table'
-  import tableInfo from '../tableComponents/tableInfo'
+import appTable from '../tableComponents/table'
+import tableInfo from '../tableComponents/tableInfo'
 export default {
   name: 'goodscategory',
   data () {

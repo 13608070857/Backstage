@@ -84,6 +84,30 @@ const userDao = {
                 })
         })
     },
+    staffx(req, resp) {
+        return new Promise((resolve, reject) => {
+            db.connect("SELECT * FROM workuser",
+                [], (err, data) => {
+                    if (!err) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    staff(req, resp) {
+        return new Promise((resolve, reject) => {
+            db.connect("SELECT ID,name,A_number FROM workuser",
+                [], (err, data) => {
+                    if (!err) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
 
 }
 module.exports = userDao;

@@ -17,7 +17,7 @@ const goodsDao = {
     },
     goodsmsg2(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT g.goods_ID,gc.cateName,g.goodsName,g.goodsImg,g.goodsPrice,g.is_shelves,g.is_hot,g.is_recom,g.is_new,g.is_sales,g.salesTime,g.inventory\n" +
+            db.connect("SELECT g.goods_ID,gc.cateName AS cate_ID,g.goodsName,g.goodsImg,g.goodsPrice,g.is_shelves,g.is_hot,g.is_recom,g.is_new,g.is_sales,g.salesTime,g.inventory,IF(g.goodsStatus=1,'已上架','已下架') AS goodsStatus " +
                 "FROM goods g,goods_category gc WHERE g.cate_ID=gc.cate_ID AND g.inventory>-1 and g.is_delete=0",
                 [],(err,data)=>{
                     if (!err){
@@ -181,17 +181,11 @@ const goodsDao = {
         })
     },
     // 新增商品
-    addgoodsinfo(params){
-        return new Promise(function (resolve,reject) {
-            db.connect("INSERT INTO goods(cate_ID,goodsSn,goodsName,goodsImg,goodsPrice,is_shelves,is_hot,is_recom,is_new,is_sales,salesTime,inventory,goodsStatus,createTime)\n" +
-                "VALUE(?,CONCAT('234',DATE_FORMAT(NOW(),\"%Y%m%d%H%i%S\")),?,CONCAT('img/goods/','jUwLmpwZw_171.jpg'),?,?,?,?,?,?,?,?,'1',NOW())\n",
-                [params],(err,data)=>{
-                    if (!err){
-                        resolve(data);
-                    } else {
-                        reject(data);
-                    }
-                })
+    addgoodsinfo(sql, ...args){
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
         })
     }
 };
