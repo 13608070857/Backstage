@@ -91,6 +91,47 @@ const userController = {
                 resp.send(dataInfo);
             })
         });
-	}
+	},
+	staff(req,resp) {
+        userDao.collectionx().then(function(data) {
+            let getAllData = data;
+            console.log(data);
+            userDao.collection().then(function(data) {
+                let getData = data;
+                dataInfo = {
+                    getAllData: getAllData,
+                    getData: getData
+                };
+                resp.send(dataInfo);
+            })
+        });
+	},
+    grademodify(req,resp) {
+        console.log(1);
+    },
+    gradedelete(req,resp) {
+        console.log(1);
+    },
+    addgrade(req,resp) {
+        console.log(1);
+    },
+	collectionmodify(req,resp) {
+        console.log(1);
+    },
+    collectiondelete(req,resp) {
+        console.log(1);
+    },
+    addcollection(req,resp) {
+        console.log(1);
+    },
+    staffmodify(req,resp) {
+        console.log(1);
+    },
+    staffdelete(req,resp) {
+        console.log(1);
+    },
+    addstaff(req,resp) {
+        console.log(1);
+    }
 }
 module.exports = userController;

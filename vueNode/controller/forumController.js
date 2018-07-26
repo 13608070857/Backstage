@@ -67,7 +67,7 @@ const userController = {
     extract (req,resp) {
         console.log(1)
     },
-    setTop (req.resp) {
+    setTop (req,resp) {
         console.log(1)
     },
     getForumRep(req,resp) {

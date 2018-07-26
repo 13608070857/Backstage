@@ -13,6 +13,7 @@ import goodscoomments from '../components/goods/goodscoomments'
 import goodsdetail from '../components/goods/goodsdetail'
 import LeaseTransfer from '../components/LeaseTransfer/LeaseTransfer'
 import grade from '../components/user/Grade'
+import staff from '../components/user/staff'
 import collection from '../components/user/Collection'
 // import login from '../components/index/login'
 import forumInfo from '../components/forum/forumInfo'
@@ -92,11 +93,11 @@ export default new Router({
       component: grade
     },
     {
-<<<<<<< HEAD
       path: '/collection',
       name: 'collection',
       component: collection
-=======
+    },
+    {
       path: '/forumInfo',
       name: 'forumInfo',
       component: forumInfo
@@ -105,7 +106,11 @@ export default new Router({
       path: '/forumRep',
       name: 'forumRep',
       component: forumRep
->>>>>>> 20c1bb3dc843de7a3ab7fae8915cf1cee573784a
+    },
+    {
+      path: '/staff',
+      name: 'staff',
+      component: staff
     }
   ],
   mode: 'history'
