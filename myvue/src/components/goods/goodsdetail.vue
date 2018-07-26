@@ -28,7 +28,6 @@ export default {
       popTitles: {
         'detailId': 'ID',
         'goods_ID': '商品ID',
-        'goodsName': '商品名称',
         'descTitle': '详情标题',
         'descText': '详情内容',
         'detailImg': '详情图片'

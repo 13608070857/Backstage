@@ -204,7 +204,24 @@ const goodsControoller = {
     },
     // 商品分类 新增
     getaddcate(req,resp){
-
+        var popObj = JSON.parse(req.query.popObj);
+        var insert = popObj.insert;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        for(var key in insert) {
+            addArr.push(insert[key]);
+            val += key + ',' ;
+            wh +='?,'
+        }
+        val = val.substr(0,val.length-1);
+        wh = wh.substr(0,wh.length-1)
+        sql = 'insert into goods_category (' + val + ') values (' + wh + ')';
+        goodsDao.addgoodsinfo(sql,addArr)
+            .then(function(data) {
+                resp.send(data);
+            })
     },
     // 商品分类 修改
     getcatemodify(req,resp){
@@ -236,17 +253,26 @@ const goodsControoller = {
                 resp.send(data);
             })
     },
-    // 商品评论 新增
-    getaddcom(req,resp){
-
-    },
-    // 商品评论 修改
-    getcommodify(req,resp){
-
-    },
     // 商品详情 新增
     getadddetail(req,resp){
-
+        var popObj = JSON.parse(req.query.popObj);
+        var insert = popObj.insert;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        for(var key in insert) {
+            addArr.push(insert[key]);
+            val += key + ',' ;
+            wh +='?,'
+        }
+        val = val.substr(0,val.length-1);
+        wh = wh.substr(0,wh.length-1)
+        sql = 'insert into goods_details (' + val + ') values (' + wh + ')';
+        goodsDao.adddetail(sql,addArr)
+            .then(function(data) {
+                resp.send(data);
+            })
     },
     // 商品详情 修改
     getdetailmodify(req,resp){

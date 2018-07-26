@@ -33,7 +33,7 @@ export default {
         'goodsName': '商品名称',
         'comType': '评论类型',
         'com_Content': '评论内容',
-        'is_recom': '评论时间',
+        'comTime': '评论时间',
       },
       // node路由地址
       router: '/getgoodcomments.do',
@@ -52,12 +52,10 @@ export default {
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
         {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-        {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: '/commodify.do'}},
         {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/delcom.do'}}
       ],
       searchBtns: [
-        {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
-        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addcom.do'}}
+        {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}}
       ],
       // 表单元素信息，isInput：是否是input元素，如果是select就写false
       // content：是传送的内容

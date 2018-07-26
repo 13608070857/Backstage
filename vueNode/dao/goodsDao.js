@@ -184,7 +184,7 @@ const goodsDao = {
     },
     goodsdetail2(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT gd.detailId,g.goods_ID,g.goodsName,gd.descTitle,gd.descText,gd.detailImg FROM goods g,goods_details gd WHERE g.goods_ID=gd.goods_ID\n",
+            db.connect("SELECT gd.detailId,gd.goods_ID,gd.descTitle,gd.descText,gd.detailImg FROM goods_details gd\n",
                 [],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -231,5 +231,14 @@ const goodsDao = {
             })
         })
     },
+    // 商品详情 新增
+    adddetail(sql, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
+    }
+
 };
 module.exports = goodsDao;
