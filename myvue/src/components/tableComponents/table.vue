@@ -18,10 +18,10 @@
     <table v-else cellpadding="0" cellspacing="0" width="100%">
       <tr class="tableTitle">
         <th v-for="(tableTitle,index) in tableTitles" :key="index">{{tableTitle}}</th>
-        <th v-if="tableContents.length>0">操作</th>
+        <th v-if="operationBtns.length>0">操作</th>
       </tr>
       <tbody>
-        <tr v-for="(tableContent,index) in tableContents" :key="index">
+        <tr class="showCont" v-for="(tableContent,index) in showContents" :key="index">
           <td v-for="(tableC,i) in tableContent" :key="i">
             <div v-if="!/img/.test(tableC)">{{tableC}}</div>
             <div v-else>
@@ -34,13 +34,18 @@
         </tr>
       </tbody>
     </table>
+    <div class="paging" v-if="totalPacing>1">
+      <button class="pacingBtn" @click="prevPacing">上一页</button>
+      <span class="blue">{{currentPacing}}</span><span>/{{totalPacing}}</span>
+      <button class="pacingBtn" @click="nextPacing">下一页</button>
+    </div>
     <div class="pop" v-if="popShow">
       <div class="popContent">
         <ul v-if="btnText=='新增'">
           <li v-for="(popC,index) in popContents[1]" :key="index">
             <span class="popTitle">{{popTitles[index]+':'}}</span>
             <div v-if="/[iI][dD]/.test(popTitles[index])">
-              <input type="text" disabled :value="tableData.length+1">
+              <input type="text" disabled :value="insertIndex">
             </div>
             <div v-else-if="!/img/.test(popC)">
               <input type="text" v-model="popObj[index]">
@@ -109,7 +114,11 @@ export default {
       btnText: '',
       viewObj: {},
       dataI: '',
-      popData: ''
+      popData: '',
+      currentPacing: 1,
+      totalPacing: 1,
+      showContents: [],
+      insertIndex: 0
     }
   },
   props: {
@@ -149,15 +158,33 @@ export default {
       this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].text,this.operationBtns[index].fn.fnArg)
     },
     getInfo() {
-      console.log(this.router)
       this.$axios.get('/api' + this.router).then(resp => {
-        // console.log(resp)
         this.tableContents = resp.data.getData
         this.tableData = resp.data.getData
         this.popContents = resp.data.getAllData
-        let count = 0
+
+        var tbL = this.tableContents[this.tableContents.length-1]
+        for(var key in tbL) {
+          if(/[iI][Dd]/.test(key)) {
+            this.insertIndex = tbL[key] + 1
+          }
+        }
+
+        // 分页
+        this.totalPacing = Math.ceil(this.tableContents.length / 5)
+        this.showContents = []
+        if(this.totalPacing > 1) {
+          for(var i=(this.currentPacing - 1)*5;i<this.currentPacing*5;i++) {
+            if(i < this.tableContents.length) {
+              this.showContents[i] = this.tableContents[i]
+            }
+          }
+        }else {
+          this.showContents = this.tableContents
+        }
+        
+        // 默认图片
         let popObjImg = ''
-        // console.log(this.popContents)
         for(var key in this.popContents[0]) {
           if(/[iI]mg/.test(key)) {
             popObjImg = key
@@ -179,8 +206,7 @@ export default {
               }
             }
           }
-          // newArr = Array.from(new Set(newArr))
-          this.tableContents = Array.from(new Set(newArr))
+          this.showContents = Array.from(new Set(newArr))
         })
       }
     },
@@ -206,12 +232,35 @@ export default {
       this.btnText = btnText
       this.operationRouter = fnArg
       this.viewObj = this.popContents[data-1]
-      // console.log(data)
     },
     statusChange (data,btnText,fnArg) {
       this.$axios.get('/api' + fnArg,{params:{id:data,status:btnText}}).then(resp => {
         this.getInfo()
       })
+    },
+    prevPacing () {
+      if(this.currentPacing <= 1) {
+        this.currentPacing = 1
+      }else {
+        this.currentPacing--
+      }
+      this.getInfo()
+      // var showCont = document.getElementsByClassName('showCont')
+      // for(var i=0;i<showCont.length;i++) {
+      //   showCont[i].style.display = 'block'
+      // }
+    },
+    nextPacing () {
+      if(this.currentPacing >= this.totalPacing) {
+        this.currentPacing = this.totalPacing
+      }else {
+        this.currentPacing++
+      }
+      this.getInfo()
+      var showCont = document.getElementsByClassName('showCont')
+      for(var i=0;i<showCont.length;i++) {
+        showCont[i].style.display = 'none'
+      }
     },
     cancel () {
       this.popShow = false
@@ -231,7 +280,6 @@ export default {
           this.popShow = false
           this.operationRouter = ''
           this.getInfo()
-          // console.log(resp)
         })
       }else {
         this.popShow = false
@@ -377,5 +425,22 @@ li {
 .noContent {
   line-height: 100px;
   text-align: center;
+}
+.paging {
+  margin: 20px 0;
+  text-align: center;
+}
+.pacingBtn {
+  color: rgba(0, 150, 136, 1);
+  border: none;
+  cursor: pointer;
+  background: #fff;
+  padding: 2px 5px;
+}
+.pacingBtn:focus {
+  outline: none;
+}
+.blue {
+  color: rgba(0, 150, 136, 1);
 }
 </style>
