@@ -168,6 +168,22 @@ const goodsControoller = {
                 console.log(addArr)
                 resp.send(data);
         })
+    },
+    // 商品信息修改
+    getgoodsmodify(req,resp){
+
+    },
+    // 商品分类修改
+    getcatemodify(req,resp){
+
+    },
+    // 商品评论 修改
+    getcommodify(req,resp){
+
+    },
+    // 商品详情
+    getdetailmodify(req,resp){
+
     }
 };
 module.exports = goodsControoller;

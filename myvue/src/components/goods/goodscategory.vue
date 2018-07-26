@@ -50,7 +50,7 @@ export default {
         {text: '上架', className: 'small lightGreen', fn: {fnName: 'status', fnArg: '/oncatestatus.do'}},
         {text: '下架', className: 'small gray', fn: {fnName: 'status', fnArg: '/uncatestatus.do'}},
         {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-        {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: 'ss'}},
+        {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: '/catemodify.do'}},
         {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/delcate.do'}}
       ],
       searchBtns: [

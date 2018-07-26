@@ -50,6 +50,10 @@ router.get("/delcom.do",goodsController.getdelcom);
 router.get("/getgoodsdetail.do",goodsController.getgoodsdetail);
 router.get("/detaildelete.do",goodsController.getdetaildelete);
 router.get("/addgoodsinfo.do",goodsController.getaddgoodsinfo);
+router.get("/goodsmodify.do",goodsController.getgoodsmodify);
+router.get("/catemodify.do",goodsController.getcatemodify);
+router.get("/commodify.do",goodsController.getcommodify);
+router.get("/detailmodify.do",goodsController.getdetailmodify);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);
