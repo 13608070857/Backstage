@@ -79,6 +79,7 @@ router.get("/unpay.do",orderController.getunpay);
 
 // ================ 租赁管理 =============
 router.get("/leaseTransfer.do",leaseController.leaseTransfer);
+router.get("/leaseModify.do",leaseController.leaseModify);
 
 // ================ 论坛管理 =============
 router.get("/getForumInfo.do",forumController.getForumInfo);
