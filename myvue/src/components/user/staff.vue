@@ -21,15 +21,15 @@ export default {
   data () {
     return {
       // 表单信息标题
-      tableInfo: '用户等级管理',
+      tableInfo: '员工管理',
       // 表标题
-      tableTitles: ['等级id', '等级名称', '分数'],
+      tableTitles: ['员工id', '员工名称', '员工账号'],
       // 弹出层标题
       popTitles: {
-        'Grade_ID':  '等级id',
-        'Grade_name': '等级名称',
-        'Growth_value': '分数',
-        'state': '状态'
+        'ID':  '员工id',
+        'name': '员工名称',
+        'A_number': '员工账号',
+        'password': '密码'
       },
       // node路由地址
       router: '/staff.do',
@@ -61,7 +61,7 @@ export default {
       // 如果是select就写一个对象，传你的value值
       formElement: {
         isInput: true,
-        contents: '请输入等级名称' // --input传值
+        contents: '请输入员工名称' // --input传值
         // contents: ['新品', '优惠', '其他值']
       }
     }

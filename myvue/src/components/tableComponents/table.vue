@@ -188,7 +188,7 @@ export default {
         }else {
           this.showContents = this.tableContents
         }
-        
+
         // 默认图片
         for(var key in this.popContents[0]) {
           if(/[iI]mg/.test(key)) {
