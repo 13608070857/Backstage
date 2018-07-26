@@ -158,6 +158,7 @@ export default {
   },
   methods: {
     dataFn (data,index) {
+      // console.log(data)
       this.fnObj[this.operationBtns[index].fn.fnName](data,this.operationBtns[index].text,this.operationBtns[index].fn.fnArg)
     },
     getInfo() {

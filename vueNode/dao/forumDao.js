@@ -10,7 +10,6 @@ const forumDao = {
     },
     getForum(params) {
         return new Promise(function (resolve, reject) {
-
             db.connect("SELECT postId,postTitle,postImg,(SELECT categoryName FROM forum_category fc WHERE fc.categoryId = p.categoryId) cName,DATE_FORMAT(postTime,\"%Y-%m-%d %H:%i:%S\"),postStatus FROM post p", [], function (error, data) {
                 resolve(data);
             });
@@ -18,7 +17,7 @@ const forumDao = {
     },
     deleteForum(params) {
         return new Promise(function (resolve, reject) {
-            db.connect("delete from users where u_id=?", [params], function (error, data) {
+            db.connect("delete from post where postId=?", [params], function (error, data) {
                 resolve(data);
             })
         })

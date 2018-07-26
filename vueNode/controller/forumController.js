@@ -5,7 +5,7 @@ const forumController = {
     getForumInfo(req,resp) {
         forumDao.getAllForum().then(function(data) {
             let getAllData = data;
-            console.log(data);
+            // console.log(data);
             forumDao.getForum().then(function(data) {
             	let getData = data;
             	dataInfo = {

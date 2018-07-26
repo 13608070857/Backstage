@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     fn (event) {
-      var data = event.target.parentNode.parentNode.childNodes[0].childNodes[0].innerHTML
+      var data = event.target.parentNode.parentNode.childNodes[0].childNodes[0].childNodes[0].innerHTML
       this.$emit('fn',Number(data),this.dataIndex)
     }
   }
