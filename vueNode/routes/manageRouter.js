@@ -87,13 +87,9 @@ router.get("/leaseAdd.do",leaseController.addForum);
 router.get("/getForumInfo.do",forumController.getForumInfo);
 router.get("/extract.do",forumController.extract);
 router.get("/setTop.do",forumController.setTop);
-router.get("/modifyForum.do",forumController.modifyForum);
 router.get("/deleteForum.do",forumController.deleteForum);
-router.get("/addForum.do",forumController.addForum);
 
 router.get("/getForumRep.do",forumController.getForumRep);
-router.get("/modifyRep.do",forumController.modifyRep);
 router.get("/deleteRep.do",forumController.deleteRep);
-router.get("/addRep.do",forumController.addRep);
 
 module.exports = router;

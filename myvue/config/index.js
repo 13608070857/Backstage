@@ -19,7 +19,11 @@ module.exports = {
         }
       },
       '/xxm': {
+<<<<<<< HEAD
         target: 'http://172.16.8.28:8888',
+=======
+        target: 'http://172.16.8.8:8888',
+>>>>>>> 914e70ec62941e2e16de38976e9a3ddf6ec47f57
         changeOrigin: true,
         pathRewrite: {
           '^/xxm': ''

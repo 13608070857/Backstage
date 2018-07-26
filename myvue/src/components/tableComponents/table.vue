@@ -167,6 +167,7 @@ export default {
         this.tableContents = resp.data.getData
         this.tableData = resp.data.getData
         this.popContents = resp.data.getAllData
+        console.log(this.popContents[0])
 
         var tbL = this.tableContents[this.tableContents.length-1]
         for(var key in tbL) {
