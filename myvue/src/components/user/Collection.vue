@@ -49,13 +49,10 @@ export default {
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
-        {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-        {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: '/collectionmodify'}},
-        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/collectiondelete'}}
+        {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}}
       ],
       searchBtns: [
-        {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
-        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addcollection'}}
+        {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}}
       ],
       // 表单元素信息，isInput：是否是input元素，如果是select就写false
       // content：是传送的内容

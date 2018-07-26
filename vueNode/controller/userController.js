@@ -107,10 +107,32 @@ const userController = {
         });
 	},
     grademodify(req,resp) {
-        console.log(1);
+        var popObj = JSON.parse(req.query.popObj);
+        var dataIndex = req.query.dataIndex;
+        var modify = popObj.modify;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        console.log(modify)
+        for(var key in modify) {
+            addArr.push(modify[key]);
+            val += key + '=?,'
+        }
+        addArr.push(dataIndex);
+        val = val.substr(0,val.length-1);
+        sql = 'update grade set ' + val + ' where Grade_ID=?';
+        userDao.modifyUserInfo(sql,addArr).then(function(data) {
+            resp.send(data);
+        })
     },
     gradedelete(req,resp) {
-        console.log(1);
+        var deleteId = req.query.deleteId;
+        console.log(deleteId)
+        userDao.gradedelete(deleteId).then(function(data) {
+            console.log(data);
+            resp.send(data);
+        })
     },
     addgrade(req,resp) {
     	var popObj = JSON.parse(req.query.popObj);
@@ -128,28 +150,59 @@ const userController = {
         }
         val = val.substr(0,val.length-1);
         wh = wh.substr(0,wh.length-1)
-        sql = 'insert into users (' + val + ') values (' + wh + ')';
+        sql = 'insert into grade (' + val + ') values (' + wh + ')';
         userDao.addUserInfo(sql,addArr).then(function(data) {
             resp.send(data);
         })
     },
-	collectionmodify(req,resp) {
-        console.log(1);
-    },
-    collectiondelete(req,resp) {
-        console.log(1);
-    },
-    addcollection(req,resp) {
-        console.log(1);
-    },
     staffmodify(req,resp) {
-        console.log(1);
+        var popObj = JSON.parse(req.query.popObj);
+        var dataIndex = req.query.dataIndex;
+        var modify = popObj.modify;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        console.log(modify)
+        for(var key in modify) {
+            addArr.push(modify[key]);
+            val += key + '=?,'
+        }
+        addArr.push(dataIndex);
+        val = val.substr(0,val.length-1);
+        sql = 'update workuser set ' + val + ' where ID=?';
+        userDao.modifyUserInfo(sql,addArr).then(function(data) {
+            resp.send(data);
+        })
     },
     staffdelete(req,resp) {
-        console.log(1);
+        var deleteId = req.query.deleteId;
+        console.log(deleteId)
+        userDao.staffdelete(deleteId).then(function(data) {
+            console.log(data);
+            resp.send(data);
+        })
     },
     addstaff(req,resp) {
-        console.log(1);
+        var popObj = JSON.parse(req.query.popObj);
+        var insert = popObj.insert;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        console.log('insert')
+        console.log(insert)
+        var addArr = [];
+        for(var key in insert) {
+            addArr.push(insert[key].trim());
+            val += key + ',' ;
+            wh +='?,'
+        }
+        val = val.substr(0,val.length-1);
+        wh = wh.substr(0,wh.length-1)
+        sql = 'insert into workuser (' + val + ') values (' + wh + ')';
+        userDao.addUserInfo(sql,addArr).then(function(data) {
+            resp.send(data);
+        })
     }
 }
 module.exports = userController;
