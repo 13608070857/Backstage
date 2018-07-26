@@ -134,10 +134,56 @@ const goodsControoller = {
     },
     // 新增商品
     getaddgoodsinfo(req,resp){
-        goodsDao.addgoodsinfo()
-            .then(function (data) {
-                resp.send(data)
-            })
+        var popObj = JSON.parse(req.query.popObj);
+        var insert = popObj.insert;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var newDate = new Date();
+        var y=newDate.getFullYear(); //获取完整的年份(4位,1970-????)
+        var m=newDate.getMonth()+1; //获取当前月份(0-11,0代表1月)
+        var d=newDate.getDate(); //获取当前日(1-31)
+        var h=newDate.getHours(); //获取当前小时数(0-23)
+        var mi=newDate.getMinutes(); //获取当前分钟数(0-59)
+        var s=newDate.getSeconds(); //获取当前秒数(0-59)
+        var myDate=y+""+m+""+d+""+h+""+mi+""+s;
+        var myDate2=y+"-"+m+"-"+d+" "+h+":"+mi+":"+s;
+        insert.goodsSn="234"+myDate;
+        insert.createTime=myDate2;
+        console.log(insert)
+        var addArr = [];
+        for(var key in insert) {
+            addArr.push(insert[key]);
+            val += key + ',' ;
+            wh +='?,'
+        }
+        val = val.substr(0,val.length-1);
+        wh = wh.substr(0,wh.length-1)
+        sql = 'insert into goods (' + val + ') values (' + wh + ')';
+        console.log("这是SQL");
+        console.log(sql);
+        goodsDao.addgoodsinfo(sql,addArr)
+            .then(function(data) {
+                console.log("这是数据")
+                console.log(addArr)
+                resp.send(data);
+        })
+    },
+    // 商品信息修改
+    getgoodsmodify(req,resp){
+
+    },
+    // 商品分类修改
+    getcatemodify(req,resp){
+
+    },
+    // 商品评论 修改
+    getcommodify(req,resp){
+
+    },
+    // 商品详情
+    getdetailmodify(req,resp){
+
     }
 };
 module.exports = goodsControoller;
