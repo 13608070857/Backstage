@@ -26,21 +26,11 @@ export default {
       tableTitles: ['评论id','用户名称', '用户头像', '评论内容', '评论时间'],
       // 弹出层标题
       popTitles: {
-        // 'postId':  '用户id',
-        // 'for_user_gradeId': '论坛等级',
-        // 'name': '用户名称',
-        // 'tel': '用户电话',
-        // 'sex': '用户性别',
-        // 'password': '用户密码',
-        // 'email': '用户邮箱',
-        // 'userImg': '用户头像',
-        // 'userStatus': '状态编号',
-        // 'createTime': '创建时间',
-        // 'User_gradeid': '等级',
-        // 'User_ex': '经验',
-        // 'User_show': '个性签名',
-        // 'rolaName': '等级',
-        // 'o_ID': '订单号',
+        'postId':  '评论id',
+        'uName': '用户名称',
+        'uImg': '用户头像',
+        'RestoreBody': '评论内容',
+        'resTime': '评论时间'
       },
       // node路由地址
       router: '/getForumRep.do',
@@ -59,12 +49,10 @@ export default {
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
         {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-        {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: '/modifyRep.do'}},
         {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteRep.do'}}
       ],
       searchBtns: [
-        {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
-        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addRep.do'}}
+        {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}}
       ],
       // 表单元素信息，isInput：是否是input元素，如果是select就写false
       // content：是传送的内容
