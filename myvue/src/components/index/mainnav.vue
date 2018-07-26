@@ -144,11 +144,11 @@ export default {
           namearr: [
             {
               name: '论坛信息',
-              to: '/'
+              to: '/forumInfo'
             },
             {
               name: '评论管理',
-              to: '/'
+              to: '/forumRep'
             }
           ]
         },

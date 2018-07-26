@@ -15,6 +15,8 @@ import LeaseTransfer from '../components/LeaseTransfer/LeaseTransfer'
 import grade from '../components/user/Grade'
 import collection from '../components/user/Collection'
 // import login from '../components/index/login'
+import forumInfo from '../components/forum/forumInfo'
+import forumRep from '../components/forum/forumRep'
 Vue.use(Router)
 
 export default new Router({
@@ -90,9 +92,20 @@ export default new Router({
       component: grade
     },
     {
+<<<<<<< HEAD
       path: '/collection',
       name: 'collection',
       component: collection
+=======
+      path: '/forumInfo',
+      name: 'forumInfo',
+      component: forumInfo
+    },
+    {
+      path: '/forumRep',
+      name: 'forumRep',
+      component: forumRep
+>>>>>>> 20c1bb3dc843de7a3ab7fae8915cf1cee573784a
     }
   ],
   mode: 'history'
