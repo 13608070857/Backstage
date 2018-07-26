@@ -23,11 +23,11 @@ import tableInfo from '../tableComponents/tableInfo'
         // 表单信息标题
         tableInfo: '商品信息',
         // 表标题
-        tableTitles: ['商品ID', '商品名称', '商品图片', '商品价格','商品类别','上架时间', '状态'],
+        tableTitles: ['商品ID', '商品名称', '商品图片', '商品价格', '商品类别', '上架时间', '状态'],
         // 弹出层标题
         popTitles: {
           'goods_ID': '商品ID',
-          'cateName': '商品类别',
+          'cate_ID': '商品类别',
           'goodsName': '商品名称',
           'goodsImg': '商品图片',
           'goodsPrice': '商品价格',
@@ -38,6 +38,7 @@ import tableInfo from '../tableComponents/tableInfo'
           'is_sales':  '是否促销',
           'salesTime': '促销时间',
           'inventory': '库存量',
+          'goodsStatus': '状态',
         },
         // node路由地址
         router: '/getgoodsmsg.do',
@@ -58,7 +59,7 @@ import tableInfo from '../tableComponents/tableInfo'
           {text: '上架', className: 'small lightGreen', fn: {fnName: 'status', fnArg: '/onstatus.do'}},
           {text: '下架', className: 'small gray', fn: {fnName: 'status', fnArg: '/unstatus.do'}},
           {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-          {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: 'ss'}},
+          {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: '/goodsmodify.do'}},
           {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/goodsdelete.do'}}
         ],
         searchBtns: [
