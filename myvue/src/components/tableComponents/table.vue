@@ -21,7 +21,7 @@
         <th v-if="operationBtns.length>0">操作</th>
       </tr>
       <tbody>
-        <tr class="showCont" v-for="(tableContent,index) in tableContents" :key="index">
+        <tr class="showCont" v-for="(tableContent,index) in paceContents" :key="index">
           <td v-for="(tableC,i) in tableContent" :key="i">
             <div v-if="!/img/.test(tableC)">
               <div v-if="/[dD]es/.test(i)" class="overText">{{tableC}}</div>
@@ -164,7 +164,7 @@ export default {
     },
     getInfo() {
       console.log(this.currentPacing)
-      this.$axios.get('/api' + this.router, {params: {currentP: this.currentPacing}}).then(resp => {
+      this.$axios.get('/api' + this.router, {params: {currentP: this.currentPacing, queryData: this.searchText}}).then(resp => {
         this.tableContents = resp.data.getData
         this.tableData = resp.data.getData
         this.paceContents = resp.data.paceDate
@@ -191,21 +191,22 @@ export default {
       })
     },
     queryParam (btnText,arg) {
-      let newArr = []
-      let tableData = this.tableData
-      if (arg === '') {
-        this.tableContents = tableData
-        this.tableContents.filter(value => {
-          for(let key in value) {
-            if(/[nN]ame/.test(key)) {
-              if (value[key].indexOf(this.searchText) !== -1) {
-                newArr.push(value)
-              }
-            }
-          }
-          this.tableContents = Array.from(new Set(newArr))
-        })
-      }
+      this.getInfo()
+      // let newArr = []
+      // let tableData = this.tableData
+      // if (arg === '') {
+      //   this.tableContents = tableData
+      //   this.tableContents.filter(value => {
+      //     for(let key in value) {
+      //       if(/[nN]ame/.test(key)) {
+      //         if (value[key].indexOf(this.searchText) !== -1) {
+      //           newArr.push(value)
+      //         }
+      //       }
+      //     }
+      //     this.tableContents = Array.from(new Set(newArr))
+      //   })
+      // }
     },
     insertInfo (btnText,arg) {
       this.popShow = true
@@ -242,10 +243,6 @@ export default {
         this.currentPacing--
       }
       this.getInfo()
-      var showCont = document.getElementsByClassName('showCont')
-      for(var i=0;i<showCont.length;i++) {
-        console.log(showCont[i])
-      }
     },
     nextPacing () {
       if(this.currentPacing >= this.totalPacing) {
@@ -254,10 +251,6 @@ export default {
         this.currentPacing++
       }
       this.getInfo()
-      var showCont = document.getElementsByClassName('showCont')
-      for(var i=0;i<showCont.length;i++) {
-        showCont[i].style.display = 'none'
-      }
     },
     cancel () {
       this.popShow = false

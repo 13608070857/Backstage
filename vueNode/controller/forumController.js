@@ -1,16 +1,28 @@
 const forumDao = require("../dao/forumDao");
-let dataInfo;
+var dataInfo;
 
 const forumController = {
     getForumInfo(req,resp) {
         var currentP = req.query.currentP;
         var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
         forumDao.getAllForum().then(function(data) {
-            let getAllData = data;
-            forumDao.getForum().then(function(data) {
-            	let getData = data;
-                forumDao.pacingForum(currentIndex).then(function(data) {
-                    let paceDate = data;
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            console.log(queryData)
+            if(queryData == '') {
+                mySql = "SELECT postId,postTitle,postImg,(SELECT categoryName FROM forum_category fc WHERE fc.categoryId = p.categoryId) cName,DATE_FORMAT(postTime,\"%Y-%m-%d %H:%i:%S\"),postStatus FROM post p";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT postId,postTitle,postImg,(SELECT categoryName FROM forum_category fc WHERE fc.categoryId = p.categoryId) cName,DATE_FORMAT(postTime,\"%Y-%m-%d %H:%i:%S\"),postStatus FROM post p WHERE p.categoryId in (SELECT categoryId FROM forum_category WHERE categoryName like ?)";
+                paramsArr = [queryData,currentIndex];
+            }
+            forumDao.getForum(mySql,queryData).then(function(data) {
+            	var getData = data;
+                mySql += ' limit ?,5';
+                forumDao.pacingForum(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
                     dataInfo = {
                         getAllData: getAllData,
                         getData: getData,
@@ -47,15 +59,33 @@ const forumController = {
         })
     },
     getForumRep(req,resp) {
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
         forumDao.getAllForumRep().then(function(data) {
-            let getAllData = data;
-            forumDao.getForumRep().then(function(data) {
-                let getData = data;
-                dataInfo = {
-                    getAllData: getAllData,
-                    getData: getData
-                };
-                resp.send(dataInfo);
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            if(queryData == '') {
+                mySql = "select RestoreId,(SELECT u.name FROM users u WHERE u.u_id=rp.u_id) uName,(SELECT u.userImg FROM users u WHERE u.u_id=rp.u_id) uImg,RestoreBody,DATE_FORMAT(resTime,\"%Y-%m-%d %H:%i:%S\") resTime from rep_post rp";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "select RestoreId,(SELECT u.name FROM users u WHERE u.u_id=rp.u_id) uName,(SELECT u.userImg FROM users u WHERE u.u_id=rp.u_id) uImg,RestoreBody,DATE_FORMAT(resTime,\"%Y-%m-%d %H:%i:%S\") resTime from rep_post rp WHERE rp.u_id in (SELECT u_id FROM users WHERE name like ?)";
+                paramsArr = [queryData,currentIndex];
+            }
+            forumDao.getForumRep(mySql,queryData).then(function(data) {
+                var getData = data;
+                mySql += ' limit ?,5';
+                forumDao.pacingForumRep(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData,
+                        paceDate: paceDate
+                    };
+                    resp.send(dataInfo);
+                })
+                
             })
         });
     },
