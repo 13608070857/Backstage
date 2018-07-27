@@ -23,13 +23,17 @@ export default {
       // 表单信息标题
       tableInfo: '员工管理',
       // 表标题
-      tableTitles: ['员工id', '员工名称', '员工账号'],
+      tableTitles: ['员工id', '员工名称', '账号',  '邮箱', '电话', 'qq'],
       // 弹出层标题
       popTitles: {
         'ID':  '员工id',
         'name': '员工名称',
         'A_number': '员工账号',
-        'password': '密码'
+        'password': '密码',
+        'tel': '电话 ',
+        'email': '邮箱',
+        'qq': 'qq',
+        'sex': '性别'
       },
       // node路由地址
       router: '/staff.do',

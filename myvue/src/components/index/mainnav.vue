@@ -72,15 +72,15 @@ export default {
             }
           ]
         },
-        {
-          name: '员工管理',
-          isShow: false,
-          to: '/staff',
-          background: 'rgba(40,40,40,0.8)',
-          num: 0,
-          namearr: [
-          ]
-        },
+        // {
+        //   name: '员工管理',
+        //   isShow: false,
+        //   to: '/staff',
+        //   background: 'rgba(40,40,40,0.8)',
+        //   num: 0,
+        //   namearr: [
+        //   ]
+        // },
         {
           name: '交易管理',
           isShow: false,
@@ -150,15 +150,6 @@ export default {
               name: '评论管理',
               to: '/forumRep'
             }
-          ]
-        },
-        {
-          name: '权限管理',
-          isShow: false,
-          to: '/',
-          background: 'rgba(40,40,40,0.8)',
-          num: 0,
-          namearr: [
           ]
         }
       ]

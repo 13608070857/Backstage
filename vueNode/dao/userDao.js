@@ -8,19 +8,34 @@ const userDao = {
             });
         });
     },
+    getForum(sql,params) {
+        // console.log(sql)
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, [params], function (error, data) {
+                resolve(data);
+            });
+        });
+    },
+    pacingForum(sql,...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            });
+        });
+    },
     getUser(params) {
         return new Promise(function (resolve, reject) {
-            db.connect("select u_id,name,tel,email,userImg,DATE_FORMAT(createTime,\"%Y-%m-%d %H:%i:%S\") from users", [], function (error, data) {
+            db.connect(sql, [params], function (error, data) {
                 resolve(data);
             });
         });
     },
     deleteInfo(params) {
         return new Promise(function (resolve, reject) {
-            db.connect("delete from users where u_id=?", [params], function (error, data) {
+            db.connect(sql, ...args, function (error, data) {
                 resolve(data);
-            })
-        })
+            });
+        });
     },
     gradedelete(params) {
         return new Promise(function (resolve, reject) {
@@ -62,33 +77,9 @@ const userDao = {
                 })
         })
     },
-    grade(req, resp) {
-        return new Promise((resolve, reject) => {
-            db.connect("SELECT Grade_ID,Grade_name,Growth_value FROM grade",
-                [], (err, data) => {
-                    if (!err) {
-                        resolve(data);
-                    } else {
-                        reject(data);
-                    }
-                })
-        })
-    },
     collectionx(req, resp) {
         return new Promise((resolve, reject) => {
             db.connect("SELECT * FROM collection",
-                [], (err, data) => {
-                    if (!err) {
-                        resolve(data);
-                    } else {
-                        reject(data);
-                    }
-                })
-        })
-    },
-    collection(req, resp) {
-        return new Promise((resolve, reject) => {
-            db.connect("SELECT coll_id,coll_name,coll_img,coll_price,u_id FROM collection",
                 [], (err, data) => {
                     if (!err) {
                         resolve(data);
@@ -109,19 +100,7 @@ const userDao = {
                     }
                 })
         })
-    },
-    staff(req, resp) {
-        return new Promise((resolve, reject) => {
-            db.connect("SELECT ID,name,A_number FROM workuser",
-                [], (err, data) => {
-                    if (!err) {
-                        resolve(data);
-                    } else {
-                        reject(data);
-                    }
-                })
-        })
-    },
+    }
 
 }
 module.exports = userDao;
