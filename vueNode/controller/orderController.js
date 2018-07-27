@@ -272,17 +272,28 @@ const orderControoller = {
                 resp.send(data);
             })
     },
-    // 订单处理 新增
-    getaddpay(req,resp){
-
-    },
-    // 退款处理 新增
-    getaddrefund(req,resp){
-
-    },
     // 支付管理 新增
-    getaddorderwith(req,resp){
-
+    getaddpay(req,resp){
+        var popObj = JSON.parse(req.query.popObj);
+        var insert = popObj.insert;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        for(var key in insert) {
+            addArr.push(insert[key]);
+            val += key + ',' ;
+            wh +='?,'
+        }
+        val = val.substr(0,val.length-1);
+        wh = wh.substr(0,wh.length-1)
+        val='';
+        val=val+'payName,status,catetime';
+        sql = 'insert into payform (' + val + ') values (' + wh + ')';
+        orderDao.addorder(sql,addArr)
+            .then(function(data) {
+                resp.send(data);
+            })
     }
 };
 module.exports = orderControoller;
