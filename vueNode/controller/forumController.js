@@ -6,12 +6,22 @@ const forumController = {
         var currentP = req.query.currentP;
         var currentIndex = (currentP - 1)*currentP;
         var queryData = "%" + req.query.queryData + "%";
+
+        // 弹出层
         forumDao.getAllForum().then(function(data) {
             var getAllData = data;
+            for(var i=0;i<getAllData.length;i++) {
+                for(var key in getAllData[i]) {
+                    if(/[tT]ime/.test(key)) {
+                        console.log(getAllData[i].key)
+                    }
+                }
+            }
+
+            // 表格信息
             var mySql = '';
             var paramsArr = '';
-            console.log(queryData)
-            if(queryData == '') {
+            if(queryData == '%%') {
                 mySql = "SELECT postId,postTitle,postImg,(SELECT categoryName FROM forum_category fc WHERE fc.categoryId = p.categoryId) cName,DATE_FORMAT(postTime,\"%Y-%m-%d %H:%i:%S\"),postStatus FROM post p";
                 paramsArr = [currentIndex];
             }else {
@@ -20,6 +30,8 @@ const forumController = {
             }
             forumDao.getForum(mySql,queryData).then(function(data) {
             	var getData = data;
+
+                // 分页
                 mySql += ' limit ?,5';
                 forumDao.pacingForum(mySql,paramsArr).then(function(data) {
                     var paceDate = data;
@@ -66,7 +78,7 @@ const forumController = {
             var getAllData = data;
             var mySql = '';
             var paramsArr = '';
-            if(queryData == '') {
+            if(queryData == '%%') {
                 mySql = "select RestoreId,(SELECT u.name FROM users u WHERE u.u_id=rp.u_id) uName,(SELECT u.userImg FROM users u WHERE u.u_id=rp.u_id) uImg,RestoreBody,DATE_FORMAT(resTime,\"%Y-%m-%d %H:%i:%S\") resTime from rep_post rp";
                 paramsArr = [currentIndex];
             }else {
