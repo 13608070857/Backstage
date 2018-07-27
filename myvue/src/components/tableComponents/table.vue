@@ -251,7 +251,7 @@ export default {
       console.log(this.popObj)
       if(this.operationRouter != '') {
         this.$axios.get('/api' + this.operationRouter,
-          {params:{dataIndex: this.dataI, popObj: {insert: this.popObj, modify: this.viewObj}}}).then(resp => {
+          {params:{dataIndex: this.dataI, popObj: {insert: this.popObj, modify: this.viewObj}, insertIndex: this.insertIndex}}).then(resp => {
           this.popShow = false
           this.operationRouter = ''
           this.getInfo()
