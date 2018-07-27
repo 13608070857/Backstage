@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import index from '../components/index/index'
+import personal from '../components/index/personal'
 import users from '../components/user/users'
 import orderImg from '../components/order/orderImg'
 import orderwith from '../components/order/orderwith'
@@ -117,6 +118,11 @@ export default new Router({
       path: '/shopping',
       name: 'shopping',
       component: shopping
+    },
+    {
+      path: '/personal',
+      name: 'personal',
+      component: personal
     }
   ],
   mode: 'history'

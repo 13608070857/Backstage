@@ -23,7 +23,7 @@ export default {
       // 表单信息标题
       tableInfo: '退款处理',
       // 表标题
-      tableTitles: ['订单ID', '用户ID', '商品名称', '商品图片', '交易金额', '退款金额', '退款数量', '交易时间','状态', '说明'],
+      tableTitles: ['订单ID', '用户ID', '商品名称', '商品图片', '交易金额', '退款金额', '退款数量', '交易时间', '说明','状态'],
       // 弹出层标题
       popTitles: {
         'o_ID': '订单ID',
@@ -53,7 +53,8 @@ export default {
       // operationBtns是表格操作部分的按钮是（使用小按钮small类）
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
-        {text: '退款', className: 'small lightGreen', fn: {fnName: 'status', fnArg: '/onrefund.do'}},
+        {text: '通过', className: 'small lightGreen', fn: {fnName: 'status', fnArg: '/onrefund.do'}},
+        {text: '不通过', className: 'small lightGreen', fn: {fnName: 'status', fnArg: '/unrefund.do'}},
         {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
         {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/refunddelete.do'}}
       ],

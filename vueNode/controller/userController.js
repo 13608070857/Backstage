@@ -1,18 +1,34 @@
 const userDao = require("../dao/userDao");
-let dataInfo;
-
 const userController = {
     getUserInfo(req,resp) {
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
+        console.log(queryData)
         userDao.getAllUser().then(function(data) {
-            let getAllData = data;
-            // console.log(data);
-            userDao.getUser().then(function(data) {
-            	let getData = data;
-            	dataInfo = {
-            		getAllData: getAllData,
-            		getData: getData
-            	};
-            	resp.send(dataInfo);
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            if(queryData == '%%') {
+                mySql = "select u_id,name,tel,email,userImg,DATE_FORMAT(createTime,\"%Y-%m-%d %H:%i:%S\") from users";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT u_id,NAME,tel,email,userImg,DATE_FORMAT(createTime,\"%Y-%m-%d %H:%i:%S\") FROM users WHERE NAME LIKE ?";
+                paramsArr = [queryData,currentIndex];
+            }
+            userDao.getForum(mySql,queryData).then(function(data) {
+                var getData = data;
+                mySql += ' limit ?,5';
+                userDao.pacingForum(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData,
+                        paceDate: paceDate
+                    };
+                    resp.send(dataInfo);
+                })
+
             })
         });
     },
@@ -65,44 +81,98 @@ const userController = {
     	})
     },
     grade(req,resp) {
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
         userDao.gradex().then(function(data) {
-            let getAllData = data;
-            console.log(data);
-            userDao.grade().then(function(data) {
-                let getData = data;
-                dataInfo = {
-                    getAllData: getAllData,
-                    getData: getData
-                };
-                resp.send(dataInfo);
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            if(queryData == '%%') {
+                mySql = "SELECT Grade_ID,Grade_name,Growth_value FROM grade";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT Grade_ID,Grade_name,Growth_value FROM grade WHERE NAME LIKE ?";
+                paramsArr = [queryData,currentIndex];
+            }
+            userDao.getForum(mySql,queryData).then(function(data) {
+                var getData = data;
+                mySql += ' limit ?,5';
+                console.log(getData)
+                userDao.pacingForum(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData,
+                        paceDate: paceDate
+                    };
+                    resp.send(dataInfo);
+                })
+
             })
         });
 	},
     collection(req,resp) {
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
         userDao.collectionx().then(function(data) {
-            let getAllData = data;
-            console.log(data);
-            userDao.collection().then(function(data) {
-                let getData = data;
-                dataInfo = {
-                    getAllData: getAllData,
-                    getData: getData
-                };
-                resp.send(dataInfo);
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            if(queryData == '%%') {
+                mySql = "SELECT coll_id,coll_name,coll_img,coll_price,u_id FROM collection";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT coll_id,coll_name,coll_img,coll_price,u_id FROM collection WHERE NAME LIKE ?";
+                paramsArr = [queryData,currentIndex];
+            }
+            userDao.getForum(mySql,queryData).then(function(data) {
+                var getData = data;
+                mySql += ' limit ?,5';
+                console.log(getData)
+                userDao.pacingForum(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData,
+                        paceDate: paceDate
+                    };
+                    resp.send(dataInfo);
+                })
+
             })
         });
 	},
 	staff(req,resp) {
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
         userDao.staffx().then(function(data) {
-            let getAllData = data;
-            console.log(data);
-            userDao.staff().then(function(data) {
-                let getData = data;
-                dataInfo = {
-                    getAllData: getAllData,
-                    getData: getData
-                };
-                resp.send(dataInfo);
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            if(queryData == '%%') {
+                mySql = "SELECT ID,name,A_number,tel,email,qq FROM workuser";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT ID,name,A_number,tel,email,qq FROM workuser WHERE NAME LIKE ?";
+                paramsArr = [queryData,currentIndex];
+            }
+            userDao.getForum(mySql,queryData).then(function(data) {
+                var getData = data;
+                mySql += ' limit ?,5';
+                console.log(getData)
+                userDao.pacingForum(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData,
+                        paceDate: paceDate
+                    };
+                    resp.send(dataInfo);
+                })
+
             })
         });
 	},

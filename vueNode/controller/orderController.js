@@ -172,10 +172,10 @@ const orderControoller = {
             var paramsArr = '';
             console.log(queryData)
             if(queryData == '') {
-                mySql = "SELECT go.o_ID,go.u_id,g.goodsName,g.goodsImg,go.o_price,go.o_price AS o_price2,(CEIL(go.o_price/total)) AS refundNum,DATE_FORMAT(go.createTime,'%Y-%m-%d %H:%i:%S') AS createTime,CASE go.isClosed WHEN 1 THEN '待退款' WHEN 2 THEN '已退款' WHEN 0 THEN '正常' END AS is_Closed,IFNULL(go.order_desc,'暂无') AS order_desc FROM goodsorder go,order_goods og,goods g WHERE go.u_id=og.u_id AND og.goods_ID=g.goods_ID AND go.o_ID=og.o_ID AND go.is_del2=0 AND go.is_del=0";
+                mySql = "SELECT go.o_ID,go.u_id,g.goodsName,g.goodsImg,go.o_price,go.o_price AS o_price2,(CEIL(go.o_price/total)) AS refundNum,DATE_FORMAT(go.createTime,'%Y-%m-%d %H:%i:%S') AS createTime,IFNULL(go.order_desc,'暂无') AS order_desc,CASE go.isClosed WHEN 1 THEN '待退款' WHEN 2 THEN '已退款' WHEN 3 THEN '未通过' WHEN 0 THEN '正常' END AS is_Closed FROM goodsorder go,order_goods og,goods g WHERE go.u_id=og.u_id AND og.goods_ID=g.goods_ID AND go.o_ID=og.o_ID AND go.is_del2=0 AND go.is_del=0";
                 paramsArr = [currentIndex];
             }else {
-                mySql = "SELECT go.o_ID,go.u_id,g.goodsName,g.goodsImg,go.o_price,go.o_price AS o_price2,(CEIL(go.o_price/total)) AS refundNum,DATE_FORMAT(go.createTime,'%Y-%m-%d %H:%i:%S') AS createTime,CASE go.isClosed WHEN 1 THEN '待退款' WHEN 2 THEN '已退款' WHEN 0 THEN '正常' END AS is_Closed,IFNULL(go.order_desc,'暂无') AS order_desc FROM goodsorder go,order_goods og,goods g WHERE go.u_id=og.u_id AND og.goods_ID=g.goods_ID AND go.o_ID=og.o_ID AND go.is_del2=0 AND go.is_del=0 AND g.goodsName IN (SELECT goodsName FROM goods WHERE goodsName LIKE ?)";
+                mySql = "SELECT go.o_ID,go.u_id,g.goodsName,g.goodsImg,go.o_price,go.o_price AS o_price2,(CEIL(go.o_price/total)) AS refundNum,DATE_FORMAT(go.createTime,'%Y-%m-%d %H:%i:%S') AS createTime,IFNULL(go.order_desc,'暂无') AS order_desc,CASE go.isClosed WHEN 1 THEN '待退款' WHEN 2 THEN '已退款' WHEN 3 THEN '未通过' WHEN 0 THEN '正常' END AS is_Closed FROM goodsorder go,order_goods og,goods g WHERE go.u_id=og.u_id AND og.goods_ID=g.goods_ID AND go.o_ID=og.o_ID AND go.is_del2=0 AND go.is_del=0 AND g.goodsName IN (SELECT goodsName FROM goods WHERE goodsName LIKE ?)";
                 paramsArr = [queryData,currentIndex];
             }
             orderDao.refund2(mySql,queryData).then(function(data) {
@@ -198,6 +198,14 @@ const orderControoller = {
     getonrefund(req,resp){
         var oid=req.query.id;
         orderDao.onrefund(oid)
+            .then(function (data) {
+                resp.send(data);
+            })
+    },
+    // 退款处理 不通过
+    getunrefund(req,resp){
+        var oid=req.query.id;
+        orderDao.unrefund(oid)
             .then(function (data) {
                 resp.send(data);
             })
