@@ -35,22 +35,40 @@ const leaseController = {
     addForum(req,resp) {
         var popObj = JSON.parse(req.query.popObj);
         var insert = popObj.insert;
-        var val = ''
+        var val = '';
+        var val2 = '';
         var sql = '';
+        var sql2 = '';
         var wh = '';
-        console.log(insert)
+        var wh2 = '';
         var addArr = [];
+        var addArr2 = [];
         for(var key in insert) {
-            addArr.push(insert[key].trim());
-            val += key + ',' ;
-            wh +='?,'
+            if(/title/.test(key)) {
+                addArr.push(insert[key].trim());
+                val += key + ',' ;
+                wh +='?,'
+            }else {
+                console.log(key)
+                addArr2.push(insert[key].trim());
+                val2 += key + ',' ;
+                wh2 +='?,'
+            }
         }
         val = val.substr(0,val.length-1);
-        wh = wh.substr(0,wh.length-1)
-        sql = 'insert into users (' + val + ') values (' + wh + ')';
-        leaseDao.addForum(sql,addArr).then(function(data) {
-            resp.send(data);
-        })
+        wh = wh.substr(0,wh.length-1);
+        sql = 'insert into lease (ID,'+ val +') values(null,'+ wh +')';
+
+        val2 = val2.substr(0,val2.length-1);
+        wh2 = wh2.substr(0,wh2.length-1);
+        sql2 = 'insert into lease_details (ID,'+ val2 +') values(null,'+ wh2 +')';
+        console.log(sql2)
+        console.log(addArr2)
+
+        // leaseDao.addForum(sql,addArr).then(function(data) {
+        //     resp.send(data);
+        //     // return  leaseDao.addForum(sql,addArr);
+        // })
     },
 }
 module.exports = leaseController;
