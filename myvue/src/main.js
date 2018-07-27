@@ -18,7 +18,7 @@ Vue.prototype.$bg = function (bg) {
 Vue.prototype.$login = function (a) {
   if (typeof a === typeof 1) {
     this.$root.a = false
-  }else {
+  } else {
     this.$root.a = true
   }
 }

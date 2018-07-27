@@ -109,7 +109,7 @@ export default {
         {
           name: '购物车管理',
           isShow: false,
-          to: '/',
+          to: '/shopping',
           background: 'rgba(40,40,40,0.8)',
           num: 0,
           namearr: [

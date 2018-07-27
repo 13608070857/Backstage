@@ -19,9 +19,6 @@ router.get("/gradedelete",userController.gradedelete);
 router.get("/addgrade",userController.addgrade);
 
 router.get("/collection",userController.collection);
-router.get("/collectionmodify",userController.collectionmodify);
-router.get("/collectiondelete",userController.collectiondelete);
-router.get("/addcollection",userController.addcollection);
 
 router.get("/staff.do",userController.staff);
 router.get("/staffmodify",userController.staffmodify);
@@ -52,8 +49,10 @@ router.get("/detaildelete.do",goodsController.getdetaildelete);
 router.get("/addgoodsinfo.do",goodsController.getaddgoodsinfo);
 router.get("/goodsmodify.do",goodsController.getgoodsmodify);
 router.get("/catemodify.do",goodsController.getcatemodify);
-router.get("/commodify.do",goodsController.getcommodify);
+router.get("/addcate.do",goodsController.getaddcate);
 router.get("/detailmodify.do",goodsController.getdetailmodify);
+router.get("/adddetail.do",goodsController.getadddetail);
+router.get("/shopping",goodsController.shopping);
 
 // =============== 交易管理 =============
 router.get("/orderrecord.do",orderController.orderrecord);

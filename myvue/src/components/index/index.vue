@@ -110,19 +110,19 @@ export default {
           h1: '月注册用户',
           p: '同上期增长',
           bai: '45%',
-          time: new Date
+          time: '2018-7-1'
         },
         {
           h1: '月销售',
           p: '同上期增长',
           bai: '45%',
-          time: new Date
+          time: '2018-7-1'
         },
         {
           h1: '月订单',
           p: '同上期增长',
           bai: '45%',
-          time: new Date
+          time: '2018-7-1'
         }
       ],
       consumption: [],

@@ -3,16 +3,22 @@ let dataInfo;
 
 const forumController = {
     getForumInfo(req,resp) {
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
         forumDao.getAllForum().then(function(data) {
             let getAllData = data;
-            console.log(getAllData[0])
             forumDao.getForum().then(function(data) {
             	let getData = data;
-            	dataInfo = {
-            		getAllData: getAllData,
-            		getData: getData
-            	};
-            	resp.send(dataInfo);
+                forumDao.pacingForum(currentIndex).then(function(data) {
+                    let paceDate = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData,
+                        paceDate: paceDate
+                    };
+                    resp.send(dataInfo);
+                })
+            	
             })
         });
     },

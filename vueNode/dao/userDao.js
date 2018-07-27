@@ -22,6 +22,20 @@ const userDao = {
             })
         })
     },
+    gradedelete(params) {
+        return new Promise(function (resolve, reject) {
+            db.connect("delete from grade where Grade_ID=?", [params], function (error, data) {
+                resolve(data);
+            })
+        })
+    },
+    staffdelete(params) {
+        return new Promise(function (resolve, reject) {
+            db.connect("delete from workuser where ID=?", [params], function (error, data) {
+                resolve(data);
+            })
+        })
+    },
     addUserInfo(sql, ...args) {
         return new Promise(function (resolve, reject) {
             db.connect(sql, ...args, function (error, data) {
@@ -60,7 +74,7 @@ const userDao = {
                 })
         })
     },
-    collection(req, resp) {
+    collectionx(req, resp) {
         return new Promise((resolve, reject) => {
             db.connect("SELECT * FROM collection",
                 [], (err, data) => {
@@ -72,9 +86,9 @@ const userDao = {
                 })
         })
     },
-    collectionx(req, resp) {
+    collection(req, resp) {
         return new Promise((resolve, reject) => {
-            db.connect("SELECT coll_id,coll_img,coll_name,coll_price,u_id,goods_ID FROM collection",
+            db.connect("SELECT coll_id,coll_name,coll_img,coll_price,u_id FROM collection",
                 [], (err, data) => {
                     if (!err) {
                         resolve(data);
