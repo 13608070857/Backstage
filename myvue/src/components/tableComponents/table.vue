@@ -192,21 +192,6 @@ export default {
     },
     queryParam (btnText,arg) {
       this.getInfo()
-      // let newArr = []
-      // let tableData = this.tableData
-      // if (arg === '') {
-      //   this.tableContents = tableData
-      //   this.tableContents.filter(value => {
-      //     for(let key in value) {
-      //       if(/[nN]ame/.test(key)) {
-      //         if (value[key].indexOf(this.searchText) !== -1) {
-      //           newArr.push(value)
-      //         }
-      //       }
-      //     }
-      //     this.tableContents = Array.from(new Set(newArr))
-      //   })
-      // }
     },
     insertInfo (btnText,arg) {
       this.popShow = true
