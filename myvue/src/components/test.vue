@@ -40,7 +40,7 @@ export default {
         'User_ex': '经验',
         'User_show': '个性签名',
         'rolaName': '等级',
-        'o_ID': '订单号',
+        'o_ID': '订单号'
       },
       // node路由地址
       router: '/getUserInfo.do',
@@ -59,8 +59,7 @@ export default {
       // searchBtns是查询部分的按钮（使用大按钮large类）
       operationBtns: [
         {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
-        {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: '/modifyInfo.do'}},
-        {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
+        {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: '/modifyInfo.do'}}
       ],
       searchBtns: [
         {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},

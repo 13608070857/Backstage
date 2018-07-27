@@ -21,7 +21,13 @@
           <div class="kuai" style="background: #e0ff15" @click="$bg('#e0ff15')"></div>
         </div>
       </span>
-      <span @click="tuichu()">管理员</span>
+      <span>管理员
+        <ul class="box">
+          <!--<li>个人中心</li>-->
+          <router-link tag="li" to="/personal">个人中心</router-link>
+          <li @click="tuichu()">退出登录</li>
+        </ul>
+      </span>
     </div>
 
   </div>
@@ -70,13 +76,21 @@ export default {
 }
 .right{
   float: right;
+  margin-right: 30px;
 }
-.right span{
+.right span:nth-child(1){
   line-height: 65px;
   color: white;
   margin-right: 20px;
   cursor: pointer;
   position: relative;
+}
+.right span:nth-child(2){
+  color: white;
+  margin-right: 20px;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
 }
 .hf{
   width: 150px;
@@ -89,7 +103,28 @@ export default {
   z-index: 2;
   display: none;
 }
+.box{
+  width: 80px;
+  height: 50px;
+  background: white;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  margin-left: -40px;
+  z-index: 2;
+  color: #000;
+  display: none;
+}
+.box li{
+  height: 25px;
+  list-style-type:none;
+  font-size: 14px;
+  line-height: 25px;
+}
 .right span:nth-child(1):hover .hf{
+  display: block;
+}
+.right span:nth-child(2):hover .box{
   display: block;
 }
 .kuai{
