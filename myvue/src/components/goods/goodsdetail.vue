@@ -27,7 +27,7 @@ export default {
       // 弹出层标题
       popTitles: {
         'detailId': 'ID',
-        'goods_ID': '商品ID',
+        'gname': '商品',
         'descTitle': '详情标题',
         'descText': '详情内容',
         'detailImg': '详情图片'
