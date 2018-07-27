@@ -14,7 +14,7 @@ const forumController = {
             // 表格信息
             var mySql = '';
             var paramsArr = '';
-            if(queryData == '') {
+            if(queryData == '%%') {
                 mySql = "SELECT postId,postTitle,postImg,(SELECT categoryName FROM forum_category fc WHERE fc.categoryId = p.categoryId) cName,DATE_FORMAT(postTime,\"%Y-%m-%d %H:%i:%S\"),postStatus FROM post p";
                 paramsArr = [currentIndex];
             }else {
@@ -71,7 +71,7 @@ const forumController = {
             var getAllData = data;
             var mySql = '';
             var paramsArr = '';
-            if(queryData == '') {
+            if(queryData == '%%') {
                 mySql = "select RestoreId,(SELECT u.name FROM users u WHERE u.u_id=rp.u_id) uName,(SELECT u.userImg FROM users u WHERE u.u_id=rp.u_id) uImg,RestoreBody,DATE_FORMAT(resTime,\"%Y-%m-%d %H:%i:%S\") resTime from rep_post rp";
                 paramsArr = [currentIndex];
             }else {

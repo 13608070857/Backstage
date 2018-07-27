@@ -55,7 +55,7 @@
             </div>
             <div v-else class="imgD">
               <img :src="'/api/' + popObj[index]" alt="">
-              <input type="file">
+              <input type="file" id="avatar" @change="upload">
             </div>
           </li>
         </ul>
