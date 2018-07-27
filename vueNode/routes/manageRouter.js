@@ -75,6 +75,9 @@ router.get("/refunddelete.do",orderController.getrefunddelete);
 router.get("/getpaymsg.do",orderController.getpaymsg);
 router.get("/onpay.do",orderController.getonpay);
 router.get("/unpay.do",orderController.getunpay);
+router.get("/addpay.do",orderController.getaddpay);
+router.get("/addrefund.do",orderController.getaddrefund);
+router.get("/addorderwith.do",orderController.getaddorderwith);
 
 // ================ 租赁管理 =============
 router.get("/leaseTransfer.do",leaseController.leaseTransfer);

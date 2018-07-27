@@ -59,7 +59,7 @@ export default {
       ],
       searchBtns: [
         {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
-        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addUserInfo.do'}}
+        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addrefund.do'}}
       ],
       // 表单元素信息，isInput：是否是input元素，如果是select就写false
       // content：是传送的内容
