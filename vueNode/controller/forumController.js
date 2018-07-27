@@ -6,11 +6,14 @@ const forumController = {
         var currentP = req.query.currentP;
         var currentIndex = (currentP - 1)*currentP;
         var queryData = "%" + req.query.queryData + "%";
+
+        // 弹出层
         forumDao.getAllForum().then(function(data) {
             var getAllData = data;
+
+            // 表格信息
             var mySql = '';
             var paramsArr = '';
-            console.log(queryData)
             if(queryData == '') {
                 mySql = "SELECT postId,postTitle,postImg,(SELECT categoryName FROM forum_category fc WHERE fc.categoryId = p.categoryId) cName,DATE_FORMAT(postTime,\"%Y-%m-%d %H:%i:%S\"),postStatus FROM post p";
                 paramsArr = [currentIndex];
@@ -20,6 +23,8 @@ const forumController = {
             }
             forumDao.getForum(mySql,queryData).then(function(data) {
             	var getData = data;
+
+                // 分页
                 mySql += ' limit ?,5';
                 forumDao.pacingForum(mySql,paramsArr).then(function(data) {
                     var paceDate = data;
