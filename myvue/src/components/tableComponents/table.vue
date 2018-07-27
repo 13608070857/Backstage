@@ -187,7 +187,7 @@ export default {
             this.popObj[key] = 'img/index/N1.jpg'
           }
         }
-        
+
       })
     },
     queryParam (btnText,arg) {

@@ -160,30 +160,152 @@ const goodsControoller = {
         val = val.substr(0,val.length-1);
         wh = wh.substr(0,wh.length-1)
         sql = 'insert into goods (' + val + ') values (' + wh + ')';
-        console.log("这是SQL");
-        console.log(sql);
         goodsDao.addgoodsinfo(sql,addArr)
             .then(function(data) {
-                console.log("这是数据")
-                console.log(addArr)
                 resp.send(data);
         })
     },
     // 商品信息修改
     getgoodsmodify(req,resp){
-
+        var popObj = JSON.parse(req.query.popObj);
+        var dataIndex = req.query.dataIndex;
+        var modify = popObj.modify;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        console.log(modify)
+        for(var key in modify) {
+            if (modify[key]=='适用空间' || modify[key]=='已上架') {
+                modify[key]=1;
+            } else if (modify[key]=='植物品种' || modify[key]=='已下架') {
+                modify[key]=2;
+            } else if (modify[key]=='选购热点') {
+                modify[key]=3;
+            }
+            console.log(modify[key])
+            addArr.push(modify[key]);
+            val += key + '=?,'
+        }
+        addArr.push(dataIndex);
+        val = val.substr(0,val.length-1);
+        sql = 'update goods set ' + val + ' where goods_ID=?';
+        goodsDao.modifygoods(sql,addArr)
+            .then(function(data) {
+                resp.send(data);
+        })
     },
-    // 商品分类修改
+    // 商品分类 新增
+    getaddcate(req,resp){
+        var popObj = JSON.parse(req.query.popObj);
+        var insert = popObj.insert;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        for(var key in insert) {
+            addArr.push(insert[key]);
+            val += key + ',' ;
+            wh +='?,'
+        }
+        val = val.substr(0,val.length-1);
+        wh = wh.substr(0,wh.length-1)
+        sql = 'insert into goods_category (' + val + ') values (' + wh + ')';
+        goodsDao.addgoodsinfo(sql,addArr)
+            .then(function(data) {
+                resp.send(data);
+            })
+    },
+    // 商品分类 修改
     getcatemodify(req,resp){
-
+        var popObj = JSON.parse(req.query.popObj);
+        var dataIndex = req.query.dataIndex;
+        var modify = popObj.modify;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        console.log(modify)
+        for(var key in modify) {
+            if (modify[key]=="已上架"){
+                modify[key]=1
+            } else if (modify[key]=="已下架") {
+                modify[key]=2
+            }
+            addArr.push(modify[key]);
+            val += key + '=?,'
+        }
+        addArr.push(dataIndex);
+        val = val.substr(0,val.length-1);
+        sql = 'update goods_category set ' + val + ' where cate_ID=?';
+        goodsDao.modifycate(sql,addArr)
+            .then(function(data) {
+                resp.send(data);
+            })
     },
-    // 商品评论 修改
-    getcommodify(req,resp){
-
+    // 商品详情 新增
+    getadddetail(req,resp){
+        var popObj = JSON.parse(req.query.popObj);
+        var insert = popObj.insert;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        for(var key in insert) {
+            addArr.push(insert[key]);
+            val += key + ',' ;
+            wh +='?,'
+        }
+        val = val.substr(0,val.length-1);
+        wh = wh.substr(0,wh.length-1)
+        val='';
+        val=val+'detailImg,goods_ID,descTitle,descText';
+        sql = 'insert into goods_details (' + val + ') values (' + wh + ')';
+        goodsDao.adddetail(sql,addArr)
+            .then(function(data) {
+                resp.send(data);
+            })
     },
-    // 商品详情
+    // 商品详情 修改
     getdetailmodify(req,resp){
-
+        var popObj = JSON.parse(req.query.popObj);
+        var dataIndex = req.query.dataIndex;
+        var modify = popObj.modify;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        console.log(modify)
+        for(var key in modify) {
+            addArr.push(modify[key]);
+            val += key + '=?,'
+        }
+        addArr.push(dataIndex);
+        val = val.substr(0,val.length-1);
+        val='';
+        val=val+'detailId=?,goods_ID=?,descTitle=?,descText=?,detailImg=?';
+        sql = 'update goods_details set ' + val + ' where detailId=?';
+        goodsDao.modifydetail(sql,addArr)
+            .then(function(data) {
+                resp.send(data);
+            })
+    },
+    // 购物车
+    shopping(req,resp){
+        console.log(1);
+        goodsDao.shopping2()
+            .then(function (data) {
+                let getAllData = data;
+                console.log(data);
+                goodsDao.shopping().then(function(data) {
+                    let getData = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData
+                    };
+                    resp.send(dataInfo);
+                })
+            })
     }
 };
 module.exports = goodsControoller;

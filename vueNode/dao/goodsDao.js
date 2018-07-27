@@ -28,6 +28,33 @@ const goodsDao = {
                 })
         })
     },
+    //查询购物车
+    shopping(req,resp){
+        return new Promise((resolve, reject) => {
+            console.log(2);
+            db.connect("SELECT shop_ID,goods_ID,goodsNum,toal,total_of FROM shop_cart",
+                [], (err, data) => {
+                    if (!err) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    shopping2(req,resp){
+        console.log(3);
+        return new Promise((resolve, reject) => {
+            db.connect("SELECT * FROM shop_cart",
+                [], (err, data) => {
+                    if (!err) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
     // 商品分类
     goodscate(req,resp){
         return new Promise(function (resolve,reject) {
@@ -59,7 +86,7 @@ const goodsDao = {
     // 删除商品
     deletegoods(params) {
         return new Promise(function (resolve, reject) {
-            db.connect("update goods set is_delete=1 where goods_ID=?", [params], function (error, data) {
+            db.connect("delete from goods where goods_ID=?", [params], function (error, data) {
                 resolve(data);
             })
         })
@@ -119,7 +146,7 @@ const goodsDao = {
     //删除种类
     delcate(params){
         return new Promise(function (resolve,reject) {
-            db.connect("update goods_category set is_del=1 WHERE cate_ID=?",
+            db.connect("delete from goods_category WHERE cate_ID=?",
                 [params],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -157,7 +184,7 @@ const goodsDao = {
     },
     goodsdetail2(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT gd.detailId,g.goods_ID,g.goodsName,gd.descTitle,gd.descText,gd.detailImg FROM goods g,goods_details gd WHERE g.goods_ID=gd.goods_ID\n",
+            db.connect("SELECT gd.detailId,gd.goods_ID AS gname,gd.descTitle,gd.descText,gd.detailImg FROM goods_details gd\n",
                 [],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -182,6 +209,38 @@ const goodsDao = {
     },
     // 新增商品
     addgoodsinfo(sql, ...args){
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
+    },
+    // 商品信息 修改
+    modifygoods(sql, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
+    },
+    // 商品分类 修改
+    modifycate(sql, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
+    },
+    // 商品详情 新增
+    adddetail(sql, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
+    },
+    // 商品详情 修改
+    modifydetail(sql, ...args) {
         return new Promise(function (resolve, reject) {
             db.connect(sql, ...args, function (error, data) {
                 resolve(data);
