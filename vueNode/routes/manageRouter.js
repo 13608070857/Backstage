@@ -7,6 +7,7 @@ const orderController = require("../controller/orderController");
 const goodsController = require("../controller/goodsController");
 const leaseController = require("../controller/leaseController");
 const forumController = require("../controller/forumController");
+const upFileController = require("../controller/upFileController");
 
 
 router.get("/getUserInfo.do",userController.getUserInfo);
@@ -91,5 +92,8 @@ router.get("/deleteForum.do",forumController.deleteForum);
 
 router.get("/getForumRep.do",forumController.getForumRep);
 router.get("/deleteRep.do",forumController.deleteRep);
+
+// ================ 图片上传 =============
+router.get('/upFile.do',upFileController.upFile);
 
 module.exports = router;
