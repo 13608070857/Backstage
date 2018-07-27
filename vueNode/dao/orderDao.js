@@ -405,7 +405,7 @@ const orderDao = {
     // 订单处理 删除
     owithdelete(params){
         return new Promise(function (resolve,reject) {
-            db.connect("update goodsorder set is_del=1 where o_ID=?",
+            db.connect("delete from goodsorder where o_ID=?",
                 [params],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -446,7 +446,7 @@ const orderDao = {
     // 退款处理 删除
     refunddelete(params){
         return new Promise(function (resolve,reject) {
-            db.connect("update goodsorder set is_del2=1 where o_ID=?",
+            db.connect("delete from goodsorder where o_ID=?",
                 [params],(err,data)=>{
                     if (!err){
                         resolve(data);

@@ -8,16 +8,16 @@ const forumDao = {
             });
         });
     },
-    getForum(params) {
+    getForum(sql,params) {
         return new Promise(function (resolve, reject) {
-            db.connect("SELECT postId,postTitle,postImg,(SELECT categoryName FROM forum_category fc WHERE fc.categoryId = p.categoryId) cName,DATE_FORMAT(postTime,\"%Y-%m-%d %H:%i:%S\"),postStatus FROM post p", [], function (error, data) {
+            db.connect(sql, [params], function (error, data) {
                 resolve(data);
             });
         });
     },
-    pacingForum(params) {
+    pacingForum(sql,...args) {
         return new Promise(function (resolve, reject) {
-            db.connect("SELECT postId,postTitle,postImg,(SELECT categoryName FROM forum_category fc WHERE fc.categoryId = p.categoryId) cName,DATE_FORMAT(postTime,\"%Y-%m-%d %H:%i:%S\"),postStatus FROM post p limit ?,5", [params], function (error, data) {
+            db.connect(sql, ...args, function (error, data) {
                 resolve(data);
             });
         });
@@ -50,9 +50,16 @@ const forumDao = {
             });
         });
     },
-    getForumRep(params) {
+    getForumRep(sql,params) {
         return new Promise(function (resolve, reject) {
-            db.connect("select RestoreId,(SELECT u.name FROM users u WHERE u.u_id=rp.u_id) uName,(SELECT u.userImg FROM users u WHERE u.u_id=rp.u_id) uImg,RestoreBody,DATE_FORMAT(resTime,\"%Y-%m-%d %H:%i:%S\") resTime from rep_post rp", [], function (error, data) {
+            db.connect(sql, [params], function (error, data) {
+                resolve(data);
+            });
+        });
+    },
+    pacingForumRep(sql,...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
                 resolve(data);
             });
         });

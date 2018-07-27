@@ -146,7 +146,7 @@ const goodsDao = {
     //删除种类
     delcate(params){
         return new Promise(function (resolve,reject) {
-            db.connect("update goods_category set is_del=1 WHERE cate_ID=?",
+            db.connect("delete from goods_category WHERE cate_ID=?",
                 [params],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -184,7 +184,7 @@ const goodsDao = {
     },
     goodsdetail2(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT gd.detailId,gd.goods_ID,gd.descTitle,gd.descText,gd.detailImg FROM goods_details gd\n",
+            db.connect("SELECT gd.detailId,gd.goods_ID AS gname,gd.descTitle,gd.descText,gd.detailImg FROM goods_details gd\n",
                 [],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -238,7 +238,14 @@ const goodsDao = {
                 resolve(data);
             })
         })
+    },
+    // 商品详情 修改
+    modifydetail(sql, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
     }
-
 };
 module.exports = goodsDao;

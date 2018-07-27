@@ -160,12 +160,8 @@ const goodsControoller = {
         val = val.substr(0,val.length-1);
         wh = wh.substr(0,wh.length-1)
         sql = 'insert into goods (' + val + ') values (' + wh + ')';
-        console.log("这是SQL");
-        console.log(sql);
         goodsDao.addgoodsinfo(sql,addArr)
             .then(function(data) {
-                console.log("这是数据")
-                console.log(addArr)
                 resp.send(data);
         })
     },
@@ -196,9 +192,6 @@ const goodsControoller = {
         sql = 'update goods set ' + val + ' where goods_ID=?';
         goodsDao.modifygoods(sql,addArr)
             .then(function(data) {
-                console.log("这还是数据");
-                console.log(sql);
-                console.log(addArr);
                 resp.send(data);
         })
     },
@@ -247,9 +240,6 @@ const goodsControoller = {
         sql = 'update goods_category set ' + val + ' where cate_ID=?';
         goodsDao.modifycate(sql,addArr)
             .then(function(data) {
-                console.log("这还是数据");
-                console.log(sql);
-                console.log(addArr);
                 resp.send(data);
             })
     },
@@ -268,6 +258,8 @@ const goodsControoller = {
         }
         val = val.substr(0,val.length-1);
         wh = wh.substr(0,wh.length-1)
+        val='';
+        val=val+'detailImg,goods_ID,descTitle,descText';
         sql = 'insert into goods_details (' + val + ') values (' + wh + ')';
         goodsDao.adddetail(sql,addArr)
             .then(function(data) {
@@ -276,7 +268,27 @@ const goodsControoller = {
     },
     // 商品详情 修改
     getdetailmodify(req,resp){
-
+        var popObj = JSON.parse(req.query.popObj);
+        var dataIndex = req.query.dataIndex;
+        var modify = popObj.modify;
+        var val = ''
+        var sql = '';
+        var wh = '';
+        var addArr = [];
+        console.log(modify)
+        for(var key in modify) {
+            addArr.push(modify[key]);
+            val += key + '=?,'
+        }
+        addArr.push(dataIndex);
+        val = val.substr(0,val.length-1);
+        val='';
+        val=val+'detailId=?,goods_ID=?,descTitle=?,descText=?,detailImg=?';
+        sql = 'update goods_details set ' + val + ' where detailId=?';
+        goodsDao.modifydetail(sql,addArr)
+            .then(function(data) {
+                resp.send(data);
+            })
     },
     // 购物车
     shopping(req,resp){

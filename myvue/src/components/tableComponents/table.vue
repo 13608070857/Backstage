@@ -21,7 +21,7 @@
         <th v-if="operationBtns.length>0">操作</th>
       </tr>
       <tbody>
-        <tr class="showCont" v-for="(tableContent,index) in tableContents" :key="index">
+        <tr class="showCont" v-for="(tableContent,index) in paceContents" :key="index">
           <td v-for="(tableC,i) in tableContent" :key="i">
             <div v-if="!/img/.test(tableC)">
               <div v-if="/[dD]es/.test(i)" class="overText">{{tableC}}</div>
@@ -55,7 +55,7 @@
             </div>
             <div v-else class="imgD">
               <img :src="'/api/' + popObj[index]" alt="">
-              <input type="file">
+              <input type="file" id="avatar" @change="upload">
             </div>
           </li>
         </ul>
@@ -164,7 +164,7 @@ export default {
     },
     getInfo() {
       console.log(this.currentPacing)
-      this.$axios.get('/api' + this.router, {params: {currentP: this.currentPacing}}).then(resp => {
+      this.$axios.get('/api' + this.router, {params: {currentP: this.currentPacing, queryData: this.searchText}}).then(resp => {
         this.tableContents = resp.data.getData
         this.tableData = resp.data.getData
         this.paceContents = resp.data.paceDate
@@ -187,25 +187,11 @@ export default {
             this.popObj[key] = 'img/index/N1.jpg'
           }
         }
-        
+
       })
     },
     queryParam (btnText,arg) {
-      let newArr = []
-      let tableData = this.tableData
-      if (arg === '') {
-        this.tableContents = tableData
-        this.tableContents.filter(value => {
-          for(let key in value) {
-            if(/[nN]ame/.test(key)) {
-              if (value[key].indexOf(this.searchText) !== -1) {
-                newArr.push(value)
-              }
-            }
-          }
-          this.tableContents = Array.from(new Set(newArr))
-        })
-      }
+      this.getInfo()
     },
     insertInfo (btnText,arg) {
       this.popShow = true
@@ -242,10 +228,6 @@ export default {
         this.currentPacing--
       }
       this.getInfo()
-      var showCont = document.getElementsByClassName('showCont')
-      for(var i=0;i<showCont.length;i++) {
-        console.log(showCont[i])
-      }
     },
     nextPacing () {
       if(this.currentPacing >= this.totalPacing) {
@@ -254,10 +236,6 @@ export default {
         this.currentPacing++
       }
       this.getInfo()
-      var showCont = document.getElementsByClassName('showCont')
-      for(var i=0;i<showCont.length;i++) {
-        showCont[i].style.display = 'none'
-      }
     },
     cancel () {
       this.popShow = false
@@ -273,7 +251,7 @@ export default {
       console.log(this.popObj)
       if(this.operationRouter != '') {
         this.$axios.get('/api' + this.operationRouter,
-          {params:{dataIndex: this.dataI, popObj: {insert: this.popObj, modify: this.viewObj}}}).then(resp => {
+          {params:{dataIndex: this.dataI, popObj: {insert: this.popObj, modify: this.viewObj}, insertIndex: this.insertIndex}}).then(resp => {
           this.popShow = false
           this.operationRouter = ''
           this.getInfo()
