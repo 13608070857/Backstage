@@ -3,51 +3,141 @@ let dataInfo;
 const goodsControoller = {
     // 所有商品
     getallgoods(req,resp){
-        goodsDao.goodsmsg2()
-            .then(function (data) {
-                let getAllData = data;
-                console.log(data);
-                goodsDao.goodsmsg().then(function(data) {
-                    let getData = data;
+        // goodsDao.goodsmsg2()
+        //     .then(function (data) {
+        //         let getAllData = data;
+        //         console.log(data);
+        //         goodsDao.goodsmsg().then(function(data) {
+        //             let getData = data;
+        //             dataInfo = {
+        //                 getAllData: getAllData,
+        //                 getData: getData
+        //             };
+        //             resp.send(dataInfo);
+        //         })
+        //     })
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
+        goodsDao.goodsmsg2().then(function(data) {
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            console.log(queryData)
+            if(queryData == '') {
+                mySql = "SELECT g.goods_ID,g.goodsName,g.goodsImg,goodsPrice,gc.cateName,DATE_FORMAT(g.createTime,\"%Y-%m-%d %H:%i:%S\") AS createTime,IF(g.goodsStatus=1,\"已上架\",\"已下架\") AS goodsStatus FROM goods g,goods_category gc WHERE g.inventory>-1 AND g.is_delete=0 AND g.cate_ID=gc.cate_ID";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT g.goods_ID,g.goodsName,g.goodsImg,goodsPrice,gc.cateName,DATE_FORMAT(g.createTime,\"%Y-%m-%d %H:%i:%S\") AS createTime,IF(g.goodsStatus=1,\"已上架\",\"已下架\") AS goodsStatus FROM goods g,goods_category gc WHERE g.inventory>-1 AND g.is_delete=0 AND g.cate_ID=gc.cate_ID AND g.goodsName IN (SELECT goodsName FROM goods WHERE goodsName LIKE ?)";
+                paramsArr = [queryData,currentIndex];
+            }
+            goodsDao.goodsmsg(mySql,queryData).then(function(data) {
+                var getData = data;
+                mySql += ' limit ?,5';
+                goodsDao.goodsmsg3(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
                     dataInfo = {
                         getAllData: getAllData,
-                        getData: getData
+                        getData: getData,
+                        paceDate: paceDate
                     };
                     resp.send(dataInfo);
                 })
+
             })
+        });
     },
     //商品分类
     getcategory(req,resp){
-        goodsDao.goodscate()
-            .then(function (data) {
-                let getAllData = data;
-                console.log(data);
-                goodsDao.goodscate().then(function(data) {
-                    let getData = data;
+        // goodsDao.goodscate()
+        //     .then(function (data) {
+        //         let getAllData = data;
+        //         console.log(data);
+        //         goodsDao.goodscate().then(function(data) {
+        //             let getData = data;
+        //             dataInfo = {
+        //                 getAllData: getAllData,
+        //                 getData: getData
+        //             };
+        //             resp.send(dataInfo);
+        //         })
+        //     })
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
+        goodsDao.goodscate().then(function(data) {
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            console.log(queryData)
+            if(queryData == '') {
+                mySql = "SELECT cate_ID,cateName,IF(gc.status=1,'已上架','已下架') as status,DATE_FORMAT(cateTime,'%Y-%m-%d %H:%i:%S') as cateTime FROM goods_category gc where gc.is_del=0";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT cate_ID,cateName,IF(gc.status=1,'已上架','已下架') AS STATUS,DATE_FORMAT(cateTime,'%Y-%m-%d %H:%i:%S') AS cateTime FROM goods_category gc WHERE gc.is_del=0 AND gc.cateName IN (SELECT cateName FROM goods_category WHERE cateName LIKE ?)";
+                paramsArr = [queryData,currentIndex];
+            }
+            goodsDao.goodscate2(mySql,queryData).then(function(data) {
+                var getData = data;
+                mySql += ' limit ?,5';
+                goodsDao.goodscate3(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
                     dataInfo = {
                         getAllData: getAllData,
-                        getData: getData
+                        getData: getData,
+                        paceDate: paceDate
                     };
                     resp.send(dataInfo);
                 })
+
             })
+        });
     },
     // 商品评论
     getcomments(req,resp){
-        goodsDao.goodscom()
-            .then(function (data) {
-                let getAllData = data;
-                console.log(data);
-                goodsDao.goodscom().then(function(data) {
-                    let getData = data;
+        // goodsDao.goodscom()
+        //     .then(function (data) {
+        //         let getAllData = data;
+        //         console.log(data);
+        //         goodsDao.goodscom().then(function(data) {
+        //             let getData = data;
+        //             dataInfo = {
+        //                 getAllData: getAllData,
+        //                 getData: getData
+        //             };
+        //             resp.send(dataInfo);
+        //         })
+        //     })
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
+        goodsDao.goodscom().then(function(data) {
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            console.log(queryData)
+            if(queryData == '') {
+                mySql = "SELECT uc.commentsId,u.u_id,u.name,g.goods_ID,g.goodsName,CASE uc.comType WHEN 1 THEN '好评' WHEN 2 THEN '中评' ELSE '差评' END AS comType,uc.com_Content,DATE_FORMAT(comTime,'%Y-%m-%d %H:%i:%S') AS comTime FROM user_comments uc,users u,goods g WHERE uc.u_id=u.u_id AND uc.goods_ID=g.goods_ID";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT uc.commentsId,u.u_id,u.name,g.goods_ID,g.goodsName,CASE uc.comType WHEN 1 THEN '好评' WHEN 2 THEN '中评' ELSE '差评' END AS comType,uc.com_Content,DATE_FORMAT(comTime,'%Y-%m-%d %H:%i:%S') AS comTime FROM user_comments uc,users u,goods g WHERE uc.u_id=u.u_id AND uc.goods_ID=g.goods_ID AND comType IN (SELECT comType FROM user_comments WHERE comType LIKE ?)";
+                paramsArr = [queryData,currentIndex];
+            }
+            goodsDao.goodscom2(mySql,queryData).then(function(data) {
+                var getData = data;
+                mySql += ' limit ?,5';
+                goodsDao.goodscom3(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
                     dataInfo = {
                         getAllData: getAllData,
-                        getData: getData
+                        getData: getData,
+                        paceDate: paceDate
                     };
                     resp.send(dataInfo);
                 })
+
             })
+        });
     },
     // 删除商品
     getgoodsdelete(req,resp){
@@ -110,19 +200,49 @@ const goodsControoller = {
     },
     // 商品详情
     getgoodsdetail(req,resp){
-        goodsDao.goodsdetail2()
-            .then(function (data) {
-                let getAllData = data;
-                console.log(data);
-                goodsDao.goodsdetail().then(function(data) {
-                    let getData = data;
+        // goodsDao.goodsdetail2()
+        //     .then(function (data) {
+        //         let getAllData = data;
+        //         console.log(data);
+        //         goodsDao.goodsdetail().then(function(data) {
+        //             let getData = data;
+        //             dataInfo = {
+        //                 getAllData: getAllData,
+        //                 getData: getData
+        //             };
+        //             resp.send(dataInfo);
+        //         })
+        //     })
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
+        goodsDao.goodsdetail2().then(function(data) {
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            console.log(queryData)
+            if(queryData == '') {
+                mySql = "SELECT gd.detailId,g.goods_ID,g.goodsName,gd.descTitle,(CASE WHEN LENGTH(gd.descText)>10 THEN CONCAT(SUBSTRING(gd.descText,1,10),'...') ELSE gd.descText END) AS descText,gd.detailImg FROM goods g,goods_details gd WHERE g.goods_ID=gd.goods_ID";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT gd.detailId,g.goods_ID,g.goodsName,gd.descTitle,(CASE WHEN LENGTH(gd.descText)>10 THEN CONCAT(SUBSTRING(gd.descText,1,10),'...') ELSE gd.descText END) AS descText,gd.detailImg FROM goods g,goods_details gd WHERE g.goods_ID=gd.goods_ID AND g.goodsName IN (SELECT goodsName FROM goods WHERE goodsName LIKE ?)";
+                paramsArr = [queryData,currentIndex];
+            }
+            goodsDao.goodsdetail(mySql,queryData).then(function(data) {
+                var getData = data;
+                mySql += ' limit ?,5';
+                goodsDao.goodsdetail3(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
                     dataInfo = {
                         getAllData: getAllData,
-                        getData: getData
+                        getData: getData,
+                        paceDate: paceDate
                     };
                     resp.send(dataInfo);
                 })
+
             })
+        });
     },
     // 商品详情 删除
     getdetaildelete(req,resp){
@@ -292,20 +412,50 @@ const goodsControoller = {
     },
     // 购物车
     shopping(req,resp){
-        console.log(1);
-        goodsDao.shopping2()
-            .then(function (data) {
-                let getAllData = data;
-                console.log(data);
-                goodsDao.shopping().then(function(data) {
-                    let getData = data;
+        // console.log(1);
+        // goodsDao.shopping2()
+        //     .then(function (data) {
+        //         let getAllData = data;
+        //         console.log(data);
+        //         goodsDao.shopping().then(function(data) {
+        //             let getData = data;
+        //             dataInfo = {
+        //                 getAllData: getAllData,
+        //                 getData: getData
+        //             };
+        //             resp.send(dataInfo);
+        //         })
+        //     })
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*currentP;
+        var queryData = "%" + req.query.queryData + "%";
+        goodsDao.shopping2().then(function(data) {
+            var getAllData = data;
+            var mySql = '';
+            var paramsArr = '';
+            console.log(queryData)
+            if(queryData == '') {
+                mySql = "SELECT shop_ID,goods_ID,goodsNum,toal,total_of FROM shop_cart";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT shop_ID,goods_ID,goodsNum,toal,total_of FROM shop_cart WHERE goods_ID IN (SELECT goods_ID FROM shop_cart WHERE goods_ID LIKE ?)";
+                paramsArr = [queryData,currentIndex];
+            }
+            goodsDao.shopping(mySql,queryData).then(function(data) {
+                var getData = data;
+                mySql += ' limit ?,5';
+                goodsDao.shopping3(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
                     dataInfo = {
                         getAllData: getAllData,
-                        getData: getData
+                        getData: getData,
+                        paceDate: paceDate
                     };
                     resp.send(dataInfo);
                 })
+
             })
+        });
     }
 };
 module.exports = goodsControoller;

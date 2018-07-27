@@ -1,19 +1,28 @@
 const db = require("../config/dbpoolConfig");
 const goodsDao = {
     //查询所有商品
-    goodsmsg(req,resp){
-        return new Promise(function (resolve,reject) {
-            db.connect("SELECT g.goods_ID,g.goodsName,g.goodsImg,goodsPrice,gc.cateName,DATE_FORMAT(g.createTime,\"%Y-%m-%d %H:%i:%S\") AS createTime,IF(g.goodsStatus=1,\"已上架\",\"已下架\") AS goodsStatus " +
-                "FROM goods g,goods_category gc " +
-                "WHERE g.inventory>-1 AND g.is_delete=0 AND g.cate_ID=gc.cate_ID",
-                [],(err,data)=>{
-                    if (!err){
-                        resolve(data);
-                    } else {
-                        reject(data);
-                    }
-                })
-        })
+    goodsmsg(sql,params){
+        // return new Promise(function (resolve,reject) {
+        //     db.connect("SELECT g.goods_ID,g.goodsName,g.goodsImg,goodsPrice,gc.cateName,DATE_FORMAT(g.createTime,\"%Y-%m-%d %H:%i:%S\") AS createTime,IF(g.goodsStatus=1,\"已上架\",\"已下架\") AS goodsStatus " +
+        //         "FROM goods g,goods_category gc " +
+        //         "WHERE g.inventory>-1 AND g.is_delete=0 AND g.cate_ID=gc.cate_ID",
+        //         [],(err,data)=>{
+        //             if (!err){
+        //                 resolve(data);
+        //             } else {
+        //                 reject(data);
+        //             }
+        //         })
+        // })
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, [params], function (error, data) {
+                if (!error){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
     },
     goodsmsg2(req,resp){
         return new Promise(function (resolve,reject) {
@@ -28,19 +37,35 @@ const goodsDao = {
                 })
         })
     },
+    goodsmsg3(sql,...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            });
+        });
+    },
     //查询购物车
-    shopping(req,resp){
-        return new Promise((resolve, reject) => {
-            console.log(2);
-            db.connect("SELECT shop_ID,goods_ID,goodsNum,toal,total_of FROM shop_cart",
-                [], (err, data) => {
-                    if (!err) {
-                        resolve(data);
-                    } else {
-                        reject(data);
-                    }
-                })
-        })
+    shopping(sql,params){
+        // return new Promise((resolve, reject) => {
+        //     console.log(2);
+        //     db.connect("SELECT shop_ID,goods_ID,goodsNum,toal,total_of FROM shop_cart",
+        //         [], (err, data) => {
+        //             if (!err) {
+        //                 resolve(data);
+        //             } else {
+        //                 reject(data);
+        //             }
+        //         })
+        // })
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, [params], function (error, data) {
+                if (!error){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
     },
     shopping2(req,resp){
         console.log(3);
@@ -55,10 +80,17 @@ const goodsDao = {
                 })
         })
     },
+    shopping3(sql,...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            });
+        });
+    },
     // 商品分类
     goodscate(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT cate_ID,cateName,IF(gc.status=1,\"已上架\",\"已下架\") as status,DATE_FORMAT(cateTime,\"%Y-%m-%d %H:%i:%S\") as cateTime FROM goods_category gc where gc.is_del=0",
+            db.connect("SELECT cate_ID,cateName,IF(gc.status=1,'已上架','已下架') as status,DATE_FORMAT(cateTime,'%Y-%m-%d %H:%i:%S') as cateTime FROM goods_category gc where gc.is_del=0",
                 [],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -67,6 +99,48 @@ const goodsDao = {
                     }
                 })
         })
+    },
+    goodscate2(sql,params){
+        // return new Promise(function (resolve,reject) {
+        //     db.connect("SELECT cate_ID,cateName,IF(gc.status=1,\"已上架\",\"已下架\") as status,DATE_FORMAT(cateTime,\"%Y-%m-%d %H:%i:%S\") as cateTime FROM goods_category gc where gc.is_del=0",
+        //         [],(err,data)=>{
+        //             if (!err){
+        //                 resolve(data);
+        //             } else {
+        //                 reject(data);
+        //             }
+        //         })
+        // })
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, [params], function (error, data) {
+                if (!error){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
+    },
+    goodscate3(sql,...args){
+        // return new Promise(function (resolve,reject) {
+        //     db.connect("SELECT cate_ID,cateName,IF(gc.status=1,\"已上架\",\"已下架\") as status,DATE_FORMAT(cateTime,\"%Y-%m-%d %H:%i:%S\") as cateTime FROM goods_category gc where gc.is_del=0",
+        //         [],(err,data)=>{
+        //             if (!err){
+        //                 resolve(data);
+        //             } else {
+        //                 reject(data);
+        //             }
+        //         })
+        // })
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                if (!error){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
     },
     // 商品评论
     goodscom(req,resp){
@@ -82,6 +156,28 @@ const goodsDao = {
                     }
                 })
         })
+    },
+    goodscom2(sql,params){
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, [params], function (error, data) {
+                if (!error){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
+    },
+    goodscom3(sql,...args){
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                if (!error){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
     },
     // 删除商品
     deletegoods(params) {
@@ -170,9 +266,30 @@ const goodsDao = {
         })
     },
     // 商品详情
-    goodsdetail(req,resp){
+    goodsdetail(sql,params){
+        // return new Promise(function (resolve,reject) {
+        //     db.connect("SELECT gd.detailId,g.goods_ID,g.goodsName,gd.descTitle,(CASE WHEN LENGTH(gd.descText)>10 THEN CONCAT(SUBSTRING(gd.descText,1,10),'...') ELSE gd.descText END) AS descText,gd.detailImg FROM goods g,goods_details gd WHERE g.goods_ID=gd.goods_ID",
+        //         [],(err,data)=>{
+        //             if (!err){
+        //                 resolve(data);
+        //             } else {
+        //                 reject(data);
+        //             }
+        //         })
+        // })
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, [params], function (error, data) {
+                if (!error){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
+    },
+    goodsdetail2(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT gd.detailId,g.goods_ID,g.goodsName,gd.descTitle,(CASE WHEN LENGTH(gd.descText)>10 THEN CONCAT(SUBSTRING(gd.descText,1,10),'...') ELSE gd.descText END) AS descText,gd.detailImg FROM goods g,goods_details gd WHERE g.goods_ID=gd.goods_ID",
+            db.connect("SELECT gd.detailId,gd.goods_ID AS gname,gd.descTitle,gd.descText,gd.detailImg FROM goods_details gd",
                 [],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -182,17 +299,12 @@ const goodsDao = {
                 })
         })
     },
-    goodsdetail2(req,resp){
-        return new Promise(function (resolve,reject) {
-            db.connect("SELECT gd.detailId,gd.goods_ID AS gname,gd.descTitle,gd.descText,gd.detailImg FROM goods_details gd\n",
-                [],(err,data)=>{
-                    if (!err){
-                        resolve(data);
-                    } else {
-                        reject(data);
-                    }
-                })
-        })
+    goodsdetail3(sql,...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            });
+        });
     },
     //商品详情 删除
     detaildelete(params){
