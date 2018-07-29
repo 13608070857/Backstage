@@ -129,7 +129,9 @@ const indexController = {
         // let sql = 'UPDATE workuser SET NAME ='+name +',A_number = '+ A_number+' ,PASSWORD = '+password +',tel = '+tel+',email = '+email+', qq = '+qq+', sex = '+sex+' WHERE ID = '+ID+''
         indexDao.upload(ID,name,A_number,password,tel,email,qq,sex)
             .then(function (data) {
+                console.log("成功")
                 console.log(data);
+                resp.send(data);
             })
     }
 }

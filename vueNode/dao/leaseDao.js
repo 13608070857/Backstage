@@ -7,6 +7,20 @@ const leaseDao = {
             })
         })
     },
+    getLease(sql,params) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, [params], function (error, data) {
+                resolve(data);
+            });
+        });
+    },
+    pacingLease(sql,...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            });
+        });
+    },
     modifyRep(sql, ...args) {
         return new Promise(function (resolve, reject) {
             db.connect(sql, ...args, function (error, data) {
@@ -18,6 +32,16 @@ const leaseDao = {
         return new Promise(function (resolve, reject) {
             db.connect(sql, ...args, function (error, data) {
                 resolve(data);
+            })
+        })
+    },
+    addForum2(sql2, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql2, ...args, function (error, data) {
+                resolve(data);
+                console.log(sql2)
+                console.log(...args)
+                console.log(data)
             })
         })
     },
