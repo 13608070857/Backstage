@@ -7,7 +7,9 @@
       <myheader class="header"> </myheader>
       <mainNav class="Nav"> </mainNav>
       <div id="myindex" :style="{background: this.$bg}">
-        <router-view> </router-view>
+        <div class="my">
+          <router-view> </router-view>
+        </div>
       </div>
       <footer></footer>
     </div>
@@ -62,6 +64,7 @@ html,body {
 body{
   position: relative;
   background: url("./assets/bg.png") fixed;
+  overflow-y: hidden;
 }
 #app {
   height: 100%;
@@ -69,8 +72,16 @@ body{
 #myindex{
   width: 85%;
   float: right;
+  /*width: 1145px;*/
+  height: 930px;
   margin-top: 65px;
   background: white;
+  overflow: scroll;
+  /*overflow-y: visible;*/
+}
+.my{
+  width: 100%;
+  height: 140%;
 }
 .header{
   position: fixed;

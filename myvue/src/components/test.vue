@@ -62,8 +62,7 @@ export default {
         {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: '/modifyInfo.do'}}
       ],
       searchBtns: [
-        {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
-        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addUserInfo.do'}}
+        {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}}
       ],
       // 表单元素信息，isInput：是否是input元素，如果是select就写false
       // content：是传送的内容

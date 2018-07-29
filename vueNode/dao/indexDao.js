@@ -427,6 +427,30 @@ const indexDao = {
                     }
                 })
         })
+    },
+    personal(user) {
+        return new Promise((resolve, reject) => {
+            db.connect("SELECT * FROM workuser where A_number = ?",
+                [user], (err, data) => {
+                    if (!err) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    upload(A,B,C,D,E,F,G,H) {
+        return new Promise((resolve, reject) => {
+            db.connect("UPDATE workuser SET NAME = \"?\",A_number = \"?\" ,PASSWORD = ?,tel = \"?\",email = \"?\", qq = ?, sex = \"?\" WHERE ID = ?",
+                [B,C,D,E,F,G,H,A], (err, data) => {
+                    if (!err) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
     }
 }
 module.exports = indexDao;

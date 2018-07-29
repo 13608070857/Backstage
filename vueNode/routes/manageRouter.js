@@ -33,6 +33,8 @@ router.get("/Obtain",indexController.Obtain);
 router.post("/login.do",indexController.login);
 router.get("/jinru",indexController.jinru);
 router.get("/tuichu",indexController.tuichu);
+router.get("/personal",indexController.personal);
+router.get("/upload",indexController.upload);
 
 // ============== 商品管理 ==============
 router.get("/getgoodsmsg.do",goodsController.getallgoods);
