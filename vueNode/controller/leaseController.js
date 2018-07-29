@@ -3,7 +3,7 @@ let dataInfo;
 const leaseController = {
     leaseTransfer(req,resp) {
         var currentP = req.query.currentP;
-        var currentIndex = (currentP - 1)*currentP;
+        var currentIndex = (currentP - 1)*5;
         var queryData = "%" + req.query.queryData + "%";
 
         // 弹出层
@@ -96,6 +96,16 @@ const leaseController = {
                     add1,
                     add2
                 });
+            })
+        })
+    },
+    leaseDelete(req,resp) {
+        var deleteId = req.query.deleteId;
+        leaseDao.deleteInfo(deleteId).then(function(data) {
+            var data1=data;
+            leaseDao.deleteInfo2(deleteId).then(function(data) {
+                var data2=data;
+                resp.send(data1);
             })
         })
     },

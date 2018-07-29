@@ -51,7 +51,7 @@
         operationBtns: [
           {text: '查看', className: 'small lightGreen', fn: {fnName: 'view', fnArg: ''}},
           {text: '修改', className: 'small lightGreen', fn: {fnName: 'modify', fnArg: '/leaseModify.do'}},
-          {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/deleteInfo.do'}}
+          {text: '删除', className: 'small darkGreen', fn: {fnName: 'delete', fnArg: '/leaseDelete.do'}}
         ],
         searchBtns: [
           {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},

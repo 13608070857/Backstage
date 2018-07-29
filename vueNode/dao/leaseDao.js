@@ -45,5 +45,19 @@ const leaseDao = {
             })
         })
     },
+    deleteInfo(params) {
+        return new Promise(function (resolve, reject) {
+            db.connect("delete from lease where ID=?", [params], function (error, data) {
+                resolve(data);
+            })
+        });
+    },
+    deleteInfo2(params) {
+        return new Promise(function (resolve, reject) {
+            db.connect("delete from lease_details where ID=?", [params], function (error, data) {
+                resolve(data);
+            })
+        });
+    },
 };
 module.exports = leaseDao;

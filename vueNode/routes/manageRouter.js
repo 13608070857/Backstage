@@ -85,6 +85,7 @@ router.get("/addpay.do",orderController.getaddpay);
 router.get("/leaseTransfer.do",leaseController.leaseTransfer);
 router.get("/leaseModify.do",leaseController.leaseModify);
 router.get("/leaseAdd.do",leaseController.addForum);
+router.get("/leaseDelete.do",leaseController.leaseDelete);
 
 
 // ================ 论坛管理 =============
