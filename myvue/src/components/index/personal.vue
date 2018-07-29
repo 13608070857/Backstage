@@ -38,7 +38,8 @@
       </label>
       <label>
         <span></span>
-        <input type="button" class="button" value="确认修改" />
+        <!--<input type="button" class="button" value="确认修改" />-->
+        <button class="button">确认修改</button>
       </label>
     </form>
   </div>
@@ -75,6 +76,7 @@ export default {
   },
   methods: {
     showData: function () {
+      console.log(1);
       this.$axios.get('/xxm/upload', {params: {ID: this.ID, name: this.name, A_number: this.A_number, password: this.password, tel: this.tel, email: this.email, qq: this.qq, sex: this.sex}})
     }
   }

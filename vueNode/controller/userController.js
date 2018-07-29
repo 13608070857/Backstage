@@ -2,7 +2,7 @@ const userDao = require("../dao/userDao");
 const userController = {
     getUserInfo(req,resp) {
         var currentP = req.query.currentP;
-        var currentIndex = (currentP - 1)*currentP;
+        var currentIndex = (currentP - 1)*5;
         var queryData = "%" + req.query.queryData + "%";
         console.log(queryData)
         userDao.getAllUser().then(function(data) {
@@ -82,7 +82,7 @@ const userController = {
     },
     grade(req,resp) {
         var currentP = req.query.currentP;
-        var currentIndex = (currentP - 1)*currentP;
+        var currentIndex = (currentP - 1)*5;
         var queryData = "%" + req.query.queryData + "%";
         userDao.gradex().then(function(data) {
             var getAllData = data;
@@ -114,7 +114,7 @@ const userController = {
 	},
     collection(req,resp) {
         var currentP = req.query.currentP;
-        var currentIndex = (currentP - 1)*currentP;
+        var currentIndex = (currentP - 1)*5;
         var queryData = "%" + req.query.queryData + "%";
         userDao.collectionx().then(function(data) {
             var getAllData = data;
@@ -146,7 +146,7 @@ const userController = {
 	},
 	staff(req,resp) {
         var currentP = req.query.currentP;
-        var currentIndex = (currentP - 1)*currentP;
+        var currentIndex = (currentP - 1)*5;
         var queryData = "%" + req.query.queryData + "%";
         userDao.staffx().then(function(data) {
             var getAllData = data;
