@@ -7,6 +7,13 @@ const leaseDao = {
             })
         })
     },
+    leaseClassInquiry(params) {
+        return new Promise(function (resolve, reject) {
+            db.connect("SELECT l.portfolioID,ld.goodsName,ll.Maintitle,l.goods_type,l.goods_num,ld.goodsImg FROM lease_portfolio l,goods ld,lease ll WHERE l.goods_ID=ld.goods_ID AND ll.ID=l.leaseID", [], function (error, data) {
+                resolve(data)
+            })
+        })
+    },
     getLease(sql,params) {
         return new Promise(function (resolve, reject) {
             db.connect(sql, [params], function (error, data) {

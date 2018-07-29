@@ -16,7 +16,42 @@ const leaseController = {
                 mySql = "SELECT l.ID,ld.detailsName,l.Maintitle,l.Subtitle,ld.detailsPrice,ld.detailsImg FROM lease l,lease_details ld WHERE l.ID=ld.ID";
                 paramsArr = [currentIndex];
             }else {
-                mySql = "SELECT l.ID,ld.detailsName,l.Maintitle,l.Subtitle,ld.detailsPrice,ld.detailsImg FROM lease l,lease_details ld WHERE l.ID=ld.ID and Id.detailsNam=?";
+                mySql = "SELECT l.ID,ld.detailsName,l.Maintitle,l.Subtitle,ld.detailsPrice,ld.detailsImg FROM lease l,lease_details ld WHERE l.ID=ld.ID";
+                paramsArr = [queryData,currentIndex];
+            }
+            leaseDao.getLease(mySql,queryData).then(function(data) {
+                var getData = data;
+                // 分页
+                mySql += ' limit ?,5';
+                leaseDao.pacingLease(mySql,paramsArr).then(function(data) {
+                    var paceDate = data;
+                    dataInfo = {
+                        getAllData: getAllData,
+                        getData: getData,
+                        paceDate: paceDate
+                    };
+                    resp.send(dataInfo);
+                })
+
+            })
+        });
+    },
+    leaseClass(req,resp){
+        var currentP = req.query.currentP;
+        var currentIndex = (currentP - 1)*5;
+        var queryData = "%" + req.query.queryData + "%";
+
+        // 弹出层
+        leaseDao.leaseClassInquiry().then(function(data) {
+            var getAllData = data;
+            // 表格信息
+            var mySql = '';
+            var paramsArr = '';
+            if(queryData == '%%') {
+                mySql = "SELECT l.portfolioID,ld.goodsName,ll.Maintitle,l.goods_type,l.goods_num,ld.goodsImg FROM lease_portfolio l,goods ld,lease ll WHERE l.goods_ID=ld.goods_ID AND ll.ID=l.leaseID";
+                paramsArr = [currentIndex];
+            }else {
+                mySql = "SELECT l.portfolioID,ld.goodsName,ll.Maintitle,l.goods_type,l.goods_num,ld.goodsImg FROM lease_portfolio l,goods ld,lease ll WHERE l.goods_ID=ld.goods_ID AND ll.ID=l.leaseID";
                 paramsArr = [queryData,currentIndex];
             }
             leaseDao.getLease(mySql,queryData).then(function(data) {

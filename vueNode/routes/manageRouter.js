@@ -86,7 +86,8 @@ router.get("/leaseTransfer.do",leaseController.leaseTransfer);
 router.get("/leaseModify.do",leaseController.leaseModify);
 router.get("/leaseAdd.do",leaseController.addForum);
 router.get("/leaseDelete.do",leaseController.leaseDelete);
-
+// ================ 分类管理 =============
+router.get("/leaseClass.do",leaseController.leaseClass);
 
 // ================ 论坛管理 =============
 router.get("/getForumInfo.do",forumController.getForumInfo);

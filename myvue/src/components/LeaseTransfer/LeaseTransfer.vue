@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import leaseFrameBox from './leaseFrameBox'
+import leaseFrameBox from './leaseFrameBox'
 export default {
   name: 'LeaseTransfer',
   components:{
