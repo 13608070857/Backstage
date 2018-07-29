@@ -262,11 +262,12 @@ export default {
     },
     upload (e) { 
       var that = this; 
-      let formData = new window.FormData(); 
-      console.log(e);
+      let formData = new window.FormData();
       let file = e.target.files[0];
+      console.log(formData)
       formData.append('file',file);//通过append向form对象添加数据 
       //利用split切割，拿到上传文件的格式 
+      console.log(formData)
       var src = file.name;
       var formart = src.split(".")[1];
       //使用if判断上传文件格式是否符合 

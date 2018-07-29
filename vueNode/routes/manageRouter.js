@@ -97,6 +97,6 @@ router.get("/getForumRep.do",forumController.getForumRep);
 router.get("/deleteRep.do",forumController.deleteRep);
 
 // ================ 图片上传 =============
-router.get('/upFile.do',upFileController.upFile);
+router.post('/upFile.do',upFileController.upFile);
 
 module.exports = router;

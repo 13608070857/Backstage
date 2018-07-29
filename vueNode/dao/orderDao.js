@@ -479,6 +479,19 @@ const orderDao = {
                 })
         })
     },
+    // 退款处理 不通过
+    unrefund(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("update goodsorder set isClosed=3 where o_ID=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
     // 退款处理 删除
     refunddelete(params){
         return new Promise(function (resolve,reject) {

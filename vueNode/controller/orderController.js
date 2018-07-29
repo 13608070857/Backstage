@@ -204,11 +204,11 @@ const orderControoller = {
     },
     // 退款处理 不通过
     getunrefund(req,resp){
-        // var oid=req.query.id;
-        // orderDao.onrefund(oid)
-        //     .then(function (data) {
-        //         resp.send(data);
-        //     })
+        var oid=req.query.id;
+        orderDao.unrefund(oid)
+            .then(function (data) {
+                resp.send(data);
+            })
     },
     // 退款处理 删除
     getrefunddelete(req,resp){
