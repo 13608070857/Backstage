@@ -19,6 +19,7 @@ export default {
       arr: [
         {
           name: '首页',
+          font: '&#xe622;',
           background: 'rgb(40,40,40)',
           isShow: false,
           to: '/index',
@@ -28,6 +29,7 @@ export default {
         },
         {
           name: '商品管理',
+          font: '&#xe675;',
           isShow: false,
           to: '',
           background: 'rgba(40,40,40,0.8)',
@@ -53,6 +55,7 @@ export default {
         },
         {
           name: '用户管理',
+          font: '&#xe636;',
           isShow: false,
           to: '',
           background: 'rgba(40,40,40,0.8)',
@@ -83,6 +86,7 @@ export default {
         // },
         {
           name: '交易管理',
+          font: '&#xe6ba;',
           isShow: false,
           to: '',
           background: 'rgba(40,40,40,0.8)',
@@ -108,6 +112,7 @@ export default {
         },
         {
           name: '购物车管理',
+          font: '&#xe63d;',
           isShow: false,
           to: '/shopping',
           background: 'rgba(40,40,40,0.8)',
@@ -117,6 +122,7 @@ export default {
         },
         {
           name: '租赁管理',
+          font: '&#xe900;',
           isShow: false,
           to: '',
           background: 'rgba(40,40,40,0.8)',
@@ -137,6 +143,7 @@ export default {
         },
         {
           name: '论坛管理',
+          font: '&#xe650;',
           isShow: false,
           to: '',
           background: 'rgba(40,40,40,0.8)',
@@ -179,6 +186,21 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: 'iconfont';
+  src: url('../../assets/font_cqy8kjkxqa/iconfont.eot');
+  src: url('../../assets/font_cqy8kjkxqa/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('../../assets/font_cqy8kjkxqa/iconfont.woff') format('woff'),
+  url('../../assets/font_cqy8kjkxqa/iconfont.ttf') format('truetype'),
+  url('../../assets/font_cqy8kjkxqa/iconfont.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family:"iconfont" !important;
+  font-size:16px;font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
 #mainNav{
   width: 15%;
   height: 90%;
