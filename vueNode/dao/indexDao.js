@@ -442,8 +442,10 @@ const indexDao = {
     },
     upload(A,B,C,D,E,F,G,H) {
         return new Promise((resolve, reject) => {
-            db.connect("UPDATE workuser SET NAME = \"?\",A_number = \"?\" ,PASSWORD = ?,tel = \"?\",email = \"?\", qq = ?, sex = \"?\" WHERE ID = ?",
+            db.connect("UPDATE workuser SET NAME=?,A_number=? ,PASSWORD =?,tel =?,email =?, qq = ?, sex =? WHERE ID = ?",
                 [B,C,D,E,F,G,H,A], (err, data) => {
+                console.log("数据")
+                console.log(data)
                     if (!err) {
                         resolve(data);
                     } else {
