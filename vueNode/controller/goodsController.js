@@ -17,7 +17,7 @@ const goodsControoller = {
         //         })
         //     })
         var currentP = req.query.currentP;
-        var currentIndex = (currentP - 1)*currentP;
+        var currentIndex = (currentP - 1)*5;
         var queryData = "%" + req.query.queryData + "%";
         goodsDao.goodsmsg2().then(function(data) {
             var getAllData = data;
@@ -63,7 +63,7 @@ const goodsControoller = {
         //         })
         //     })
         var currentP = req.query.currentP;
-        var currentIndex = (currentP - 1)*currentP;
+        var currentIndex = (currentP - 1)*5;
         var queryData = "%" + req.query.queryData + "%";
         goodsDao.goodscate().then(function(data) {
             var getAllData = data;
@@ -109,7 +109,7 @@ const goodsControoller = {
         //         })
         //     })
         var currentP = req.query.currentP;
-        var currentIndex = (currentP - 1)*currentP;
+        var currentIndex = (currentP - 1)*5;
         var queryData = "%" + req.query.queryData + "%";
         goodsDao.goodscom().then(function(data) {
             var getAllData = data;
@@ -214,7 +214,7 @@ const goodsControoller = {
         //         })
         //     })
         var currentP = req.query.currentP;
-        var currentIndex = (currentP - 1)*currentP;
+        var currentIndex = (currentP - 1)*5;
         var queryData = "%" + req.query.queryData + "%";
         goodsDao.goodsdetail2().then(function(data) {
             var getAllData = data;
