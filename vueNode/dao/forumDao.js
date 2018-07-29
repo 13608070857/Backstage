@@ -3,7 +3,7 @@ const db = require("../config/dbpoolConfig");
 const forumDao = {
     getAllForum(params) {
         return new Promise(function (resolve, reject) {
-            db.connect("select * from post", [], function (error, data) {
+            db.connect("select postId,categoryId,RestoreId,u_id,postTitle,postContent,postImg,postDes,DATE_FORMAT(postTime,\"%Y-%m-%d %H:%i:%S\"),postLike,isRecommend,postStatus from post", [], function (error, data) {
                 resolve(data);
             });
         });

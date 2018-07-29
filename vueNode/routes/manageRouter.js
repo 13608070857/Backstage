@@ -7,6 +7,7 @@ const orderController = require("../controller/orderController");
 const goodsController = require("../controller/goodsController");
 const leaseController = require("../controller/leaseController");
 const forumController = require("../controller/forumController");
+const upFileController = require("../controller/upFileController");
 
 
 router.get("/getUserInfo.do",userController.getUserInfo);
@@ -32,6 +33,8 @@ router.get("/Obtain",indexController.Obtain);
 router.post("/login.do",indexController.login);
 router.get("/jinru",indexController.jinru);
 router.get("/tuichu",indexController.tuichu);
+router.get("/personal",indexController.personal);
+router.get("/upload",indexController.upload);
 
 // ============== 商品管理 ==============
 router.get("/getgoodsmsg.do",goodsController.getallgoods);
@@ -71,10 +74,12 @@ router.get("/onwith.do",orderController.getonwith);
 router.get("/owithdelete.do",orderController.getowithdelete);
 router.get("/getrefund.do",orderController.getrefund);
 router.get("/onrefund.do",orderController.getonrefund);
+router.get("/unrefund.do",orderController.getunrefund);
 router.get("/refunddelete.do",orderController.getrefunddelete);
 router.get("/getpaymsg.do",orderController.getpaymsg);
 router.get("/onpay.do",orderController.getonpay);
 router.get("/unpay.do",orderController.getunpay);
+router.get("/addpay.do",orderController.getaddpay);
 
 // ================ 租赁管理 =============
 router.get("/leaseTransfer.do",leaseController.leaseTransfer);
@@ -90,5 +95,8 @@ router.get("/deleteForum.do",forumController.deleteForum);
 
 router.get("/getForumRep.do",forumController.getForumRep);
 router.get("/deleteRep.do",forumController.deleteRep);
+
+// ================ 图片上传 =============
+router.post('/upFile.do',upFileController.upFile);
 
 module.exports = router;

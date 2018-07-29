@@ -52,7 +52,7 @@ export default {
       ],
       searchBtns: [
         {text: '查询', className: 'large lightGreen', fn: {fnName: 'query', fnArg: ''}},
-        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addUserInfo.do'}}
+        {text: '新增', className: 'large darkGreen', fn: {fnName: 'insert', fnArg: '/addpay.do'}}
       ],
       // 表单元素信息，isInput：是否是input元素，如果是select就写false
       // content：是传送的内容
@@ -60,7 +60,7 @@ export default {
       // 如果是select就写一个对象，传你的value值
       formElement: {
         isInput: true,
-        contents: '请输入商品名称' // --input传值
+        contents: '请输入支付名称' // --input传值
         // contents: ['新品', '优惠', '其他值']
       }
     }

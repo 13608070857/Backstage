@@ -3,7 +3,7 @@ const orderDao = {
     //-- 近一周 交易金额 订单数量 交易成功 交易失败 退款金额
     ordercord(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT IFNULL(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(createtime)) AS cpay,(SELECT IFNULL(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(createtime)) AS copay,(SELECT IFNULL(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=0 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(createtime)) AS sprice\n" +
+            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT IFNULL(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(createtime)) AS cpay,(SELECT IFNULL(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(createtime)) AS copay,(SELECT IFNULL(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=1 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(createtime)) AS sprice\n" +
                 "FROM goodsorder go\n" +
                 "WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(createtime)",
                 [],(err,data)=>{
@@ -18,7 +18,7 @@ const orderDao = {
     // 近一个月 交易金额 订单数量 交易成功 交易失败 退款金额
     ordercordyear1(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= DATE(createtime)) AS cpay,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= DATE(createtime)) AS copay,(SELECT ifnull(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=0 and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= DATE(createtime)) AS sprice\n" +
+            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= DATE(createtime)) AS cpay,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= DATE(createtime)) AS copay,(SELECT ifnull(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=1 and DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= DATE(createtime)) AS sprice\n" +
                 "FROM goodsorder go\n" +
                 "WHERE DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= DATE(createtime)",
                 [],(err,data)=>{
@@ -33,7 +33,7 @@ const orderDao = {
     // 近两个月 交易金额 订单数量 交易成功 交易失败 退款金额
     ordercordyear2(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 and DATE_SUB(CURDATE(), INTERVAL 60 DAY) <= DATE(createtime)) AS cpay,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 and DATE_SUB(CURDATE(), INTERVAL 60 DAY) <= DATE(createtime)) AS copay,(SELECT ifnull(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=0 and DATE_SUB(CURDATE(), INTERVAL 60 DAY) <= DATE(createtime)) AS sprice\n" +
+            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 and DATE_SUB(CURDATE(), INTERVAL 60 DAY) <= DATE(createtime)) AS cpay,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 and DATE_SUB(CURDATE(), INTERVAL 60 DAY) <= DATE(createtime)) AS copay,(SELECT ifnull(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=1 and DATE_SUB(CURDATE(), INTERVAL 60 DAY) <= DATE(createtime)) AS sprice\n" +
                 "FROM goodsorder go\n" +
                 "WHERE DATE_SUB(CURDATE(), INTERVAL 60 DAY) <= DATE(createtime)",
                 [],(err,data)=>{
@@ -48,7 +48,7 @@ const orderDao = {
     // 近三个月 交易金额 订单数量 交易成功 交易失败 退款金额
     ordercordyear3(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 and DATE_SUB(CURDATE(), INTERVAL 90 DAY) <= DATE(createtime)) AS cpay,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 and DATE_SUB(CURDATE(), INTERVAL 90 DAY) <= DATE(createtime)) AS copay,(SELECT ifnull(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=0 and DATE_SUB(CURDATE(), INTERVAL 60 DAY) <= DATE(createtime)) AS sprice\n" +
+            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 and DATE_SUB(CURDATE(), INTERVAL 90 DAY) <= DATE(createtime)) AS cpay,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 and DATE_SUB(CURDATE(), INTERVAL 90 DAY) <= DATE(createtime)) AS copay,(SELECT ifnull(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=1 and DATE_SUB(CURDATE(), INTERVAL 60 DAY) <= DATE(createtime)) AS sprice\n" +
                 "FROM goodsorder go\n" +
                 "WHERE DATE_SUB(CURDATE(), INTERVAL 90 DAY) <= DATE(createtime)",
                 [],(err,data)=>{
@@ -63,7 +63,7 @@ const orderDao = {
     // 今年 交易金额 订单数量 交易成功 交易失败 退款金额
     ordercordthisyear(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 and YEAR(createtime)=YEAR(NOW())) AS cpay,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 and YEAR(createtime)=YEAR(NOW())) AS copay,(SELECT ifnull(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=0 and YEAR(createtime)=YEAR(NOW())) AS sprice\n" +
+            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 and YEAR(createtime)=YEAR(NOW())) AS cpay,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 and YEAR(createtime)=YEAR(NOW())) AS copay,(SELECT ifnull(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=1 and YEAR(createtime)=YEAR(NOW())) AS sprice\n" +
                 "FROM goodsorder go\n" +
                 "WHERE YEAR(createtime)=YEAR(NOW())",
                 [],(err,data)=>{
@@ -149,7 +149,7 @@ const orderDao = {
     // 去年 交易金额 订单数量 交易成功 交易失败 退款金额
     ordercordlastyear(req,resp){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 AND YEAR(createtime)=YEAR(DATE_SUB(NOW(),INTERVAL 1 YEAR))) AS cpay,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 AND YEAR(createtime)=YEAR(DATE_SUB(NOW(),INTERVAL 1 YEAR))) AS copay,(SELECT IFNULL(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=0 AND YEAR(createtime)=YEAR(DATE_SUB(NOW(),INTERVAL 1 YEAR))) AS sprice\n" +
+            db.connect("SELECT IFNULL(SUM(go.o_price),0) AS o_price,IFNULL(SUM(CEILING(go.o_price/go.total)),0) AS total_price,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay=0 AND YEAR(createtime)=YEAR(DATE_SUB(NOW(),INTERVAL 1 YEAR))) AS cpay,(SELECT ifnull(COUNT(is_pay),0) FROM goodsorder WHERE is_pay!=0 AND YEAR(createtime)=YEAR(DATE_SUB(NOW(),INTERVAL 1 YEAR))) AS copay,(SELECT IFNULL(SUM(go.o_price),0) FROM goodsorder go WHERE go.isClosed=1 AND YEAR(createtime)=YEAR(DATE_SUB(NOW(),INTERVAL 1 YEAR))) AS sprice\n" +
                 "FROM goodsorder go\n" +
                 "WHERE YEAR(createtime)=YEAR(DATE_SUB(NOW(),INTERVAL 1 YEAR))",
                 [],(err,data)=>{
@@ -389,6 +389,24 @@ const orderDao = {
                 })
         })
     },
+    ordermsg2(sql,params){
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, [params], function (error, data) {
+                if (!error){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
+    },
+    ordermsg3(sql,...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            });
+        });
+    },
     // 订单处理  发货
     onwith(params){
         return new Promise(function (resolve,reject) {
@@ -418,7 +436,7 @@ const orderDao = {
     // 退款处理
     refund(){
         return new Promise(function (resolve,reject) {
-            db.connect("SELECT go.o_ID,go.u_id,g.goodsName,g.goodsImg,go.o_price,go.o_price AS o_price2,(CEIL(go.o_price/total)) AS refundNum,DATE_FORMAT(go.createTime,\"%Y-%m-%d %H:%i:%S\") AS createTime,CASE go.isClosed WHEN 1 THEN '待退款' WHEN 2 THEN '已退款' WHEN 0 THEN '正常' END AS is_Closed,IFNULL(go.order_desc,'暂无') AS order_desc\n" +
+            db.connect("SELECT go.o_ID,go.u_id,g.goodsName,g.goodsImg,go.o_price,go.o_price AS o_price2,(CEIL(go.o_price/total)) AS refundNum,DATE_FORMAT(go.createTime,\"%Y-%m-%d %H:%i:%S\") AS createTime,IFNULL(go.order_desc,'暂无') AS order_desc,CASE go.isClosed WHEN 1 THEN '待退款' WHEN 2 THEN '已退款' WHEN 0 THEN '正常' END AS is_Closed\n" +
                 "FROM goodsorder go,order_goods og,goods g\n" +
                 "WHERE go.u_id=og.u_id AND og.goods_ID=g.goods_ID AND go.o_ID=og.o_ID AND go.is_del2=0 AND go.is_del=0",
                 [],(err,data)=>{
@@ -430,10 +448,41 @@ const orderDao = {
                 })
         })
     },
+    refund2(sql,params){
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, [params], function (error, data) {
+                if (!error){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
+    },
+    refund3(sql,...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            });
+        });
+    },
     // 退款处理 退款
     onrefund(params){
         return new Promise(function (resolve,reject) {
             db.connect("update goodsorder set isClosed=2 where o_ID=?",
+                [params],(err,data)=>{
+                    if (!err){
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                })
+        })
+    },
+    // 退款处理 不通过
+    unrefund(params){
+        return new Promise(function (resolve,reject) {
+            db.connect("update goodsorder set isClosed=3 where o_ID=?",
                 [params],(err,data)=>{
                     if (!err){
                         resolve(data);
@@ -469,6 +518,24 @@ const orderDao = {
                 })
         })
     },
+    paymsg2(sql,params){
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, [params], function (error, data) {
+                if (!error){
+                    resolve(data);
+                } else {
+                    reject(data);
+                }
+            });
+        });
+    },
+    paymsg3(sql,...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            });
+        });
+    },
     // 支付管理 启用
     onpay(params){
         return new Promise(function (resolve,reject) {
@@ -494,6 +561,13 @@ const orderDao = {
                     }
                 })
         })
-    }
+    },
+    addorder(sql, ...args) {
+        return new Promise(function (resolve, reject) {
+            db.connect(sql, ...args, function (error, data) {
+                resolve(data);
+            })
+        })
+    },
 };
 module.exports = orderDao;

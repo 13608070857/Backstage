@@ -55,7 +55,7 @@
             </div>
             <div v-else class="imgD">
               <img :src="'/api/' + popObj[index]" alt="">
-              <input type="file" id="avatar" @change="upload">
+              <input type="file" @change="upload($event)">
             </div>
           </li>
         </ul>
@@ -79,7 +79,7 @@
             </div>
             <div v-else class="imgD">
               <img :src="'/api/' + popC" alt="">
-              <input type="file">
+              <input type="file" @change="upload($event)">
             </div>
           </li>
         </ul>
@@ -260,6 +260,40 @@ export default {
       }else {
         this.popShow = false
       }
+    },
+    upload (e) { 
+      var that = this; 
+      let formData = new window.FormData();
+      let file = e.target.files[0];
+      console.log(formData)
+      formData.append('file',file);//通过append向form对象添加数据 
+      //利用split切割，拿到上传文件的格式 
+      console.log(formData)
+      var src = file.name;
+      var formart = src.split(".")[1];
+      //使用if判断上传文件格式是否符合 
+      if (formart == "jpg" || formart == "png" || 
+        formart == "jpeg" || formart == "gif") { 
+        //只有满足以上格式时，才会触发ajax请求 
+        this.$axios.post('/api/upFile.do',formData).then(function (res) { 
+          that.upFileData = res.data;  
+        })
+        // .then(function (res) {
+        //   var params = { 
+        //     photos_url: that.upFileData, 
+        //     photo_des: '' 
+        //   }; 
+        //   that.$axios.post(that.$api.personalCenter.wallAdd,qs.stringify(params)).then(function (res) { 
+        //     console.log(res.data); 
+        //     that.$options.methods.imgList.bind(that)(); 
+        //   }).catch(function (err) { 
+        //     console.log(err); 
+        //     console.log("请求出错"); 
+        //   }) 
+        // }) 
+      } else { 
+        alert("文件格式不支持上传"); 
+      } 
     }
   }
 }

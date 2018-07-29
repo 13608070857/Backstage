@@ -10,13 +10,6 @@ const forumController = {
         // 弹出层
         forumDao.getAllForum().then(function(data) {
             var getAllData = data;
-            for(var i=0;i<getAllData.length;i++) {
-                for(var key in getAllData[i]) {
-                    if(/[tT]ime/.test(key)) {
-                        console.log(getAllData[i].key)
-                    }
-                }
-            }
 
             // 表格信息
             var mySql = '';
