@@ -5,7 +5,7 @@
       <p>QianCao Management System</p>
     </div>
     <div class="right">
-      <span>换肤
+      <span><i class="iconfont">&#xe617;</i>
         <div class="hf">
           <div class="kuai" style="background: #effffc" @click="$bg('white')"></div>
           <div class="kuai" style="background: aqua" @click="$bg('aqua')"></div>
@@ -21,10 +21,10 @@
           <div class="kuai" style="background: #e0ff15" @click="$bg('#e0ff15')"></div>
         </div>
       </span>
-      <span>管理员
+      <span><i class="iconfont">&#xe636;</i>
         <ul class="box">
           <!--<li>个人中心</li>-->
-          <router-link tag="li" to="/personal">个人中心</router-link>
+          <router-link tag="li" to="/personal" style="border-bottom: 1px solid rgb(208,208,208);">个人中心</router-link>
           <li @click="tuichu()">退出登录</li>
         </ul>
       </span>
@@ -53,6 +53,21 @@ export default {
 </script>
 
 <style scoped>
+  @font-face {
+    font-family: 'iconfont';
+    src: url('../../assets/font_cqy8kjkxqa/iconfont.eot');
+    src: url('../../assets/font_cqy8kjkxqa/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('../../assets/font_cqy8kjkxqa/iconfont.woff') format('woff'),
+    url('../../assets/font_cqy8kjkxqa/iconfont.ttf') format('truetype'),
+    url('../../assets/font_cqy8kjkxqa/iconfont.svg#iconfont') format('svg');
+  }
+  .iconfont{
+    font-family:"iconfont" !important;
+    font-size:30px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+  }
 #myheader{
   width: 100%;
   height: 65px;
@@ -104,22 +119,23 @@ export default {
   display: none;
 }
 .box{
-  width: 80px;
-  height: 50px;
+  width: 140px;
+  height: 90px;
   background: white;
   position: absolute;
   top: 20px;
   left: 50%;
-  margin-left: -40px;
+  margin-left: -70px;
   z-index: 2;
-  color: #000;
+  color: #3a3a3a;
   display: none;
+  box-shadow: 0px 0px 4px 3px rgba(165, 165, 165, 0.8);
 }
 .box li{
-  height: 25px;
+  height: 45px;
   list-style-type:none;
-  font-size: 14px;
-  line-height: 25px;
+  font-size: 12px;
+  line-height: 45px;
 }
 .right span:nth-child(1):hover .hf{
   display: block;

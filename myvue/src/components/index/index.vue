@@ -231,6 +231,7 @@ export default {
       this.$axios.get('/xxm/Newest')
         .then(resp => {
           this.Newestarr = resp.data
+          console.log(this.Newestarr);
         })
     },
     // 消费排行
