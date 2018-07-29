@@ -13,6 +13,7 @@ import goodscategory from '../components/goods/goodscategory'
 import goodscoomments from '../components/goods/goodscoomments'
 import goodsdetail from '../components/goods/goodsdetail'
 import LeaseTransfer from '../components/LeaseTransfer/LeaseTransfer'
+import LeaseClass from '../components/LeaseClass/LeaseClass'
 import grade from '../components/user/Grade'
 import staff from '../components/user/staff'
 import collection from '../components/user/Collection'
@@ -88,6 +89,11 @@ export default new Router({
       path: '/LeaseTransfer',
       name: 'LeaseTransfer',
       component: LeaseTransfer
+    },
+    {
+      path: '/LeaseClass',
+      name: 'LeaseClass',
+      component: LeaseClass
     },
     {
       path: '/grade',

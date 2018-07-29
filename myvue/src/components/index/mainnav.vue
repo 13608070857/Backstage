@@ -128,7 +128,7 @@ export default {
             },
             {
               name: '分类管理',
-              to: '/'
+              to: '/LeaseClass'
             },
             {
               name: '定制管理',
